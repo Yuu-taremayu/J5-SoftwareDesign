@@ -3,7 +3,7 @@
 group development
 
 ## Team
-# Members
+### Members
  - Renta Noguchi (Leader)
  - Satoshi Naoto
  - Reiji Yamashita
