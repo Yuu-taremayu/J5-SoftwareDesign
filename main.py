@@ -1,3 +1,6 @@
+from game import GAME
+from player import PLAYER
+
 def main():
     pass
 
