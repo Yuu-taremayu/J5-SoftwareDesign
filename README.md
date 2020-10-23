@@ -12,7 +12,7 @@ group development
 
 ## Descriptions
 development of Field Sugoroku with Python
-The name is "日曜から夜ふかし ~Sunday midnight~"
+The name is "日曜から夜ふかし \~Sunday midnight\~"
 
 ## Rule
  - 4\*5 Field
@@ -44,3 +44,12 @@ The name is "日曜から夜ふかし ~Sunday midnight~"
 	 - no job
 
 ## Behiviour of materials
+
+## Data structure
+#### class "game"
+functions
+ - init field(position, event, etc...)
+
+#### class "player"
+functions
+ - init some status
