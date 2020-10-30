@@ -40,7 +40,7 @@ The name is "日曜から夜ふかし \~Sunday midnight\~"
  - job
 	 - teacher
 	 - enginner
-	 - doctor
+	 - sports man
 	 - no job
 
 ## Behiviour of materials
