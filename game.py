@@ -1,3 +1,5 @@
+import random
+
 class GAME():
     # init game
     def __init__(self):
@@ -18,7 +20,8 @@ class GAME():
 
     # roll dice randomly
     def roll_dice():
-        pass
+        r = random.randint(1, 6)
+        return r
 
     # check each player's winning condition
     def check_win_condition():
