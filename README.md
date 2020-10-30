@@ -7,7 +7,7 @@ group development
  - Renta Noguchi (Leader)
  - Satoshi Naoto
  - Reiji Yamashita
- - Ryuya Mikami
+ - Tatsuya Mikami
  - Yu Miura
 
 ## Descriptions
