@@ -1,3 +1,5 @@
+import random
+
 class PLAYER():
     # init player status
     def __init__(self):
@@ -7,3 +9,17 @@ class PLAYER():
         self.job = None
         self.dex = 0
         self.condition = False
+
+        self.decide_job()
+
+    # decide player's job
+    def decide_job(self):
+        r = random.randrange(4)
+        if r == 0:
+            self.job = 'Teacher'
+        elif r == 1:
+            self.job = 'Engineer'
+        elif r == 2:
+            self.job = 'SportsMan'
+        else:
+            self.job = 'NoJob'
