@@ -103,11 +103,6 @@ class GAME():
     def move_player():
         pass
 
-    # run some events on game field
-    # add more any events
-    def event1():
-        pass
-
     # show result
     def show_result():
         pass
