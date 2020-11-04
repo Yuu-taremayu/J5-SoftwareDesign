@@ -18,7 +18,7 @@ class GAME():
         self.pressed = {}#押されているキーが格納される
 
         self.start_menu()
-        #select_menu()
+        self.select_menu()
 
     #押されたキーをpressedに追加
     def key_pressed(self, event):
@@ -79,8 +79,76 @@ class GAME():
             self.root.update()
 
     # show select menu
-    def select_menu():
-        pass
+    # TODO: fix UI
+    def select_menu(self):
+        # define
+        up = 1
+        down = 2
+        left = 3
+        right = 4
+
+        # 1:player 2:start
+        select = 1
+        player_num = 2
+        old_key = None
+
+        while True:
+            #キャンバス生成
+            canvas = tkinter.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
+            canvas.place(x=0, y=0)
+
+            # control select
+            if "Up" in self.pressed and old_key != up:
+                select = 1
+                old_key = up
+            elif "Down" in self.pressed and old_key != down:
+                select = 2
+                old_key = down
+            elif "Left" in self.pressed and old_key != left:
+                select = 3
+                old_key = left
+            elif "Right" in self.pressed and old_key != right:
+                select = 4
+                old_key = right
+            elif "Return" in self.pressed and old_key != 5:
+                if select == 2:
+                    return 0
+                elif select == 3:
+                    player_num -= 1
+                    old_key = 0
+                elif select == 4:
+                    player_num += 1
+                    old_key = 0
+
+            # generate label
+            l_title = tkinter.Label(text="Select Menu", background="green")
+            l_player = tkinter.Label(text="Players", background="green")
+            l_num = tkinter.Label(text=str(player_num), background="green")
+            if select == 1:
+                l_start = tkinter.Label(text="Start", background="blue")
+                l_left = tkinter.Label(text="<=", background="yellow")
+                l_right = tkinter.Label(text="=>", background="blue")
+            elif select == 2:
+                l_start = tkinter.Label(text="Start", background="yellow")
+                l_left = tkinter.Label(text="<=", background="blue")
+                l_right = tkinter.Label(text="=>", background="blue")
+            elif select == 3:
+                l_start = tkinter.Label(text="Start", background="blue")
+                l_left = tkinter.Label(text="<=", background="yellow")
+                l_right = tkinter.Label(text="=>", background="blue")
+            elif select == 4:
+                l_start = tkinter.Label(text="Start", background="blue")
+                l_left = tkinter.Label(text="<=", background="blue")
+                l_right = tkinter.Label(text="=>", background="yellow")
+            l_title.place(x=self.WIDTH/2, y=100, anchor=tkinter.N)
+            l_player.place(x=self.WIDTH/2-150, y=self.HEIGHT/2-50, anchor=tkinter.N)
+            l_start.place(x=self.WIDTH/2, y=self.HEIGHT/2+100, anchor=tkinter.N)
+            l_num.place(x=self.WIDTH/2, y=self.HEIGHT/2-50, anchor=tkinter.N)
+            l_left.place(x=self.WIDTH/2-40, y=self.HEIGHT/2-50, anchor=tkinter.N)
+            l_right.place(x=self.WIDTH/2+40, y=self.HEIGHT/2-50, anchor=tkinter.N)
+
+            #ウィンドウの更新
+            self.root.update()
 
     # start game
     def start():
