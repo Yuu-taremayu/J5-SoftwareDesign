@@ -5,7 +5,7 @@ group development
 ## Team ｐｙてょｎ
 ### Members
  - Renta Noguchi (Leader)
- - Satoshi Naoto
+ - Satoshi Naito
  - Reiji Yamashita
  - Tatsuya Mikami
  - Yu Miura
