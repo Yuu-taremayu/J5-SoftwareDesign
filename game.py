@@ -114,10 +114,12 @@ class GAME():
                 if select == 2:
                     return 0
                 elif select == 3 and old_key is None:
-                    player_num -= 1
+                    if player_num > 2:
+                        player_num -= 1
                     old_key = 0
                 elif select == 4 and old_key is None:
-                    player_num += 1
+                    if player_num < 4:
+                        player_num += 1
                     old_key = 0
             elif self.pressed == {}:
                 old_key = None
