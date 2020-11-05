@@ -31,6 +31,14 @@ class FIELD():
                 field[randX][randY] = "Shop"
                 cnt += 1
         print(field)
+        cnt = 0
+        while cnt < num_jobchange:
+            randX = random.randrange(0, x-1)
+            randY = random.randrange(0, y-1)
+            if field[randX][randY] == "Normal":
+                field[randX][randY] = "JobChange"
+                cnt += 1
+        print(field)
     # run some events on field
     # add any more events
     def event1():
