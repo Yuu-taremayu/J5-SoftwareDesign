@@ -46,10 +46,51 @@ The name is "日曜から夜ふかし \~Sunday midnight\~"
 ## Behiviour of materials
 
 ## Data structure
-#### class "game"
-functions
- - init field(position, event, etc...)
-
-#### class "player"
-functions
- - init some status
+ - class "game"
+```
+class GAME():
+	def __init__():
+		argument:self, width, height, root
+		return value:none
+		# any discription
+	def key_pressed()
+		argument:event
+		return value:none
+		# any discription
+	def key_released()
+		argument:event
+		return value:none
+		# any discription
+	def start_menu()
+		argument:none
+		return value:0
+		# any discription
+	def select_menu()
+		argument:none
+		return value:0
+		# any discription
+```
+ - class "player"
+```
+class PLAYER():
+	def __init__():
+		argument:none
+		return value:none
+		# any discription
+	def decide_job():
+		argument:none
+		return value:none
+		# any discription
+```
+ - class "field"
+```
+class FIELD():
+	def __init__():
+		argument:none
+		return value:none
+		# any discription
+	def set_field():
+		argument:none
+		return value:x, y
+		# any discription
+```
