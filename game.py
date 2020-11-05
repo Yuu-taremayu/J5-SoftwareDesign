@@ -87,8 +87,8 @@ class GAME():
         left = 3
         right = 4
 
-        # 1:player 2:start
-        select = 1
+        # 1:player 2:start 3:left 4:right
+        select = 3
         player_num = 2
         old_key = None
 
@@ -110,15 +110,19 @@ class GAME():
             elif "Right" in self.pressed and old_key != right:
                 select = 4
                 old_key = right
-            elif "Return" in self.pressed and old_key != 5:
+            elif "Return" in self.pressed:
                 if select == 2:
                     return 0
-                elif select == 3:
-                    player_num -= 1
+                elif select == 3 and old_key is None:
+                    if player_num > 2:
+                        player_num -= 1
                     old_key = 0
-                elif select == 4:
-                    player_num += 1
+                elif select == 4 and old_key is None:
+                    if player_num < 4:
+                        player_num += 1
                     old_key = 0
+            elif self.pressed == {}:
+                old_key = None
 
             # generate label
             l_title = tkinter.Label(text="Select Menu", background="green")
