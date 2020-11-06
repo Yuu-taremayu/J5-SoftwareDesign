@@ -36,9 +36,8 @@ class FIELD():
             if field[randX][randY] == "Normal":
                 field[randX][randY] = "JobChange"
                 cnt += 1
+
     # run some events on field
     # add any more events
     def event1():
         pass
-
-f = FIELD()
