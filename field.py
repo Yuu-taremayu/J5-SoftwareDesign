@@ -6,7 +6,7 @@ class FIELD():
         self.x, self.y = self.set_field()
         self.num_shop, self.num_jobchange = self.set_events()
 
-        self.init_field(self.x, self.y, self.num_shop, self.num_jobchange)
+        self.field = self.init_field(self.x, self.y, self.num_shop, self.num_jobchange)
 
     # set field size
     def set_field(self):
@@ -36,8 +36,12 @@ class FIELD():
             if field[randX][randY] == "Normal":
                 field[randX][randY] = "JobChange"
                 cnt += 1
+        return field
 
     # run some events on field
     # add any more events
     def event1():
         pass
+
+f = FIELD()
+print(f.field)
