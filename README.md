@@ -59,11 +59,12 @@ class GAME():
 		argument:event
 		return value:none
 		# when key pressed, call this function
-		# add pressed key
+		# add pressed key from array
 	def key_released()
 		argument:event
 		return value:none
-		# any discription
+		# when key released, call this function
+		# delete released key from array
 	def start_menu()
 		argument:none
 		return value:0
