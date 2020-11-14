@@ -24,7 +24,7 @@ class FIELD():
     # initialize all by Normal
     # add shop and job change piont
     def init_field(self, x, y, num_shop, num_jobchange):
-        field_array = [["Normal" for i in range(x)] for j in range(y)]
+        field_array = [["Normal" for j in range(y)] for i in range(x)]
         cnt = 0
         while cnt < num_shop:
             randX = random.randrange(0, x-1)
@@ -37,7 +37,7 @@ class FIELD():
             randX = random.randrange(0, x-1)
             randY = random.randrange(0, y-1)
             if field_array[randX][randY] == "Normal":
-                field_array[randX][randY] = "JobChange"
+                field_array[randX][randY] = "Job\nChange"
                 cnt += 1
         return field_array
 
