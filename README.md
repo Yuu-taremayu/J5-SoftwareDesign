@@ -75,7 +75,10 @@ class GAME():
 	def select_menu()
 		argument:none
 		return value:0
-		# any discription
+		# display select manu
+		# create menu screen by some label
+		# control Up, Down, Left, Right and Enter key
+		# you can be select the number of player and start game
 ```
  - class "player"
 ```
