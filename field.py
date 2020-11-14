@@ -45,6 +45,3 @@ class FIELD():
     # add any more events
     def event1():
         pass
-
-f = FIELD()
-print(f.field)
