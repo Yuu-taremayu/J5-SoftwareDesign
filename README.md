@@ -52,8 +52,7 @@ class GAME():
 	def __init__():
 		argument:self, width, height, root
 		return value:none
-		# any discription
-    # game init
+		# initialize some constant and variables in GAME class
 	def key_pressed()
 		argument:event
 		return value:none
