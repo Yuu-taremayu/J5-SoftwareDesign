@@ -53,6 +53,7 @@ class GAME():
 		argument:self, width, height, root
 		return value:none
 		# any discription
+    # game init
 	def key_pressed()
 		argument:event
 		return value:none
