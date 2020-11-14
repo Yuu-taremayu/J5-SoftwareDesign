@@ -68,7 +68,10 @@ class GAME():
 	def start_menu()
 		argument:none
 		return value:0
-		# any discription
+		# show start menu
+		# create menu display by canvas and label
+		# control Up, Down and Enter key
+		# you can be Game Start or Exit here
 	def select_menu()
 		argument:none
 		return value:0
