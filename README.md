@@ -53,6 +53,8 @@ class GAME():
 		argument:self, width, height, root
 		return value:none
 		# initialize some constant and variables in GAME class
+		# initialize keyboard config
+		# call start_menu() function
 	def key_pressed()
 		argument:event
 		return value:none
