@@ -10,8 +10,8 @@ class FIELD():
 
     # set field size
     def set_field(self):
-        x = int(input('input x'))
-        y = int(input('input y'))
+        x = 5
+        y = 4
         return x, y
 
     # set any event num
