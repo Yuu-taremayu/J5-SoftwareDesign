@@ -6,7 +6,7 @@ class FIELD():
         self.x, self.y = self.set_field()
         self.num_shop, self.num_jobchange = self.set_events()
 
-        self.field = self.init_field(self.x, self.y, self.num_shop, self.num_jobchange)
+        self.field_array = self.init_field(self.x, self.y, self.num_shop, self.num_jobchange)
 
     # set field size
     def set_field(self):
@@ -24,22 +24,22 @@ class FIELD():
     # initialize all by Normal
     # add shop and job change piont
     def init_field(self, x, y, num_shop, num_jobchange):
-        field = [["Normal" for i in range(x)] for j in range(y)]
+        field_array = [["Normal" for i in range(x)] for j in range(y)]
         cnt = 0
         while cnt < num_shop:
             randX = random.randrange(0, x-1)
             randY = random.randrange(0, y-1)
-            if field[randX][randY] == "Normal":
-                field[randX][randY] = "Shop"
+            if field_array[randX][randY] == "Normal":
+                field_array[randX][randY] = "Shop"
                 cnt += 1
         cnt = 0
         while cnt < num_jobchange:
             randX = random.randrange(0, x-1)
             randY = random.randrange(0, y-1)
-            if field[randX][randY] == "Normal":
-                field[randX][randY] = "JobChange"
+            if field_array[randX][randY] == "Normal":
+                field_array[randX][randY] = "JobChange"
                 cnt += 1
-        return field
+        return field_array
 
     # run some events on field
     # add any more events
