@@ -58,7 +58,8 @@ class GAME():
 	def key_pressed()
 		argument:event
 		return value:none
-		# any discription
+		# when key pressed, call this function
+		# add pressed key
 	def key_released()
 		argument:event
 		return value:none
