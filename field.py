@@ -1,4 +1,5 @@
 import random
+import tkinter
 
 class FIELD():
     # init field and properties
@@ -20,6 +21,9 @@ class FIELD():
         num_jobchange = 2
         return num_shop, num_jobchange
 
+    # init field array internally
+    # initialize all by Normal
+    # add shop and job change piont
     def init_field(self, x, y, num_shop, num_jobchange):
         field = [["Normal" for i in range(x)] for j in range(y)]
         cnt = 0
@@ -37,6 +41,12 @@ class FIELD():
                 field[randX][randY] = "JobChange"
                 cnt += 1
         return field
+
+    def print_field(self, x, y, field):
+        l_field = [[None for i in range(x)] for j in range(y)]
+        for i in range(x):
+            for j in range(y):
+                l_field[i][j] = tkinter.Label(text=field[i][j], background="red")
 
     # run some events on field
     # add any more events
