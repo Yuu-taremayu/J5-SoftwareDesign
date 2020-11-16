@@ -1,5 +1,6 @@
 import random
 import tkinter
+from field import FIELD
 
 class GAME():
     # Game config
@@ -21,6 +22,9 @@ class GAME():
         frame.focus_set()
         frame.pack()
         self.pressed = {}#pressed key
+
+        # Array of field
+        self.field = FIELD()
 
         self.start_menu()
 
@@ -169,8 +173,15 @@ class GAME():
         self.root.after(3, self.select_menu)
 
     # start game
-    def start():
-        pass
+    def start(self):
+        self.print_field(self.field)
+
+    def print_field(self, field):
+        l_field = [[None for j in range(field.y)] for i in range(field.x)]
+        for i in range(field.x):
+            for j in range(field.y):
+                l_field[i][j] = tkinter.Label(text=field.field_array[i][j], background="red")
+                l_field[i][j].place(x=self.WIDTH/field.x*i+70, y=self.HEIGHT/field.y*j+50, anchor=tkinter.N)
 
     # roll dice randomly
     def roll_dice():
