@@ -86,11 +86,15 @@ class PLAYER():
 	def __init__():
 		argument:none
 		return value:none
-		# any discription
+		# initialize player's status
+		# money, muscle, stress, job, DEX
+		# give player win condition
+		# call decide_job and give player job
 	def decide_job():
 		argument:none
 		return value:none
-		# any discription
+		# decide job by random
+		# there are 4 jobs 'Teacher', 'Engineer', 'SportsMan' and 'Nojob'
 ```
  - class "field"
 ```
