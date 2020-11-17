@@ -102,9 +102,20 @@ class FIELD():
 	def __init__():
 		argument:none
 		return value:none
-		# any discription
+		# initialize field properties
+		# x, y, number of shop, number of job change point and field array
 	def set_field():
 		argument:none
 		return value:x, y
-		# any discription
+		# setting　field size x, y
+	def set_events()
+		argument:none
+		return:number of shop, number of job change point
+		# setting number of event point shop and job change
+	def init_field():
+		argument:x, y, number of shop, number of job change point
+		return:field array
+		# initialize internal information of field
+		# random create point of shop and jobchange
+		# other points initialized by 'Normal'
 ```
