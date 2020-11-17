@@ -157,12 +157,16 @@ class GAME():
             l_start = tkinter.Label(text="Start", background="blue")
             l_left = tkinter.Label(text="<=", background="blue")
             l_right = tkinter.Label(text="=>", background="yellow")
-        l_title.place(x=self.WIDTH/2, y=100, anchor=tkinter.N)
-        l_player.place(x=self.WIDTH/2-150, y=self.HEIGHT/2-50, anchor=tkinter.N)
-        l_start.place(x=self.WIDTH/2, y=self.HEIGHT/2+100, anchor=tkinter.N)
-        l_num.place(x=self.WIDTH/2, y=self.HEIGHT/2-50, anchor=tkinter.N)
-        l_left.place(x=self.WIDTH/2-40, y=self.HEIGHT/2-50, anchor=tkinter.N)
-        l_right.place(x=self.WIDTH/2+40, y=self.HEIGHT/2-50, anchor=tkinter.N)
+        l_title.place(x=self.WIDTH/2, y=50, anchor=tkinter.N)
+        l_player.place(x=self.WIDTH/2-150, y=self.HEIGHT/2-100, anchor=tkinter.N)
+        l_start.place(x=self.WIDTH/2, y=self.HEIGHT/2+150, anchor=tkinter.N)
+        l_num.place(x=self.WIDTH/2, y=self.HEIGHT/2-100, anchor=tkinter.N)
+        l_left.place(x=self.WIDTH/2-40, y=self.HEIGHT/2-100, anchor=tkinter.N)
+        l_right.place(x=self.WIDTH/2+40, y=self.HEIGHT/2-100, anchor=tkinter.N)
+
+        l_name = [tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10)]
+        for i in range(player_num):
+            l_name[i].place(x=self.WIDTH/2-70, y=self.HEIGHT/2-30+i*40)
 
         self.var_select_menu = [select, player_num, old_key]
 
