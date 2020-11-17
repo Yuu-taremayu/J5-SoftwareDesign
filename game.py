@@ -167,8 +167,8 @@ class GAME():
         l_name = [tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10)]
         for i in range(player_num):
             lbl = tkinter.Label(text="Player "+str(i+1))
-            lbl.place(x=self.WIDTH/2-140, y=self.HEIGHT/2-30+i*40)
-            l_name[i].place(x=self.WIDTH/2, y=self.HEIGHT/2-30+i*40)
+            lbl.place(x=self.WIDTH/2-150, y=self.HEIGHT/2-30+i*40, anchor=tkinter.N)
+            l_name[i].place(x=self.WIDTH/2, y=self.HEIGHT/2-30+i*40, anchor=tkinter.N)
 
         self.var_select_menu = [select, player_num, old_key]
 
