@@ -23,6 +23,10 @@ class GAME():
         frame.pack()
         self.pressed = {}#pressed key
 
+        # Create canvas
+        canvas = tkinter.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
+        canvas.place(x=0, y=0)
+
         # Array of field
         self.field = FIELD()
 
@@ -51,10 +55,6 @@ class GAME():
         # Disp process
         select, old_key = self.var_start_menu
 
-        # Create canvas
-        canvas = tkinter.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
-        canvas.place(x=0, y=0)
-
         # Select process
         if "Up" in self.pressed and old_key != up:
             select = 1
@@ -66,6 +66,9 @@ class GAME():
             if select == 1:# End function
                 # Execute start_menu 3ms later
                 self.root.after(3, self.select_menu)
+                # Create canvas
+                canvas = tkinter.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
+                canvas.place(x=0, y=0)
                 return 0
             else:# End game
                 exit()
@@ -104,10 +107,6 @@ class GAME():
         # 1:player 2:start 3:left 4:right
         select, player_num, old_key = self.var_select_menu
 
-        # Create canvas
-        canvas = tkinter.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
-        canvas.place(x=0, y=0)
-
         # control select
         if "Up" in self.pressed and old_key != up:
             select = 1
@@ -125,6 +124,9 @@ class GAME():
             if select == 2:
                 # Execute next function 3ms later
                 self.root.after(3, self.start)
+                # Create canvas
+                canvas = tkinter.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
+                canvas.place(x=0, y=0)
                 return 0
             elif select == 3 and old_key is None:
                 if player_num > 2:
