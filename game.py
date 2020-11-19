@@ -110,6 +110,10 @@ class GAME():
         left = 3
         right = 4
 
+        # Fill black
+        canvas = tkinter.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
+        canvas.place(x=0, y=0)
+
         # 1:player 2:start 3:left 4:right
         select, player_num, old_key = self.var_select_menu
 
@@ -131,15 +135,15 @@ class GAME():
                 # Execute next function 3ms later
                 self.root.after(3, self.start)
                 self.scene_cnt = 2
-                # Create canvas
+                # Fill black
                 canvas = tkinter.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
                 canvas.place(x=0, y=0)
                 return 0
-            elif select == 3 and old_key is None:
+            elif select == 3:
                 if player_num > 2:
                     player_num -= 1
                 old_key = 0
-            elif select == 4 and old_key is None:
+            elif select == 4:
                 if player_num < 4:
                     player_num += 1
                 old_key = 0
