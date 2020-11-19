@@ -10,6 +10,7 @@ class GAME():
         self.WIDTH = w
         self.HEIGHT = h
         self.root = root
+        self.scene_cnt = 0
 
         # Variables of function
         self.var_start_menu = (1, None)
@@ -37,10 +38,16 @@ class GAME():
         self.pressed[event.keysym] = True
         self.pos = (0,0)
 
+        if self.scene_cnt == 0:#Call select_menu
+            self.start_menu()
+        elif self.scene_cnt == 1:
+            self.select_menu()
+        elif self.scene_cnt == 2:
+            self.start()
+
     # Delete released key
     def key_released(self, event):
         self.pressed.pop(event.keysym, None)
-
 
     # Disp start menu
     # TODO: Modify the design
@@ -66,6 +73,7 @@ class GAME():
             if select == 1:# End function
                 # Execute start_menu 3ms later
                 self.root.after(3, self.select_menu)
+                self.scene_cnt = 1
                 # Create canvas
                 canvas = tkinter.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
                 canvas.place(x=0, y=0)
@@ -92,8 +100,6 @@ class GAME():
         # Update window
         self.root.update()
 
-        # Execute start_menu 3ms later
-        self.root.after(3, self.start_menu)
 
     # show select menu
     # TODO: fix UI
@@ -124,6 +130,7 @@ class GAME():
             if select == 2:
                 # Execute next function 3ms later
                 self.root.after(3, self.start)
+                self.scene_cnt = 2
                 # Create canvas
                 canvas = tkinter.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
                 canvas.place(x=0, y=0)
@@ -171,14 +178,11 @@ class GAME():
             lbl = tkinter.Label(text="Player "+str(i+1))
             lbl.place(x=self.WIDTH/2-150, y=self.HEIGHT/2-30+i*40, anchor=tkinter.N)
             l_name[i].place(x=self.WIDTH/2, y=self.HEIGHT/2-30+i*40, anchor=tkinter.N)
-
         self.var_select_menu = [select, player_num, old_key]
 
         # Update window
         self.root.update()
 
-        # Execute start_menu 3ms later
-        self.root.after(3, self.select_menu)
 
     # start game
     def start(self):
