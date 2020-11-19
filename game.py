@@ -1,5 +1,5 @@
 import random
-import tkinter as tk
+import tkinter
 from field import FIELD
 
 class GAME():
@@ -10,18 +10,23 @@ class GAME():
         self.WIDTH = w
         self.HEIGHT = h
         self.root = root
+        self.scene_cnt = 0
 
         # Variables of function
         self.var_start_menu = (1, None)
         self.var_select_menu = (3, 2, None)
 
         # Keyboard config
-        frame = tk.Frame(self.root, width=w, height=h)
+        frame = tkinter.Frame(self.root, width=w, height=h)
         frame.bind("<KeyPress>",self.key_pressed)
         frame.bind("<KeyRelease>",self.key_released)
         frame.focus_set()
         frame.pack()
         self.pressed = {}#pressed key
+
+        # Create canvas
+        canvas = tkinter.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
+        canvas.place(x=0, y=0)
 
         # Array of field
         self.field = FIELD()
@@ -33,10 +38,16 @@ class GAME():
         self.pressed[event.keysym] = True
         self.pos = (0,0)
 
+        if self.scene_cnt == 0:#Call select_menu
+            self.start_menu()
+        elif self.scene_cnt == 1:
+            self.select_menu()
+        elif self.scene_cnt == 2:
+            self.start()
+
     # Delete released key
     def key_released(self, event):
         self.pressed.pop(event.keysym, None)
-
 
     # Disp start menu
     # TODO: Modify the design
@@ -51,10 +62,6 @@ class GAME():
         # Disp process
         select, old_key = self.var_start_menu
 
-        # Create canvas
-        canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
-        canvas.place(x=0, y=0)
-
         # Select process
         if "Up" in self.pressed and old_key != up:
             select = 1
@@ -66,6 +73,10 @@ class GAME():
             if select == 1:# End function
                 # Execute start_menu 3ms later
                 self.root.after(3, self.select_menu)
+                self.scene_cnt = 1
+                # Create canvas
+                canvas = tkinter.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
+                canvas.place(x=0, y=0)
                 return 0
             else:# End game
                 exit()
@@ -73,24 +84,22 @@ class GAME():
             old_key = None
 
         # create label
-        l_title = tk.Label(text="<---Title--->")
+        l_title = tkinter.Label(text="<---Title--->")
         if select == 1:
-            l_start = tk.Label(text="Game start", background="yellow")
-            l_exit = tk.Label(text="Exit", background="blue")
+            l_start = tkinter.Label(text="Game start", background="yellow")
+            l_exit = tkinter.Label(text="Exit", background="blue")
         else:
-            l_start = tk.Label(text="Game start", background="blue")
-            l_exit = tk.Label(text="Exit", background="yellow")
-        l_title.place(x=self.WIDTH/2, y=100, anchor=tk.N)
-        l_start.place(x=self.WIDTH/2, y=self.HEIGHT/2+50, anchor=tk.N)
-        l_exit.place(x=self.WIDTH/2, y=self.HEIGHT/2+100, anchor=tk.N)
+            l_start = tkinter.Label(text="Game start", background="blue")
+            l_exit = tkinter.Label(text="Exit", background="yellow")
+        l_title.place(x=self.WIDTH/2, y=100, anchor=tkinter.N)
+        l_start.place(x=self.WIDTH/2, y=self.HEIGHT/2+50, anchor=tkinter.N)
+        l_exit.place(x=self.WIDTH/2, y=self.HEIGHT/2+100, anchor=tkinter.N)
 
         self.var_start_menu = [select, old_key]
 
         # Update window
         self.root.update()
 
-        # Execute start_menu 3ms later
-        self.root.after(3, self.start_menu)
 
     # show select menu
     # TODO: fix UI
@@ -101,12 +110,12 @@ class GAME():
         left = 3
         right = 4
 
+        # Fill black
+        canvas = tkinter.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
+        canvas.place(x=0, y=0)
+
         # 1:player 2:start 3:left 4:right
         select, player_num, old_key = self.var_select_menu
-
-        # Create canvas
-        canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
-        canvas.place(x=0, y=0)
 
         # control select
         if "Up" in self.pressed and old_key != up:
@@ -125,12 +134,16 @@ class GAME():
             if select == 2:
                 # Execute next function 3ms later
                 self.root.after(3, self.start)
+                self.scene_cnt = 2
+                # Fill black
+                canvas = tkinter.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
+                canvas.place(x=0, y=0)
                 return 0
-            elif select == 3 and old_key is None:
+            elif select == 3:
                 if player_num > 2:
                     player_num -= 1
                 old_key = 0
-            elif select == 4 and old_key is None:
+            elif select == 4:
                 if player_num < 4:
                     player_num += 1
                 old_key = 0
@@ -138,45 +151,42 @@ class GAME():
             old_key = None
 
         # generate label
-        l_title = tk.Label(text="Select Menu", background="green")
-        l_player = tk.Label(text="Players", background="green")
-        l_num = tk.Label(text=str(player_num), background="green")
+        l_title = tkinter.Label(text="Select Menu", background="green")
+        l_player = tkinter.Label(text="Players", background="green")
+        l_num = tkinter.Label(text=str(player_num), background="green")
         if select == 1:
-            l_start = tk.Label(text="Start", background="blue")
-            l_left = tk.Label(text="<=", background="yellow")
-            l_right = tk.Label(text="=>", background="blue")
+            l_start = tkinter.Label(text="Start", background="blue")
+            l_left = tkinter.Label(text="<=", background="yellow")
+            l_right = tkinter.Label(text="=>", background="blue")
         elif select == 2:
-            l_start = tk.Label(text="Start", background="yellow")
-            l_left = tk.Label(text="<=", background="blue")
-            l_right = tk.Label(text="=>", background="blue")
+            l_start = tkinter.Label(text="Start", background="yellow")
+            l_left = tkinter.Label(text="<=", background="blue")
+            l_right = tkinter.Label(text="=>", background="blue")
         elif select == 3:
-            l_start = tk.Label(text="Start", background="blue")
-            l_left = tk.Label(text="<=", background="yellow")
-            l_right = tk.Label(text="=>", background="blue")
+            l_start = tkinter.Label(text="Start", background="blue")
+            l_left = tkinter.Label(text="<=", background="yellow")
+            l_right = tkinter.Label(text="=>", background="blue")
         elif select == 4:
-            l_start = tk.Label(text="Start", background="blue")
-            l_left = tk.Label(text="<=", background="blue")
-            l_right = tk.Label(text="=>", background="yellow")
-        l_title.place(x=self.WIDTH/2, y=50, anchor=tk.N)
-        l_player.place(x=self.WIDTH/2-150, y=self.HEIGHT/2-100, anchor=tk.N)
-        l_start.place(x=self.WIDTH/2, y=self.HEIGHT/2+150, anchor=tk.N)
-        l_num.place(x=self.WIDTH/2, y=self.HEIGHT/2-100, anchor=tk.N)
-        l_left.place(x=self.WIDTH/2-40, y=self.HEIGHT/2-100, anchor=tk.N)
-        l_right.place(x=self.WIDTH/2+40, y=self.HEIGHT/2-100, anchor=tk.N)
+            l_start = tkinter.Label(text="Start", background="blue")
+            l_left = tkinter.Label(text="<=", background="blue")
+            l_right = tkinter.Label(text="=>", background="yellow")
+        l_title.place(x=self.WIDTH/2, y=50, anchor=tkinter.N)
+        l_player.place(x=self.WIDTH/2-150, y=self.HEIGHT/2-100, anchor=tkinter.N)
+        l_start.place(x=self.WIDTH/2, y=self.HEIGHT/2+150, anchor=tkinter.N)
+        l_num.place(x=self.WIDTH/2, y=self.HEIGHT/2-100, anchor=tkinter.N)
+        l_left.place(x=self.WIDTH/2-40, y=self.HEIGHT/2-100, anchor=tkinter.N)
+        l_right.place(x=self.WIDTH/2+40, y=self.HEIGHT/2-100, anchor=tkinter.N)
 
-        l_name = [tk.Entry(width=10), tk.Entry(width=10), tk.Entry(width=10), tk.Entry(width=10)]
+        l_name = [tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10)]
         for i in range(player_num):
-            lbl = tk.Label(text="Player "+str(i+1))
-            lbl.place(x=self.WIDTH/2-150, y=self.HEIGHT/2-30+i*40, anchor=tk.N)
-            l_name[i].place(x=self.WIDTH/2, y=self.HEIGHT/2-30+i*40, anchor=tk.N)
-
+            lbl = tkinter.Label(text="Player "+str(i+1))
+            lbl.place(x=self.WIDTH/2-150, y=self.HEIGHT/2-30+i*40, anchor=tkinter.N)
+            l_name[i].place(x=self.WIDTH/2, y=self.HEIGHT/2-30+i*40, anchor=tkinter.N)
         self.var_select_menu = [select, player_num, old_key]
 
         # Update window
         self.root.update()
 
-        # Execute start_menu 3ms later
-        self.root.after(3, self.select_menu)
 
     # start game
     def start(self):
@@ -186,8 +196,8 @@ class GAME():
         l_field = [[None for j in range(field.y)] for i in range(field.x)]
         for i in range(field.x):
             for j in range(field.y):
-                l_field[i][j] = tk.Label(text=field.field_array[i][j], background="red")
-                l_field[i][j].place(x=self.WIDTH/field.x*i+70, y=self.HEIGHT/field.y*j+50, anchor=tk.N)
+                l_field[i][j] = tkinter.Label(text=field.field_array[i][j], background="red")
+                l_field[i][j].place(x=self.WIDTH/field.x*i+70, y=self.HEIGHT/field.y*j+50, anchor=tkinter.N)
 
     # roll dice randomly
     def roll_dice():
