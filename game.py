@@ -17,11 +17,11 @@ class GAME():
         self.var_select_menu = (3, 2, None)
 
         # Keyboard config
-        frame = tkinter.Frame(self.root, width=w, height=h)
-        frame.bind("<KeyPress>",self.key_pressed)
-        frame.bind("<KeyRelease>",self.key_released)
-        frame.focus_set()
-        frame.pack()
+        self.frame = tkinter.Frame(self.root, width=w, height=h)
+        self.frame.bind("<KeyPress>",self.key_pressed)
+        self.frame.bind("<KeyRelease>",self.key_released)
+        self.frame.focus_set()
+        self.frame.pack()
         self.pressed = {}#pressed key
 
         # Create canvas
@@ -48,6 +48,9 @@ class GAME():
     # Delete released key
     def key_released(self, event):
         self.pressed.pop(event.keysym, None)
+    
+    def click_button(self):
+        self.frame.focus_set()
 
     # Disp start menu
     # TODO: Modify the design
@@ -179,13 +182,17 @@ class GAME():
 
         l_name = [tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10)]
         name_text = [None for i in range(4)]
-        button = tkinter.Button(text="OK")
+        button = tkinter.Button(text="OK", command=lambda: self.click_button())
         for i in range(player_num):
             lbl = tkinter.Label(text="Player "+str(i+1))
             lbl.place(x=self.WIDTH/2-150, y=self.HEIGHT/2-45+i*50, anchor=tkinter.N)
             l_name[i].place(x=self.WIDTH/2, y=self.HEIGHT/2-45+i*50, anchor=tkinter.N)
-            name_text = l_name[i].get()
-            l_button[i].place(x=self.WIDTH/2+150, y=self.HEIGHT/2-50+i*50, anchor=tkinter.N)
+            name_text[i] = l_name[i].get()
+            l_name[i].delete(0, tkinter.END)
+            l_name[i].insert(0, name_text[i])
+            button.place(x=self.WIDTH/2+150, y=self.HEIGHT/2+30, anchor=tkinter.N)
+        print(name_text)
+
 
         self.var_select_menu = [select, player_num, old_key]
 
