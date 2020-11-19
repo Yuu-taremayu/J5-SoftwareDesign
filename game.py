@@ -178,15 +178,17 @@ class GAME():
         l_right.place(x=self.WIDTH/2+40, y=self.HEIGHT/2-100, anchor=tkinter.N)
 
         l_name = [tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10)]
+        l_button = [tkinter.Button(text="OK"), tkinter.Button(text="OK"), tkinter.Button(text="OK"), tkinter.Button(text="OK")]
         for i in range(player_num):
             lbl = tkinter.Label(text="Player "+str(i+1))
-            lbl.place(x=self.WIDTH/2-150, y=self.HEIGHT/2-30+i*40, anchor=tkinter.N)
-            l_name[i].place(x=self.WIDTH/2, y=self.HEIGHT/2-30+i*40, anchor=tkinter.N)
+            lbl.place(x=self.WIDTH/2-150, y=self.HEIGHT/2-45+i*50, anchor=tkinter.N)
+            l_name[i].place(x=self.WIDTH/2, y=self.HEIGHT/2-45+i*50, anchor=tkinter.N)
+            l_button[i].place(x=self.WIDTH/2+150, y=self.HEIGHT/2-50+i*50, anchor=tkinter.N)
+
         self.var_select_menu = [select, player_num, old_key]
 
         # Update window
         self.root.update()
-
 
     # start game
     def start(self):
