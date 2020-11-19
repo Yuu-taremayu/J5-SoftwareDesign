@@ -183,15 +183,11 @@ class GAME():
 
         # input player name
         l_name = [tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10)]
-        name_text = [None for i in range(4)]
         button = tkinter.Button(text="OK", command=lambda: self.click_button())
         for i in range(player_num):
             lbl = tkinter.Label(text="Player "+str(i+1))
             lbl.place(x=self.WIDTH/2-150, y=self.HEIGHT/2-45+i*50, anchor=tkinter.N)
             l_name[i].place(x=self.WIDTH/2, y=self.HEIGHT/2-45+i*50, anchor=tkinter.N)
-            name_text[i] = l_name[i].get()
-            l_name[i].delete(0, tkinter.END)
-            l_name[i].insert(0, name_text[i])
             button.place(x=self.WIDTH/2+150, y=self.HEIGHT/2+30, anchor=tkinter.N)
 
         self.var_select_menu = [select, player_num, old_key]
