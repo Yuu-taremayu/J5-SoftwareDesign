@@ -49,6 +49,7 @@ class GAME():
     def key_released(self, event):
         self.pressed.pop(event.keysym, None)
     
+    # when click button, focus self.frame
     def click_button(self):
         self.frame.focus_set()
 
@@ -180,6 +181,7 @@ class GAME():
         l_left.place(x=self.WIDTH/2-40, y=self.HEIGHT/2-100, anchor=tkinter.N)
         l_right.place(x=self.WIDTH/2+40, y=self.HEIGHT/2-100, anchor=tkinter.N)
 
+        # input player name
         l_name = [tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10)]
         name_text = [None for i in range(4)]
         button = tkinter.Button(text="OK", command=lambda: self.click_button())
@@ -191,8 +193,6 @@ class GAME():
             l_name[i].delete(0, tkinter.END)
             l_name[i].insert(0, name_text[i])
             button.place(x=self.WIDTH/2+150, y=self.HEIGHT/2+30, anchor=tkinter.N)
-        print(name_text)
-
 
         self.var_select_menu = [select, player_num, old_key]
 
