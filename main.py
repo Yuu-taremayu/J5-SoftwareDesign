@@ -10,8 +10,8 @@ def main():
 
     #ウィンドウの設定
     root.title("prototype")
-    h = 400#ウィンドウの高さ
-    w = 600#ウィンドウの幅
+    h = 1080#ウィンドウの高さ
+    w = 1920#ウィンドウの幅
     root.minsize(w, h)
 
     #gameのインスタンス生成
