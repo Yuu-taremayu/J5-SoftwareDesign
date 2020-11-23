@@ -2,6 +2,7 @@ class FIELD():
     # init field and properties
     def __init__(self):
         self.x, self.y = self.set_field()
+        print('test')
 
     # set field size
     def set_field(self):
