@@ -207,7 +207,7 @@ class GAME():
         l_field = [[None for j in range(self.field.y)] for i in range(self.field.x)]
         for i in range(self.field.x):
             for j in range(self.field.y):
-                l_field[i][j] = tkinter.Label(text=self.field.field_array[i][j], background="red")
+                l_field[i][j] = tkinter.Label(text=self.field.field_array[i][j], background="red", relief="groove", borderwidth=10)
                 l_field[i][j].place(x=self.WIDTH/2+(i-2)*250-100, y=self.HEIGHT/self.field.y*j+25, width=200, height=200)
         l_stat = [None for i in range(4)]
         for i in range(4):
@@ -216,12 +216,11 @@ class GAME():
             MUS = "muscle:" + str(self.player[i].muscle) + "\n"
             STR = "stress:" + str(self.player[i].stress) + "\n"
             DEX = "dexterity:" + str(self.player[i].dexterity)
-            l_stat[i] = tkinter.Label(text=JOB+MON+MUS+STR+DEX, background="white")
+            l_stat[i] = tkinter.Label(text=JOB+MON+MUS+STR+DEX, background="white", relief="ridge", borderwidth=5)
         l_stat[0].place(x=0, y=0, width=200, height=200)
         l_stat[1].place(x=self.WIDTH-200, y=0, width=200, height=200)
         l_stat[2].place(x=0, y=self.HEIGHT-200, width=200, height=200)
         l_stat[3].place(x=self.WIDTH-200, y=self.HEIGHT-200, width=200, height=200)
-
 
     # roll dice randomly
     def roll_dice():
