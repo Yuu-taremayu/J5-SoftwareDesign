@@ -204,7 +204,7 @@ class GAME():
         for i in range(field.x):
             for j in range(field.y):
                 l_field[i][j] = tkinter.Label(text=field.field_array[i][j], background="red")
-                l_field[i][j].place(x=self.WIDTH/field.x*i+70, y=self.HEIGHT/field.y*j+50, anchor=tkinter.N)
+                l_field[i][j].place(x=self.WIDTH/2+(i-2)*250, y=self.HEIGHT/field.y*j+70, anchor=tkinter.N)
 
     # roll dice randomly
     def roll_dice():
