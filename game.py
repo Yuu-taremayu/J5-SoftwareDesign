@@ -201,14 +201,14 @@ class GAME():
 
     # start game
     def start(self):
-        self.print_field(self.field)
+        self.print_field()
 
-    def print_field(self, field):
-        l_field = [[None for j in range(field.y)] for i in range(field.x)]
-        for i in range(field.x):
-            for j in range(field.y):
-                l_field[i][j] = tkinter.Label(text=field.field_array[i][j], background="red")
-                l_field[i][j].place(x=self.WIDTH/2+(i-2)*250-100, y=self.HEIGHT/field.y*j+25, width=200, height=200)
+    def print_field(self):
+        l_field = [[None for j in range(self.field.y)] for i in range(self.field.x)]
+        for i in range(self.field.x):
+            for j in range(self.field.y):
+                l_field[i][j] = tkinter.Label(text=self.field.field_array[i][j], background="red")
+                l_field[i][j].place(x=self.WIDTH/2+(i-2)*250-100, y=self.HEIGHT/self.field.y*j+25, width=200, height=200)
         l_stat = [None for i in range(4)]
         for i in range(4):
             JOB = "job:" + str(self.player[i].job) + "\n"
