@@ -208,7 +208,7 @@ class GAME():
         for i in range(field.x):
             for j in range(field.y):
                 l_field[i][j] = tkinter.Label(text=field.field_array[i][j], background="red")
-                l_field[i][j].place(x=self.WIDTH/2+(i-2)*250, y=self.HEIGHT/field.y*j+70, anchor=tkinter.N)
+                l_field[i][j].place(x=self.WIDTH/2+(i-2)*250-100, y=self.HEIGHT/field.y*j+25, width=200, height=200)
         l_stat = [None for i in range(4)]
         for i in range(4):
             JOB = "job:" + str(self.player[i].job) + "\n"
@@ -217,10 +217,10 @@ class GAME():
             STR = "stress:" + str(self.player[i].stress) + "\n"
             DEX = "dexterity:" + str(self.player[i].dexterity)
             l_stat[i] = tkinter.Label(text=JOB+MON+MUS+STR+DEX, background="white")
-        l_stat[0].place(x=100, y=50, anchor=tkinter.N)
-        l_stat[1].place(x=self.WIDTH-100, y=50, anchor=tkinter.N)
-        l_stat[2].place(x=100, y=self.HEIGHT-200, anchor=tkinter.N)
-        l_stat[3].place(x=self.WIDTH-100, y=self.HEIGHT-200, anchor=tkinter.N)
+        l_stat[0].place(x=0, y=0, width=200, height=200)
+        l_stat[1].place(x=self.WIDTH-200, y=0, width=200, height=200)
+        l_stat[2].place(x=0, y=self.HEIGHT-200, width=200, height=200)
+        l_stat[3].place(x=self.WIDTH-200, y=self.HEIGHT-200, width=200, height=200)
 
 
     # roll dice randomly
