@@ -10,11 +10,8 @@ def main():
 
     #ウィンドウの設定
     root.title("prototype")
-    window_ratio = (16, 9)#(w, h)
-    window_magnification = 70#120代入で1920*1080になる
-    h = window_ratio[1]*window_magnification#ウィンドウの高さ
-    w = window_ratio[0]*window_magnification#ウィンドウの幅
-    print(w, h)
+    h = 1080#ウィンドウの高さ
+    w = 1920#ウィンドウの幅
     root.minsize(w, h)
 
     #gameのインスタンス生成
