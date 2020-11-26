@@ -3,13 +3,16 @@ import random
 class PLAYER():
     # init player status
     def __init__(self):
+        # player's position
         self.x = 0
         self.y = 0
+
+        # some status
         self.money = 0
         self.muscle = 0
         self.stress = 0
-        self.job = None
         self.dexterity = 0
+        self.job = None
         self.condition = False
 
         self.decide_job()
