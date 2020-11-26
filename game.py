@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import random
 import tkinter
 from field import FIELD
