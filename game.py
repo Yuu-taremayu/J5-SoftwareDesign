@@ -33,6 +33,7 @@ class GAME():
         self.field = FIELD(w,h)
 
         self.player = PLAYER()
+        self.turn = 0
 
         # Create instance
         self.player = [PLAYER() for i in range(4)]
@@ -247,27 +248,36 @@ class GAME():
         right = 4
 
         old_key = None
+        l_player = [None for i in range(4)]
         if "Up" in self.pressed and old_key != up:
-            if self.player[0].y > 0:
-                self.player[0].y -= 1
+            if self.player[self.turn].y > 0:
+                self.player[self.turn].y -= 1
             old_key = up
         elif "Down" in self.pressed and old_key != down:
-            if self.player[0].y < 3:
-                self.player[0].y += 1
+            if self.player[self.turn].y < 3:
+                self.player[self.turn].y += 1
             old_key = down
         elif "Left" in self.pressed and old_key != left:
-            if self.player[0].x > 0:
-                self.player[0].x -= 1
+            if self.player[self.turn].x > 0:
+                self.player[self.turn].x -= 1
             old_key = left
         elif "Right" in self.pressed and old_key != right:
-            if self.player[0].x < 4:
-                self.player[0].x += 1
+            if self.player[self.turn].x < 4:
+                self.player[self.turn].x += 1
             old_key = right
+        elif "Return" in self.pressed:
+            self.turn = (self.turn + 1) % 4
         elif self.pressed == {}:
             old_key = None
 
-        l = tkinter.Label(text="1", background="yellow", relief="ridge", borderwidth=2)
-        l.place(x=375+self.player[0].x*250, y=40+self.player[0].y*270, width=40, height=40)
+        l_player[0] = tkinter.Label(text="1", background="yellow", relief="ridge", borderwidth=2)
+        l_player[0].place(x=375+self.player[0].x*250, y=40+self.player[0].y*270, width=40, height=40)
+        l_player[1] = tkinter.Label(text="2", background="yellow", relief="ridge", borderwidth=2)
+        l_player[1].place(x=505+self.player[1].x*250, y=40+self.player[1].y*270, width=40, height=40)
+        l_player[2] = tkinter.Label(text="3", background="yellow", relief="ridge", borderwidth=2)
+        l_player[2].place(x=375+self.player[2].x*250, y=170+self.player[2].y*270, width=40, height=40)
+        l_player[3] = tkinter.Label(text="4", background="yellow", relief="ridge", borderwidth=2)
+        l_player[3].place(x=505+self.player[3].x*250, y=170+self.player[3].y*270, width=40, height=40)
 
     # show result
     def show_result():
