@@ -3,6 +3,8 @@ import random
 class PLAYER():
     # init player status
     def __init__(self):
+        self.x = 0
+        self.y = 0
         self.money = 0
         self.muscle = 0
         self.stress = 0
