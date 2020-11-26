@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import random
 import tkinter
 from field import FIELD
@@ -205,6 +204,7 @@ class GAME():
     # start game
     def start(self):
         self.print_field()
+        self.move_player()
 
     def print_field(self):
         l_field = [[None for j in range(self.field.y)] for i in range(self.field.x)]
@@ -239,8 +239,9 @@ class GAME():
         pass
 
     # move player by dice number
-    def move_player():
-        pass
+    def move_player(self):
+        l = tkinter.Label(text="1", background="yellow", relief="ridge", borderwidth=2)
+        l.place(x=375, y=40, width=40, height=40)
 
     # show result
     def show_result():
