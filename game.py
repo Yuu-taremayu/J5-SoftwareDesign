@@ -17,11 +17,11 @@ class GAME():
         self.var_select_menu = (3, 2, None)
 
         # Keyboard config
-        frame = tkinter.Frame(self.root, width=w, height=h)
-        frame.bind("<KeyPress>",self.key_pressed)
-        frame.bind("<KeyRelease>",self.key_released)
-        frame.focus_set()
-        frame.pack()
+        self.frame = tkinter.Frame(self.root, width=w, height=h)
+        self.frame.bind("<KeyPress>",self.key_pressed)
+        self.frame.bind("<KeyRelease>",self.key_released)
+        self.frame.focus_set()
+        self.frame.pack()
         self.pressed = {}#pressed key
 
         # Create canvas
@@ -48,6 +48,10 @@ class GAME():
     # Delete released key
     def key_released(self, event):
         self.pressed.pop(event.keysym, None)
+
+    # when click button, focus self.frame
+    def click_button(self):
+        self.frame.focus_set()
 
     # Disp start menu
     # TODO: Modify the design
@@ -177,16 +181,19 @@ class GAME():
         l_left.place(x=self.WIDTH/2-40, y=self.HEIGHT/2-100, anchor=tkinter.N)
         l_right.place(x=self.WIDTH/2+40, y=self.HEIGHT/2-100, anchor=tkinter.N)
 
+        # input player name
         l_name = [tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10)]
+        button = tkinter.Button(text="OK", command=lambda: self.click_button())
         for i in range(player_num):
             lbl = tkinter.Label(text="Player "+str(i+1))
-            lbl.place(x=self.WIDTH/2-150, y=self.HEIGHT/2-30+i*40, anchor=tkinter.N)
-            l_name[i].place(x=self.WIDTH/2, y=self.HEIGHT/2-30+i*40, anchor=tkinter.N)
+            lbl.place(x=self.WIDTH/2-150, y=self.HEIGHT/2-45+i*50, anchor=tkinter.N)
+            l_name[i].place(x=self.WIDTH/2, y=self.HEIGHT/2-45+i*50, anchor=tkinter.N)
+            button.place(x=self.WIDTH/2+150, y=self.HEIGHT/2+30, anchor=tkinter.N)
+
         self.var_select_menu = [select, player_num, old_key]
 
         # Update window
         self.root.update()
-
 
     # start game
     def start(self):
@@ -213,6 +220,8 @@ class GAME():
         pass
 
     # move player by dice number
+    # 担当：内藤　
+    # 週目標：とりあえずプレイヤが動けるようになる
     def move_player():
         pass
 
