@@ -7,7 +7,7 @@ class PLAYER():
         self.muscle = 0
         self.stress = 0
         self.job = None
-        self.dex = 0
+        self.dexterity = 0
         self.condition = False
 
         self.decide_job()
