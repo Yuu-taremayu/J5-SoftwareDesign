@@ -1,6 +1,7 @@
 import random
 import tkinter
 from field import FIELD
+from player import PLAYER
 
 class GAME():
     # Game config
@@ -30,6 +31,9 @@ class GAME():
 
         # Array of field
         self.field = FIELD()
+
+        # Create instance
+        self.player = [PLAYER() for i in range(4)]
 
         self.start_menu()
 
@@ -197,14 +201,26 @@ class GAME():
 
     # start game
     def start(self):
-        self.print_field(self.field)
+        self.print_field()
 
-    def print_field(self, field):
-        l_field = [[None for j in range(field.y)] for i in range(field.x)]
-        for i in range(field.x):
-            for j in range(field.y):
-                l_field[i][j] = tkinter.Label(text=field.field_array[i][j], background="red")
-                l_field[i][j].place(x=self.WIDTH/field.x*i+70, y=self.HEIGHT/field.y*j+50, anchor=tkinter.N)
+    def print_field(self):
+        l_field = [[None for j in range(self.field.y)] for i in range(self.field.x)]
+        for i in range(self.field.x):
+            for j in range(self.field.y):
+                l_field[i][j] = tkinter.Label(text=self.field.field_array[i][j], background="red", relief="groove", borderwidth=10)
+                l_field[i][j].place(x=self.WIDTH/2+(i-2)*250-100, y=self.HEIGHT/self.field.y*j+25, width=200, height=200)
+        l_stat = [None for i in range(4)]
+        for i in range(4):
+            JOB = "job:" + str(self.player[i].job) + "\n"
+            MON = "money:" + str(self.player[i].money) + "\n"
+            MUS = "muscle:" + str(self.player[i].muscle) + "\n"
+            STR = "stress:" + str(self.player[i].stress) + "\n"
+            DEX = "dexterity:" + str(self.player[i].dexterity)
+            l_stat[i] = tkinter.Label(text=JOB+MON+MUS+STR+DEX, background="white", relief="ridge", borderwidth=5)
+        l_stat[0].place(x=0, y=0, width=200, height=200)
+        l_stat[1].place(x=self.WIDTH-200, y=0, width=200, height=200)
+        l_stat[2].place(x=0, y=self.HEIGHT-200, width=200, height=200)
+        l_stat[3].place(x=self.WIDTH-200, y=self.HEIGHT-200, width=200, height=200)
 
     # roll dice randomly
     def roll_dice():
