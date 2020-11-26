@@ -240,8 +240,34 @@ class GAME():
 
     # move player by dice number
     def move_player(self):
+        # define
+        up = 1
+        down = 2
+        left = 3
+        right = 4
+
+        old_key = None
+        if "Up" in self.pressed and old_key != up:
+            if self.player[0].y > 0:
+                self.player[0].y -= 1
+            old_key = up
+        elif "Down" in self.pressed and old_key != down:
+            if self.player[0].y < 3:
+                self.player[0].y += 1
+            old_key = down
+        elif "Left" in self.pressed and old_key != left:
+            if self.player[0].x > 0:
+                self.player[0].x -= 1
+            old_key = left
+        elif "Right" in self.pressed and old_key != right:
+            if self.player[0].x < 4:
+                self.player[0].x += 1
+            old_key = right
+        elif self.pressed == {}:
+            old_key = None
+
         l = tkinter.Label(text="1", background="yellow", relief="ridge", borderwidth=2)
-        l.place(x=375, y=40, width=40, height=40)
+        l.place(x=375+self.player[0].x*250, y=40+self.player[0].y*270, width=40, height=40)
 
     # show result
     def show_result():
