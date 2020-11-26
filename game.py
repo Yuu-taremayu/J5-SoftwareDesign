@@ -30,7 +30,9 @@ class GAME():
         canvas.place(x=0, y=0)
 
         # Array of field
-        self.field = FIELD()
+        self.field = FIELD(w,h)
+
+        self.player = PLAYER()
 
         # Create instance
         self.player = [PLAYER() for i in range(4)]
@@ -52,7 +54,7 @@ class GAME():
     # Delete released key
     def key_released(self, event):
         self.pressed.pop(event.keysym, None)
-    
+
     # when click button, focus self.frame
     def click_button(self):
         self.frame.focus_set()
