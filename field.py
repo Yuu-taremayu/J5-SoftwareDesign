@@ -45,20 +45,40 @@ class FIELD():
 
     # run some events on field
     # add any more events
-    def event_increasemoney(self,money,job):
-        before_money = money
-        if job == 'Teacher':
-            after_money = before_money + 500
-        elif job == 'Engineer':
-            after_money = before_money + 600
-        elif job == 'SportsMan':
-            after_money = before_money + 700
-        else:
-            after_money = before_money + 0
+    def event_increasemoney(self,player):
+        before_money = player.money
 
-        l_before = tkinter.Label(text=str(before_money),background="yellow")
-        l_after = tkinter.Label(text=str(after_money),background="yellow")
-        l_right = tkinter.Label(text="=>",background="yellow")
-        l_right.place(x=self.WIDTH/2, y=self.HEIGHT/2-100, anchor=tkinter.N)
-        l_before.place(x=self.WIDTH/2-40, y=self.HEIGHT/2-100, anchor=tkinter.N)
-        l_after.place(x=self.WIDTH/2+40, y=self.HEIGHT/2-100, anchor=tkinter.N)
+        if player.job == 'Teacher':
+            player.money = before_money + 500
+        elif player.job == 'Engineer':
+            player.money = before_money + 600
+        elif player.job == 'SportsMan':
+            player.money = before_money + 700
+        else:
+            player.money = before_money + 0
+        
+        msg = str(before_money) + "->" + str(player.money)
+        label = tkinter.Label(text=msg,background="yellow")
+        label.place(x=120,y=self.HEIGHT/2-100,anchor=tkinter.N)
+
+    def event_jobchange(self,player):
+        before_job = player.job
+        r = random.randrange(4)
+        if r == 0:
+            player.job = 'Teacher'
+        elif r == 1:
+            player.job = 'Engineer'
+        elif r == 2:
+            player.job = 'SportsMan'
+        else:
+            player.job = 'NoJob'
+
+        msg = before_job + "->" + player.job
+        label = tkinter.Label(text=msg,background="green")
+        label.place(x=120,y=self.HEIGHT/2-50,anchor=tkinter.N)
+
+    def event_battle:
+        pass
+
+    def event_shop:
+        pass
