@@ -33,7 +33,7 @@ class GAME():
         self.field = FIELD(w,h)
 
         # Create instance
-        self.player = [PLAYER() for i in range(4)]
+        self.player = [PLAYER(i) for i in range(4)]
 
         self.start_menu()
 

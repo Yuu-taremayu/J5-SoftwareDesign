@@ -2,7 +2,8 @@ import random
 
 class PLAYER():
     # init player status
-    def __init__(self):
+    def __init__(self, order):
+        self.name = "player-" + str(order)
         self.money = 0
         self.muscle = 0
         self.stress = 0
