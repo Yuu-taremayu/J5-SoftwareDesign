@@ -101,9 +101,9 @@ class GAME():
         else:
             l_start = tkinter.Label(text="Game start", background="blue")
             l_exit = tkinter.Label(text="Exit", background="yellow")
-        l_title.place(x=self.WIDTH/2, y=100, anchor=tkinter.N)
-        l_start.place(x=self.WIDTH/2, y=self.HEIGHT/2+50, anchor=tkinter.N)
-        l_exit.place(x=self.WIDTH/2, y=self.HEIGHT/2+100, anchor=tkinter.N)
+        l_title.place(x=self.WIDTH/2, y=self.HEIGHT/10*2, anchor=tkinter.N)
+        l_start.place(x=self.WIDTH/2, y=self.HEIGHT/10*6, anchor=tkinter.N)
+        l_exit.place(x=self.WIDTH/2, y=self.HEIGHT/10*7, anchor=tkinter.N)
 
         self.var_start_menu = [select, old_key]
 
@@ -180,21 +180,21 @@ class GAME():
             l_start = tkinter.Label(text="Start", background="blue")
             l_left = tkinter.Label(text="<=", background="blue")
             l_right = tkinter.Label(text="=>", background="yellow")
-        l_title.place(x=self.WIDTH/2, y=50, anchor=tkinter.N)
-        l_player.place(x=self.WIDTH/2-150, y=self.HEIGHT/2-100, anchor=tkinter.N)
-        l_start.place(x=self.WIDTH/2, y=self.HEIGHT/2+150, anchor=tkinter.N)
-        l_num.place(x=self.WIDTH/2, y=self.HEIGHT/2-100, anchor=tkinter.N)
-        l_left.place(x=self.WIDTH/2-40, y=self.HEIGHT/2-100, anchor=tkinter.N)
-        l_right.place(x=self.WIDTH/2+40, y=self.HEIGHT/2-100, anchor=tkinter.N)
+        l_title.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*2, anchor=tkinter.N)
+        l_player.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*3, anchor=tkinter.N)
+        l_start.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*8, anchor=tkinter.N)
+        l_num.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*3, anchor=tkinter.N)
+        l_left.place(x=self.WIDTH/10*4, y=self.HEIGHT/10*3, anchor=tkinter.N)
+        l_right.place(x=self.WIDTH/10*6, y=self.HEIGHT/10*3, anchor=tkinter.N)
 
         # input player name
         l_name = [tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10)]
         button = tkinter.Button(text="OK", command=lambda: self.click_button())
         for i in range(player_num):
             lbl = tkinter.Label(text="Player "+str(i+1))
-            lbl.place(x=self.WIDTH/2-150, y=self.HEIGHT/2-45+i*50, anchor=tkinter.N)
-            l_name[i].place(x=self.WIDTH/2, y=self.HEIGHT/2-45+i*50, anchor=tkinter.N)
-            button.place(x=self.WIDTH/2+150, y=self.HEIGHT/2+30, anchor=tkinter.N)
+            lbl.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*4+(i*40), anchor=tkinter.N)
+            l_name[i].place(x=self.WIDTH/10*5, y=self.HEIGHT/10*4+(i*40), anchor=tkinter.N)
+            button.place(x=self.WIDTH/10*7, y=self.HEIGHT/10*4+(i*40), anchor=tkinter.N)
 
         self.var_select_menu = [select, player_num, old_key]
 
