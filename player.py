@@ -2,7 +2,8 @@ import random
 
 class PLAYER():
     # init player status
-    def __init__(self):
+    def __init__(self, order):
+        self.name = str(order+1)
         # player's position
         self.x = 0
         self.y = 0

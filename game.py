@@ -32,11 +32,9 @@ class GAME():
         # Array of field
         self.field = FIELD(w,h)
 
-        self.player = PLAYER()
-        self.turn = 0
-
         # Create instance
-        self.player = [PLAYER() for i in range(4)]
+        self.player = [PLAYER(i) for i in range(4)]
+        self.turn = 0
 
         self.start_menu()
 
@@ -57,8 +55,12 @@ class GAME():
         self.pressed.pop(event.keysym, None)
 
     # when click button, focus self.frame
-    def click_button(self):
+    def click_button(self, l_name):
         self.frame.focus_set()
+
+        #write names
+        for i in range(len(l_name)):
+            self.player[i].name = l_name[i].get()
 
     # Disp start menu
     # TODO: Modify the design
@@ -190,11 +192,12 @@ class GAME():
 
         # input player name
         l_name = [tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10)]
-        button = tkinter.Button(text="OK", command=lambda: self.click_button())
+        button = tkinter.Button(text="OK", command=lambda: self.click_button(l_name))
         for i in range(player_num):
             lbl = tkinter.Label(text="Player "+str(i+1))
             lbl.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*4+(i*40), anchor=tkinter.N)
             l_name[i].place(x=self.WIDTH/10*5, y=self.HEIGHT/10*4+(i*40), anchor=tkinter.N)
+            l_name[i].insert(0, self.player[i].name)
             button.place(x=self.WIDTH/10*7, y=self.HEIGHT/10*4+(i*40), anchor=tkinter.N)
 
         self.var_select_menu = [select, player_num, old_key]
