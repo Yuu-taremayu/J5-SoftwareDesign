@@ -77,8 +77,8 @@ class FIELD():
         label = tkinter.Label(text=msg,background="green")
         label.place(x=120,y=self.HEIGHT/2-50,anchor=tkinter.N)
 
-    def event_battle:
+    def event_battle(self):
         pass
 
-    def event_shop:
+    def event_shop(self):
         pass
