@@ -3,7 +3,7 @@ import random
 class PLAYER():
     # init player status
     def __init__(self, order):
-        self.name = "player-" + str(order)
+        self.name = str(order+1)
         self.money = 0
         self.muscle = 0
         self.stress = 0
