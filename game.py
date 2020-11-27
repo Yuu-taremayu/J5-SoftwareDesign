@@ -5,11 +5,12 @@ from player import PLAYER
 
 class GAME():
     # Game config
-    def __init__(self, w, h, root):
+    def __init__(self, w, h, mag, root):
         # Please add variables as appropriate
         # Variables of class
         self.WIDTH = w
         self.HEIGHT = h
+        self.MAG = mag
         self.root = root
         self.scene_cnt = 0
 
