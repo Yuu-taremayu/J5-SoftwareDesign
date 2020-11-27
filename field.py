@@ -56,7 +56,7 @@ class FIELD():
             player.money = before_money + 700
         else:
             player.money = before_money + 0
-
+        
         msg = str(before_money) + "->" + str(player.money)
         label = tkinter.Label(text=msg,background="yellow")
         label.place(x=120,y=self.HEIGHT/2-100,anchor=tkinter.N)
@@ -77,8 +77,8 @@ class FIELD():
         label = tkinter.Label(text=msg,background="green")
         label.place(x=120,y=self.HEIGHT/2-50,anchor=tkinter.N)
 
-    def event_battle(self):
+    def event_battle():
         pass
 
-    def event_shop(self):
+    def event_shop():
         pass
