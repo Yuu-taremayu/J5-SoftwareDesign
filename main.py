@@ -8,6 +8,8 @@ def main():
     #ウィンドウのインスタンス生成
     root = tkinter.Tk()
 
+
+
     #ウィンドウの設定
     root.title("prototype")
     h = 1080#ウィンドウの高さ

@@ -32,8 +32,6 @@ class GAME():
         # Array of field
         self.field = FIELD(w,h)
 
-        self.player = PLAYER()
-
         # Create instance
         self.player = [PLAYER() for i in range(4)]
 
