@@ -1,5 +1,6 @@
 import random
 import tkinter
+import tkinter.font
 from field import FIELD
 from player import PLAYER
 
@@ -234,7 +235,7 @@ class GAME():
             MUS = "muscle:" + str(self.player[i].muscle) + "\n"
             STR = "stress:" + str(self.player[i].stress) + "\n"
             DEX = "dexterity:" + str(self.player[i].dexterity)
-            l_stat[i] = tkinter.Label(text=JOB+MON+MUS+STR+DEX, background="white", relief="ridge", borderwidth=self.MAG/20)
+            l_stat[i] = tkinter.Label(text=JOB+MON+MUS+STR+DEX,  background="white", relief="ridge", borderwidth=self.MAG/20)
         l_stat[0].place(x=0, y=0, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tkinter.NW)
         l_stat[1].place(x=self.WIDTH, y=0, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tkinter.NE)
         l_stat[2].place(x=0, y=self.HEIGHT, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tkinter.SW)
