@@ -1,6 +1,5 @@
 import random
 import tkinter
-import tkinter.font
 from field import FIELD
 from player import PLAYER
 
