@@ -1,5 +1,5 @@
 import random
-import tkinter
+import tkinter as tk
 from field import FIELD
 from player import PLAYER
 
@@ -19,7 +19,7 @@ class GAME():
         self.var_select_menu = (3, 2, None)
 
         # Keyboard config
-        self.frame = tkinter.Frame(self.root, width=w, height=h)
+        self.frame = tk.Frame(self.root, width=w, height=h)
         self.frame.bind("<KeyPress>",self.key_pressed)
         self.frame.bind("<KeyRelease>",self.key_released)
         self.frame.focus_set()
@@ -27,7 +27,7 @@ class GAME():
         self.pressed = {}#pressed key
 
         # Create canvas
-        canvas = tkinter.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
+        canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
         canvas.place(x=0, y=0)
 
         # Array of field
@@ -89,7 +89,7 @@ class GAME():
                 self.root.after(3, self.select_menu)
                 self.scene_cnt = 1
                 # Create canvas
-                canvas = tkinter.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
+                canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
                 canvas.place(x=0, y=0)
                 return 0
             else:# End game
@@ -98,16 +98,16 @@ class GAME():
             old_key = None
 
         # create label
-        l_title = tkinter.Label(text="<---Title--->", font=("Menlo", int(self.MAG/3)))
+        l_title = tk.Label(text="<---Title--->", font=("Menlo", int(self.MAG/3)))
         if select == 1:
-            l_start = tkinter.Label(text="Game start", font=("Menlo", int(self.MAG/5)), background="yellow")
-            l_exit = tkinter.Label(text="Exit", font=("Menlo", int(self.MAG/5)), background="blue")
+            l_start = tk.Label(text="Game start", font=("Menlo", int(self.MAG/5)), background="yellow")
+            l_exit = tk.Label(text="Exit", font=("Menlo", int(self.MAG/5)), background="blue")
         else:
-            l_start = tkinter.Label(text="Game start", background="blue")
-            l_exit = tkinter.Label(text="Exit", background="yellow")
-        l_title.place(x=self.WIDTH/2, y=self.HEIGHT/10*2, width=self.MAG*8, height=self.MAG*3/2, anchor=tkinter.N)
-        l_start.place(x=self.WIDTH/2, y=self.HEIGHT/10*6, width=self.MAG*2, height=self.MAG/2, anchor=tkinter.N)
-        l_exit.place(x=self.WIDTH/2, y=self.HEIGHT/10*7, width=self.MAG*2, height=self.MAG/2, anchor=tkinter.N)
+            l_start = tk.Label(text="Game start", background="blue")
+            l_exit = tk.Label(text="Exit", background="yellow")
+        l_title.place(x=self.WIDTH/2, y=self.HEIGHT/10*2, width=self.MAG*8, height=self.MAG*3/2, anchor=tk.N)
+        l_start.place(x=self.WIDTH/2, y=self.HEIGHT/10*6, width=self.MAG*2, height=self.MAG/2, anchor=tk.N)
+        l_exit.place(x=self.WIDTH/2, y=self.HEIGHT/10*7, width=self.MAG*2, height=self.MAG/2, anchor=tk.N)
 
         self.var_start_menu = [select, old_key]
 
@@ -125,7 +125,7 @@ class GAME():
         right = 4
 
         # Fill black
-        canvas = tkinter.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
+        canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
         canvas.place(x=0, y=0)
 
         # 1:player 2:start 3:left 4:right
@@ -150,7 +150,7 @@ class GAME():
                 self.root.after(3, self.start)
                 self.scene_cnt = 2
                 # Fill black
-                canvas = tkinter.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
+                canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
                 canvas.place(x=0, y=0)
                 return 0
             elif select == 3:
@@ -165,45 +165,45 @@ class GAME():
             old_key = None
 
         # generate label
-        l_title = tkinter.Label(text="Select Menu", font=("Menlo", int(self.MAG/4)), background="green")
-        l_player = tkinter.Label(text="Players", font=("Menlo", int(self.MAG/5)), background="green")
-        l_num = tkinter.Label(text=str(player_num), font=("Menlo", int(self.MAG/4)), background="green")
+        l_title = tk.Label(text="Select Menu", font=("Menlo", int(self.MAG/4)), background="green")
+        l_player = tk.Label(text="Players", font=("Menlo", int(self.MAG/5)), background="green")
+        l_num = tk.Label(text=str(player_num), font=("Menlo", int(self.MAG/4)), background="green")
         if select == 1:
-            l_start = tkinter.Label(text="Start", font=("Menlo", int(self.MAG/5)), background="blue")
-            l_left = tkinter.Label(text="<=", font=("Menlo", int(self.MAG/6)), background="yellow")
-            l_right = tkinter.Label(text="=>", font=("Menlo", int(self.MAG/6)), background="blue")
+            l_start = tk.Label(text="Start", font=("Menlo", int(self.MAG/5)), background="blue")
+            l_left = tk.Label(text="<=", font=("Menlo", int(self.MAG/6)), background="yellow")
+            l_right = tk.Label(text="=>", font=("Menlo", int(self.MAG/6)), background="blue")
         elif select == 2:
-            l_start = tkinter.Label(text="Start", font=("Menlo", int(self.MAG/5)), background="yellow")
-            l_left = tkinter.Label(text="<=", font=("Menlo", int(self.MAG/6)), background="blue")
-            l_right = tkinter.Label(text="=>", font=("Menlo", int(self.MAG/6)), background="blue")
+            l_start = tk.Label(text="Start", font=("Menlo", int(self.MAG/5)), background="yellow")
+            l_left = tk.Label(text="<=", font=("Menlo", int(self.MAG/6)), background="blue")
+            l_right = tk.Label(text="=>", font=("Menlo", int(self.MAG/6)), background="blue")
         elif select == 3:
-            l_start = tkinter.Label(text="Start", font=("Menlo", int(self.MAG/5)), background="blue")
-            l_left = tkinter.Label(text="<=", font=("Menlo", int(self.MAG/6)), background="yellow")
-            l_right = tkinter.Label(text="=>", font=("Menlo", int(self.MAG/6)), background="blue")
+            l_start = tk.Label(text="Start", font=("Menlo", int(self.MAG/5)), background="blue")
+            l_left = tk.Label(text="<=", font=("Menlo", int(self.MAG/6)), background="yellow")
+            l_right = tk.Label(text="=>", font=("Menlo", int(self.MAG/6)), background="blue")
         elif select == 4:
-            l_start = tkinter.Label(text="Start", font=("Menlo", int(self.MAG/5)), background="blue")
-            l_left = tkinter.Label(text="<=", font=("Menlo", int(self.MAG/6)), background="blue")
-            l_right = tkinter.Label(text="=>", font=("Menlo", int(self.MAG/6)), background="yellow")
-        l_title.place(x=self.WIDTH/10*5, y=self.HEIGHT/12*2, width=self.MAG*2, height=self.MAG, anchor=tkinter.CENTER)
-        l_player.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*3, width=self.MAG*3/2, height=self.MAG*2/3, anchor=tkinter.CENTER)
-        l_start.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*8, width=self.MAG*3/2, height=self.MAG/3,anchor=tkinter.CENTER)
-        l_num.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*3, width=self.MAG, height=self.MAG/2, anchor=tkinter.CENTER)
-        l_left.place(x=self.WIDTH/14*6, y=self.HEIGHT/10*3, width=self.MAG/2, height=self.MAG/3, anchor=tkinter.CENTER)
-        l_right.place(x=self.WIDTH/14*8, y=self.HEIGHT/10*3, width=self.MAG/2, height=self.MAG/3, anchor=tkinter.CENTER)
+            l_start = tk.Label(text="Start", font=("Menlo", int(self.MAG/5)), background="blue")
+            l_left = tk.Label(text="<=", font=("Menlo", int(self.MAG/6)), background="blue")
+            l_right = tk.Label(text="=>", font=("Menlo", int(self.MAG/6)), background="yellow")
+        l_title.place(x=self.WIDTH/10*5, y=self.HEIGHT/12*2, width=self.MAG*2, height=self.MAG, anchor=tk.CENTER)
+        l_player.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*3, width=self.MAG*3/2, height=self.MAG*2/3, anchor=tk.CENTER)
+        l_start.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*8, width=self.MAG*3/2, height=self.MAG/3,anchor=tk.CENTER)
+        l_num.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*3, width=self.MAG, height=self.MAG/2, anchor=tk.CENTER)
+        l_left.place(x=self.WIDTH/14*6, y=self.HEIGHT/10*3, width=self.MAG/2, height=self.MAG/3, anchor=tk.CENTER)
+        l_right.place(x=self.WIDTH/14*8, y=self.HEIGHT/10*3, width=self.MAG/2, height=self.MAG/3, anchor=tk.CENTER)
 
         # input player name
-        l_name = [tkinter.Entry(width=10, font=("Menlo", int(self.MAG/6))) for i in range(4)]
-        button = tkinter.Button(text="OK", font=("Menlo", int(self.MAG/6)), command=lambda: self.click_button(l_name))
+        l_name = [tk.Entry(width=10, font=("Menlo", int(self.MAG/6))) for i in range(4)]
+        button = tk.Button(text="OK", font=("Menlo", int(self.MAG/6)), command=lambda: self.click_button(l_name))
         for i in range(player_num):
-            lbl = tkinter.Label(text="Player "+str(i+1), font=("Menlo", int(self.MAG/6)))
+            lbl = tk.Label(text="Player "+str(i+1), font=("Menlo", int(self.MAG/6)))
             if self.MAG <= 60:
-                l_name[i].place(x=self.WIDTH/10*5, y=self.HEIGHT/10*4+(i*30), width=100, height=25, anchor=tkinter.CENTER)
-                button.place(x=self.WIDTH/10*7, y=self.HEIGHT/10*4+(i*30), width=40, height=30, anchor=tkinter.CENTER)
-                lbl.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*4+(i*30), width=40, height=30, anchor=tkinter.CENTER)
+                l_name[i].place(x=self.WIDTH/10*5, y=self.HEIGHT/10*4+(i*30), width=100, height=25, anchor=tk.CENTER)
+                button.place(x=self.WIDTH/10*7, y=self.HEIGHT/10*4+(i*30), width=40, height=30, anchor=tk.CENTER)
+                lbl.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*4+(i*30), width=40, height=30, anchor=tk.CENTER)
             else:
-                l_name[i].place(x=self.WIDTH/10*5, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG*2, height=self.MAG/3, anchor=tkinter.CENTER)
-                button.place(x=self.WIDTH/10*7, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG/2, height=self.MAG/3, anchor=tkinter.CENTER)
-                lbl.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG*3/2, height=self.MAG*2/5, anchor=tkinter.CENTER)
+                l_name[i].place(x=self.WIDTH/10*5, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG*2, height=self.MAG/3, anchor=tk.CENTER)
+                button.place(x=self.WIDTH/10*7, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG/2, height=self.MAG/3, anchor=tk.CENTER)
+                lbl.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG*3/2, height=self.MAG*2/5, anchor=tk.CENTER)
             l_name[i].insert(0, self.player[i].name)
 
         self.var_select_menu = [select, player_num, old_key]
@@ -218,13 +218,13 @@ class GAME():
 
     def print_field(self):
         # Fill black
-        canvas = tkinter.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
+        canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
         canvas.place(x=0, y=0)
         l_field = [[None for j in range(self.field.y)] for i in range(self.field.x)]
         for i in range(self.field.x):
             for j in range(self.field.y):
-                l_field[i][j] = tkinter.Label(text=self.field.field_array[i][j], font=("Menlo", int(self.MAG/6)), background="red", relief="groove", borderwidth=self.MAG/10)
-                l_field[i][j].place(x=self.WIDTH/2+(i-2)*self.MAG*5/2, y=self.HEIGHT/self.field.y*j+self.MAG*15/16, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tkinter.CENTER)
+                l_field[i][j] = tk.Label(text=self.field.field_array[i][j], font=("Menlo", int(self.MAG/6)), background="red", relief="groove", borderwidth=self.MAG/10)
+                l_field[i][j].place(x=self.WIDTH/2+(i-2)*self.MAG*5/2, y=self.HEIGHT/self.field.y*j+self.MAG*15/16, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.CENTER)
         l_stat = [None for i in range(4)]
         for i in range(4):
             NAM = str(self.player[i].name) + "\n"
@@ -233,11 +233,11 @@ class GAME():
             MUS = "muscle:" + str(self.player[i].muscle) + "\n"
             STR = "stress:" + str(self.player[i].stress) + "\n"
             DEX = "dexterity:" + str(self.player[i].dexterity)
-            l_stat[i] = tkinter.Label(text=NAM+JOB+MON+MUS+STR+DEX, font=("Menlo", int(self.MAG/6)),  background="white", relief="ridge", borderwidth=self.MAG/20)
-        l_stat[0].place(x=0, y=0, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tkinter.NW)
-        l_stat[1].place(x=self.WIDTH, y=0, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tkinter.NE)
-        l_stat[2].place(x=0, y=self.HEIGHT, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tkinter.SW)
-        l_stat[3].place(x=self.WIDTH, y=self.HEIGHT, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tkinter.SE)
+            l_stat[i] = tk.Label(text=NAM+JOB+MON+MUS+STR+DEX, font=("Menlo", int(self.MAG/6)),  background="white", relief="ridge", borderwidth=self.MAG/20)
+        l_stat[0].place(x=0, y=0, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.NW)
+        l_stat[1].place(x=self.WIDTH, y=0, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.NE)
+        l_stat[2].place(x=0, y=self.HEIGHT, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.SW)
+        l_stat[3].place(x=self.WIDTH, y=self.HEIGHT, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.SE)
 
     # roll dice randomly
     def roll_dice():
@@ -283,13 +283,13 @@ class GAME():
         elif self.pressed == {}:
             old_key = None
 
-        l_player[0] = tkinter.Label(text="1", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+        l_player[0] = tk.Label(text="1", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
         l_player[0].place(x=self.player[0].x*self.MAG*5/2+self.MAG*76/32, y=self.player[0].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
-        l_player[1] = tkinter.Label(text="2", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+        l_player[1] = tk.Label(text="2", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
         l_player[1].place(x=self.player[1].x*self.MAG*5/2+self.MAG*105/32, y=self.player[1].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
-        l_player[2] = tkinter.Label(text="3", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+        l_player[2] = tk.Label(text="3", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
         l_player[2].place(x=self.player[2].x*self.MAG*5/2+self.MAG*76/32, y=self.player[2].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
-        l_player[3] = tkinter.Label(text="4", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+        l_player[3] = tk.Label(text="4", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
         l_player[3].place(x=self.player[3].x*self.MAG*5/2+self.MAG*105/32, y=self.player[3].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
 
     # show result
