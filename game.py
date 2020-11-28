@@ -71,7 +71,10 @@ class GAME():
         down = 2
 
         # Text config
-        self.root.option_add("*font", ["MS Pゴシック", int(self.MAG/5)])
+        if self.MAG <= 60:
+            self.root.option_add("*font", ["MS Pゴシック", 15])
+        else:
+            self.root.option_add("*font", ["MS Pゴシック", int(self.MAG/5)])
 
         # Disp process
         select, old_key = self.var_start_menu
@@ -185,7 +188,7 @@ class GAME():
             l_left = tkinter.Label(text="<=", background="blue")
             l_right = tkinter.Label(text="=>", background="yellow")
         l_title.place(x=self.WIDTH/10*5, y=self.HEIGHT/12*2, width=self.MAG*2, height=self.MAG, anchor=tkinter.CENTER)
-        l_player.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*3, width=self.MAG, height=self.MAG/2, anchor=tkinter.CENTER)
+        l_player.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*3, width=self.MAG*3/2, height=self.MAG*2/3, anchor=tkinter.CENTER)
         l_start.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*8, width=self.MAG*3/2, height=self.MAG/3,anchor=tkinter.CENTER)
         l_num.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*3, width=self.MAG, height=self.MAG/2, anchor=tkinter.CENTER)
         l_left.place(x=self.WIDTH/14*6, y=self.HEIGHT/10*3, width=self.MAG/2, height=self.MAG/3, anchor=tkinter.CENTER)
@@ -196,10 +199,14 @@ class GAME():
         button = tkinter.Button(text="OK", command=lambda: self.click_button(l_name))
         for i in range(player_num):
             lbl = tkinter.Label(text="Player "+str(i+1))
-            lbl.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG, height=self.MAG/3, anchor=tkinter.CENTER)
-            l_name[i].place(x=self.WIDTH/10*5, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG*2, height=self.MAG/3, anchor=tkinter.CENTER)
+            lbl.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG*3/2, height=self.MAG*2/5, anchor=tkinter.CENTER)
+            if self.MAG <= 60:
+                l_name[i].place(x=self.WIDTH/10*5, y=self.HEIGHT/10*4+(i*30), width=100, height=25, anchor=tkinter.CENTER)
+                button.place(x=self.WIDTH/10*7, y=self.HEIGHT/10*4+(i*30), width=40, height=30, anchor=tkinter.CENTER)
+            else:
+                l_name[i].place(x=self.WIDTH/10*5, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG*2, height=self.MAG/3, anchor=tkinter.CENTER)
+                button.place(x=self.WIDTH/10*7, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG/2, height=self.MAG/3, anchor=tkinter.CENTER)
             l_name[i].insert(0, self.player[i].name)
-            button.place(x=self.WIDTH/10*7, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG/2, height=self.MAG/3, anchor=tkinter.CENTER)
 
         self.var_select_menu = [select, player_num, old_key]
 
