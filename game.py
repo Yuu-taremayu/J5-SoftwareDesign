@@ -71,7 +71,7 @@ class GAME():
         down = 2
 
         # Text config
-        self.root.option_add("*font", ["MS Pゴシック", 22])
+        self.root.option_add("*font", ["MS Pゴシック", int(self.MAG/5)])
 
         # Disp process
         select, old_key = self.var_start_menu
