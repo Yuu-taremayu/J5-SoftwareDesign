@@ -228,12 +228,13 @@ class GAME():
                 l_field[i][j].place(x=self.WIDTH/2+(i-2)*self.MAG*5/2, y=self.HEIGHT/self.field.y*j+self.MAG*15/16, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tkinter.CENTER)
         l_stat = [None for i in range(4)]
         for i in range(4):
+            NAM = str(self.player[i].name) + "\n"
             JOB = "job:" + str(self.player[i].job) + "\n"
             MON = "money:" + str(self.player[i].money) + "\n"
             MUS = "muscle:" + str(self.player[i].muscle) + "\n"
             STR = "stress:" + str(self.player[i].stress) + "\n"
             DEX = "dexterity:" + str(self.player[i].dexterity)
-            l_stat[i] = tkinter.Label(text=JOB+MON+MUS+STR+DEX, font=("Menlo", int(self.MAG/6)),  background="white", relief="ridge", borderwidth=self.MAG/20)
+            l_stat[i] = tkinter.Label(text=NAM+JOB+MON+MUS+STR+DEX, font=("Menlo", int(self.MAG/6)),  background="white", relief="ridge", borderwidth=self.MAG/20)
         l_stat[0].place(x=0, y=0, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tkinter.NW)
         l_stat[1].place(x=self.WIDTH, y=0, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tkinter.NE)
         l_stat[2].place(x=0, y=self.HEIGHT, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tkinter.SW)
