@@ -1,5 +1,6 @@
 # J5-SoftwareDesign
 2020 ソフトウェア設計II
+
 グループ開発
 
 ## チーム ｐｙてょｎ
@@ -12,6 +13,7 @@
 
 ## 概要
 Pythonでのフィールドすごろくの開発
+
 名称　"Field Search Record ~凄録~"
 
 ## ルール
@@ -35,33 +37,42 @@ Pythonでのフィールドすごろくの開発
 
 ## 物の抽出
  - プレイヤー
-	 - money
-	 - muscle
-	 - endurance
-	 - stress
-	 - speed
-	 - idea
-	 - intelligence
-	 - job
 	 - status
+		 - money
+		 - muscle
+		 - endurance
+		 - stress
+		 - speed
+		 - idea
+		 - intelligence
+	 - job
+		- free
+		- athlete
+		- detective
+		- doctor
+		- engineer
+		- hunter
+		- paramedic
+		- police
+		- teacher
 	 - purpose
- - イベント
-	 - shop
-	 - battle
-	 - work shop
+ - フィールド
+	 - イベント
+		 - shop
+		 - battle
+		 - work shop
  - ダイス
- - 職業
-	 - free
-	 - athlete
-	 - detective
-	 - doctor
-	 - engineer
-	 - hunter
-	 - paramedic
-	 - police
-	 - teacher
 
 ## 物の振る舞い
+ - プレイヤー
+	 - フィールド内を上下左右に動く
+	 - フィールド上で買い物をしたり,転職したりする
+	 - 他のプレイヤーと戦う
+ - フィールド
+	 - 画面上に配置され,プレイヤーが動く場所を提供する
+	 - バトル,買い物,転職が行われる
+ - ダイス
+	 - 1~6の目を出し,プレイヤーの動きに影響を及ぼす
 
 ## データ構造
  - "ゲーム" クラス
@@ -154,53 +165,53 @@ class GAME():
 		引数:self, width, height, root
 		戻り値:none
 		# initialize some constant and variables in GAME class
-		# initialize keyboard config
-		# call start_menu() function
+    # Gameクラスの変数と定数を初期化
+    # キーボード設定の初期化
+		# start_menu()を呼び出す
 	def key_pressed()
 		引数:event
 		戻り値:none
-		# when key pressed, call this function
-		# add pressed key from array
+		# 何かキーが押されたときに呼び出される
+		# 現在押されているキーをpressedへ格納する
 	def key_released()
 		引数:event
 		戻り値:none
-		# when key released, call this function
-		# delete released key from array
+		# 押されていたキーが離されたときに呼び出される
+		# pressedから離されたキーを削除する
 	def start_menu()
 		引数:none
 		戻り値:0
-		# display start menu
-		# create menu screen by canvas and label
-		# control Up, Down and Enter key
-		# you can be Game Start or Exit here
+		# スタートメニューを表示する関数
+		# キー操作によってゲームスタートか終了を制御する
+    # ゲームスタートのボタンでselect_menu()を呼び出す
 	def select_menu()
 		引数:none
 		戻り値:0
-		# display select manu
-		# create menu screen by some label
-		# control Up, Down, Left, Right and Enter key
-		# you can be select the number of player and start game
+		# セレクトーを表示する関数
+		# キー操作で人数を、マウスとキー操作でプレイヤ名を決定する
+		# ゲームスタートのボタンを押すとstart()を呼び出す
   def start()
   　引数:none
   　戻り値:none
-    # start game
-    # call print_field()
-    # call move_player()
-    # call check_win_condition()
-    # call check_exit_condition()
+    # ゲームの各処理をする関数を呼び出す関数
+    # print_field()を呼び出す
+    # move_player()を呼び出す
+    # check_win_condition()を呼び出す
+    # check_exit_condition()を呼び出す
   def check_win_condition()
     引数:none
   　戻り値:none
-    # check each player's winning condition
+    # プレイヤが勝利条件を満たしているかを確認する関数
+    # 満たしているならplayerクラスのconditionにTrueを格納
   def check_exit_condition()
     引数:none
 　  戻り値:none
-    # check game's exit condition
-    # call show_result() if all player's conditions are True
+    # ゲームの終了条件を判定する関数
+    # もし全てのプレイヤの勝利条件が満たされていればshow_result()を呼び出す
   def show_result()
     引数:none
 　  戻り値:none
-    #show goal order and any informations
+    # プレイヤの勝利条件を満たした順に順位を表示する関数
 
 ```
  - "プレイヤー" クラス
@@ -209,15 +220,15 @@ class PLAYER():
 	def __init__():
 		引数:none
 		戻り値:none
-		# initialize player's status
-		# money, muscle, stress, job, DEX
-		# give player win condition
-		# call decide_job and give player job
+		# プレイヤの各ステータスを初期化する
+		# ステータスはmoney, muscle, stress, job, DEX
+		# 各プレイヤに勝利条件を付与する
+		# decide_jobを呼び出して職業を付与する
 	def decide_job():
 		引数:none
 		戻り値:none
-		# decide job by random
-		# there are 4 jobs 'Teacher', 'Engineer', 'SportsMan' and 'Nojob'
+		# ランダムで職業を決める
+		# 職業は'Teacher', 'Engineer', 'SportsMan' and 'Nojob'の４つ
 ```
  - "フィールド" クラス
 ```
@@ -225,20 +236,27 @@ class FIELD():
 	def __init__():
 		引数:none
 		戻り値:none
-		# initialize field properties
+		# フィールドの初期化
 		# x, y, number of shop, number of job change point and field array
 	def set_field():
 		引数:none
 		戻り値:x, y
-		# setting　field size x, y
+		# フィールドの大きさを定める
 	def set_events()
 		引数:none
 		戻り値:number of shop, number of job change point
-		# setting number of event point shop and job change
+		# 各イベントの数を定める
 	def init_field():
 		引数:x, y, number of shop, number of job change point
 		戻り値:field array
-		# initialize internal information of field
-		# random create point of shop and jobchange
-		# other points initialized by 'Normal'
+		# ランダムにイベントを配置
+		# イベントのないマスは「ノーマル」
+	def event_increasemoney():
+		引数:player
+		戻り値:none
+		# プレイヤーの職業によってお金を増やすイベント
+	def event_jobchange():
+		引数:player
+		戻り値:none
+		# 職業を変えるイベント
 ```

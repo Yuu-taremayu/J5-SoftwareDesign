@@ -1,5 +1,6 @@
 # J5-SoftwareDesign
 2020 SoftwareDesgin 2
+
 group development
 
 ## Team ｐｙてょｎ
@@ -12,6 +13,7 @@ group development
 
 ## Descriptions
 development of Field Sugoroku with Python
+
 The name is "日曜から夜ふかし \~Sunday midnight\~"
 
 ## Rule
@@ -35,24 +37,34 @@ The name is "日曜から夜ふかし \~Sunday midnight\~"
 
 ## Extraction of materials
  - player
-	 - money
-	 - muscle
-	 - stress
+	 - status
+		 - money
+		 - muscle
+		 - stress
+		 - dexterity
 	 - job
-	 - DEX
+		 - teacher
+		 - enginner
+		 - sports man
+		 - no job
 	 - win condition
- - event
-	 - shop
-	 - battle
-	 - job change
+ - field
+	 - event
+		 - shop
+		 - battle
+		 - job change
  - dice
- - job
-	 - teacher
-	 - enginner
-	 - sports man
-	 - no job
 
 ## Behiviour of materials
+ - player
+	 - moving Up,Down,Left,Right on field
+	 - shopping and changing job in field
+	 - battle other player
+ - field
+	 - placed on display, and provide field that player move
+	 - player can battle, shop and change job here
+ - dice
+	 - put out 1~6 and effect player action
 
 ## Data structure
  - class "game"
