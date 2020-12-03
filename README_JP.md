@@ -194,20 +194,27 @@ class FIELD():
 	def __init__():
 		argument:none
 		return value:none
-		# initialize field properties
+		# フィールドの初期化
 		# x, y, number of shop, number of job change point and field array
 	def set_field():
 		argument:none
 		return value:x, y
-		# setting　field size x, y
+		# フィールドの大きさを定める
 	def set_events()
 		argument:none
 		return:number of shop, number of job change point
-		# setting number of event point shop and job change
+		# 各イベントの数を定める
 	def init_field():
 		argument:x, y, number of shop, number of job change point
 		return:field array
-		# initialize internal information of field
-		# random create point of shop and jobchange
-		# other points initialized by 'Normal'
+		# ランダムにイベントを配置
+		# イベントのないマスは「ノーマル」
+	def event_increasemoney():
+		argument:player
+		return:none
+		# プレイヤーの職業によってお金を増やすイベント
+	def event_jobchange():
+		argument:player
+		return:none
+		# 職業を変えるイベント
 ```
