@@ -33,7 +33,8 @@ class GAME():
         self.field = FIELD(w,h)
 
         # Create instance
-        self.player = [PLAYER() for i in range(4)]
+        self.player = [PLAYER(i) for i in range(4)]
+        self.turn = 0
 
         self.start_menu()
 
@@ -54,8 +55,12 @@ class GAME():
         self.pressed.pop(event.keysym, None)
 
     # when click button, focus self.frame
-    def click_button(self):
+    def click_button(self, l_name):
         self.frame.focus_set()
+
+        #write names
+        for i in range(len(l_name)):
+            self.player[i].name = l_name[i].get()
 
     # Disp start menu
     # TODO: Modify the design
@@ -99,9 +104,9 @@ class GAME():
         else:
             l_start = tkinter.Label(text="Game start", background="blue")
             l_exit = tkinter.Label(text="Exit", background="yellow")
-        l_title.place(x=self.WIDTH/2, y=100, anchor=tkinter.N)
-        l_start.place(x=self.WIDTH/2, y=self.HEIGHT/2+50, anchor=tkinter.N)
-        l_exit.place(x=self.WIDTH/2, y=self.HEIGHT/2+100, anchor=tkinter.N)
+        l_title.place(x=self.WIDTH/2, y=self.HEIGHT/10*2, anchor=tkinter.N)
+        l_start.place(x=self.WIDTH/2, y=self.HEIGHT/10*6, anchor=tkinter.N)
+        l_exit.place(x=self.WIDTH/2, y=self.HEIGHT/10*7, anchor=tkinter.N)
 
         self.var_start_menu = [select, old_key]
 
@@ -178,21 +183,22 @@ class GAME():
             l_start = tkinter.Label(text="Start", background="blue")
             l_left = tkinter.Label(text="<=", background="blue")
             l_right = tkinter.Label(text="=>", background="yellow")
-        l_title.place(x=self.WIDTH/2, y=50, anchor=tkinter.N)
-        l_player.place(x=self.WIDTH/2-150, y=self.HEIGHT/2-100, anchor=tkinter.N)
-        l_start.place(x=self.WIDTH/2, y=self.HEIGHT/2+150, anchor=tkinter.N)
-        l_num.place(x=self.WIDTH/2, y=self.HEIGHT/2-100, anchor=tkinter.N)
-        l_left.place(x=self.WIDTH/2-40, y=self.HEIGHT/2-100, anchor=tkinter.N)
-        l_right.place(x=self.WIDTH/2+40, y=self.HEIGHT/2-100, anchor=tkinter.N)
+        l_title.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*2, anchor=tkinter.N)
+        l_player.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*3, anchor=tkinter.N)
+        l_start.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*8, anchor=tkinter.N)
+        l_num.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*3, anchor=tkinter.N)
+        l_left.place(x=self.WIDTH/10*4, y=self.HEIGHT/10*3, anchor=tkinter.N)
+        l_right.place(x=self.WIDTH/10*6, y=self.HEIGHT/10*3, anchor=tkinter.N)
 
         # input player name
         l_name = [tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10), tkinter.Entry(width=10)]
-        button = tkinter.Button(text="OK", command=lambda: self.click_button())
+        button = tkinter.Button(text="OK", command=lambda: self.click_button(l_name))
         for i in range(player_num):
             lbl = tkinter.Label(text="Player "+str(i+1))
-            lbl.place(x=self.WIDTH/2-150, y=self.HEIGHT/2-45+i*50, anchor=tkinter.N)
-            l_name[i].place(x=self.WIDTH/2, y=self.HEIGHT/2-45+i*50, anchor=tkinter.N)
-            button.place(x=self.WIDTH/2+150, y=self.HEIGHT/2+30, anchor=tkinter.N)
+            lbl.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*4+(i*40), anchor=tkinter.N)
+            l_name[i].place(x=self.WIDTH/10*5, y=self.HEIGHT/10*4+(i*40), anchor=tkinter.N)
+            l_name[i].insert(0, self.player[i].name)
+            button.place(x=self.WIDTH/10*7, y=self.HEIGHT/10*4+(i*40), anchor=tkinter.N)
 
         self.var_select_menu = [select, player_num, old_key]
 
@@ -202,6 +208,7 @@ class GAME():
     # start game
     def start(self):
         self.print_field()
+        self.move_player()
 
     def print_field(self):
         l_field = [[None for j in range(self.field.y)] for i in range(self.field.x)]
@@ -236,8 +243,44 @@ class GAME():
         pass
 
     # move player by dice number
-    def move_player():
-        pass
+    def move_player(self):
+        # define
+        up = 1
+        down = 2
+        left = 3
+        right = 4
+
+        old_key = None
+        l_player = [None for i in range(4)]
+        if "Up" in self.pressed and old_key != up:
+            if self.player[self.turn].y > 0:
+                self.player[self.turn].y -= 1
+            old_key = up
+        elif "Down" in self.pressed and old_key != down:
+            if self.player[self.turn].y < 3:
+                self.player[self.turn].y += 1
+            old_key = down
+        elif "Left" in self.pressed and old_key != left:
+            if self.player[self.turn].x > 0:
+                self.player[self.turn].x -= 1
+            old_key = left
+        elif "Right" in self.pressed and old_key != right:
+            if self.player[self.turn].x < 4:
+                self.player[self.turn].x += 1
+            old_key = right
+        elif "Return" in self.pressed:
+            self.turn = (self.turn + 1) % 4
+        elif self.pressed == {}:
+            old_key = None
+
+        l_player[0] = tkinter.Label(text="1", background="yellow", relief="ridge", borderwidth=2)
+        l_player[0].place(x=375+self.player[0].x*250, y=40+self.player[0].y*270, width=40, height=40)
+        l_player[1] = tkinter.Label(text="2", background="yellow", relief="ridge", borderwidth=2)
+        l_player[1].place(x=505+self.player[1].x*250, y=40+self.player[1].y*270, width=40, height=40)
+        l_player[2] = tkinter.Label(text="3", background="yellow", relief="ridge", borderwidth=2)
+        l_player[2].place(x=375+self.player[2].x*250, y=170+self.player[2].y*270, width=40, height=40)
+        l_player[3] = tkinter.Label(text="4", background="yellow", relief="ridge", borderwidth=2)
+        l_player[3].place(x=505+self.player[3].x*250, y=170+self.player[3].y*270, width=40, height=40)
 
     # show result
     def show_result():
