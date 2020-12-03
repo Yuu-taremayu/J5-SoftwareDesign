@@ -96,12 +96,12 @@ class PLAYER():
  - "フィールド" クラス
 ```
 class FIELD():
-	self.x			:
-	self.y			:
-	self.WIDTH		:
-	self.HEIGHT		:
-	self.num_shop		:
-	self.num_jobchange	:
+	self.x			:プレイヤーのx座標を持つ変数
+	self.y			:プレイヤーのy座標を持つ変数
+	self.WIDTH		:ゲーム画面の横幅を持つ変数,GAMEクラスから渡される
+	self.HEIGHT		:ゲーム画面の縦幅を持つ変数,GAMEクラスから渡される
+	self.num_shop		:ショップマスの数を持つ変数
+	self.num_jobchange	:ジョブチェンジマスの数を持つ変数
 ```
 
 ## 関数仕様

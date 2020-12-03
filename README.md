@@ -87,12 +87,12 @@ class PLAYER():
  - class "field"
 ```
 class FIELD():
-	self.x			:
-	self.y			:
-	self.WIDTH		:
-	self.HEIGHT		:
-	self.num_shop		:
-	self.num_jobchange	:
+	self.x			:variable of player x coordinate
+	self.y			:variable of player y coordinate
+	self.WIDTH		:variable of display width, passed from main function
+	self.HEIGHT		:variable of display height, passed from main function
+	self.num_shop		:variable of the number of shop
+	self.num_jobchange	:variable of the number of jobchange
 ```
 
 ## Function specification
