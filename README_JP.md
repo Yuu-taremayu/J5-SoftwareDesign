@@ -58,6 +58,89 @@ Pythonでのフィールドすごろくの開発
  - class "ゲーム"
 ```
 class GAME():
+	self.WIDTH		:
+	self.HEIGHT		:
+	self.MAG		:
+	self.root		:
+	self.scene		:
+	self.var_start_menu	:
+	self.var_select_menu	:
+	self.frame		:
+	self.pressed		:
+	canvas			:
+	self.field		:
+	self.player		:
+	self.turn		:
+```
+ - class "プレイヤー"
+```
+class PLAYER():
+	self.x			:
+	self.y			:
+	self.money		:
+	self.muscle		:
+	self.stress		:
+	self.dexterity		:
+	self.job		:
+	self.condition		:
+```
+ - class "フィールド"
+```
+class FIELD():
+	self.x			:
+	self.y			:
+	self.WIDTH		:
+	self.HEIGHT		:
+	self.num_shop		:
+	self.num_jobchange	:
+```
+
+## 関数仕様
+ - 基本データ構造
+	 - class "ゲーム"
+```
+class GAME():
+	self.WIDTH		:
+	self.HEIGHT		:
+	self.MAG		:
+	self.root		:
+	self.scene		:
+	self.var_start_menu	:
+	self.var_select_menu	:
+	self.frame		:
+	self.pressed		:
+	canvas			:
+	self.field		:
+	self.player		:
+	self.turn		:
+```
+	 - class "プレイヤー"
+```
+class PLAYER():
+	self.x			:
+	self.y			:
+	self.money		:
+	self.muscle		:
+	self.stress		:
+	self.dexterity		:
+	self.job		:
+	self.condition		:
+```
+	 - class "フィールド"
+```
+class FIELD():
+	self.x			:
+	self.y			:
+	self.WIDTH		:
+	self.HEIGHT		:
+	self.num_shop		:
+	self.num_jobchange	:
+```
+
+ - 基本関数仕様
+	 - class "ゲーム"
+```
+class GAME():
 	def __init__():
 		argument:self, width, height, root
 		return value:none
@@ -89,7 +172,7 @@ class GAME():
 		# control Up, Down, Left, Right and Enter key
 		# you can be select the number of player and start game
 ```
- - class "プレイヤー"
+	 - class "プレイヤー"
 ```
 class PLAYER():
 	def __init__():
@@ -105,7 +188,7 @@ class PLAYER():
 		# decide job by random
 		# there are 4 jobs 'Teacher', 'Engineer', 'SportsMan' and 'Nojob'
 ```
- - class "フィールド"
+	 - class "フィールド"
 ```
 class FIELD():
 	def __init__():
