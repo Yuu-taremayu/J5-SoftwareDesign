@@ -109,9 +109,9 @@ class FIELD():
  - "ゲーム" クラス
 ```
 class GAME():
-	self.WIDTH		:
-	self.HEIGHT		:
-	self.MAG		:
+	self.WIDTH		:ゲーム画面の横幅を持つ変数,main関数から渡される
+	self.HEIGHT		:ゲーム画面の縦幅を持つ変数,main関数から渡される
+	self.MAG		:ゲーム画面の倍率を持つ変数,main関数から渡される
 	self.root		:
 	self.scene		:
 	self.var_start_menu	:
@@ -119,31 +119,31 @@ class GAME():
 	self.frame		:
 	self.pressed		:
 	canvas			:
-	self.field		:
-	self.player		:
-	self.turn		:
+	self.field		:フィールドの内部状態を保持するインスタンス
+	self.player		:プレイヤーの内部状態を保持するインスタンスの配列
+	self.turn		:現在行動するプレイヤーを指し示すフラグ
 ```
  - "プレイヤー" クラス
 ```
 class PLAYER():
-	self.x			:
-	self.y			:
-	self.money		:
-	self.muscle		:
-	self.stress		:
-	self.dexterity		:
-	self.job		:
-	self.condition		:
+	self.x			:プレイヤーのx座標を持つ変数
+	self.y			:プレイヤーのy座標を持つ変数
+	self.money		:プレイヤーのステータスmoneyを持つ変数
+	self.muscle		:プレイヤーのステータスmuscleを持つ変数
+	self.stress		:プレイヤーのステータスstressを持つ変数
+	self.dexterity		:プレイヤーのステータスdexterityを持つ変数
+	self.job		:プレイヤーのステータスjobを持つ変数
+	self.condition		:プレイヤーの勝利条件を持つ変数
 ```
  - "フィールド" クラス
 ```
 class FIELD():
-	self.x			:
-	self.y			:
-	self.WIDTH		:
-	self.HEIGHT		:
-	self.num_shop		:
-	self.num_jobchange	:
+	self.x			:プレイヤーのx座標を持つ変数
+	self.y			:プレイヤーのy座標を持つ変数
+	self.WIDTH		:ゲーム画面の横幅を持つ変数,GAMEクラスから渡される
+	self.HEIGHT		:ゲーム画面の縦幅を持つ変数,GAMEクラスから渡される
+	self.num_shop		:ショップマスの数を持つ変数
+	self.num_jobchange	:ジョブチェンジマスの数を持つ変数
 ```
 
 ### 基本関数仕様

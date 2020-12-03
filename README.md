@@ -100,9 +100,9 @@ class FIELD():
  - class "game"
 ```
 class GAME():
-	self.WIDTH		:
-	self.HEIGHT		:
-	self.MAG		:
+	self.WIDTH		:variable of display width, passed from main function
+	self.HEIGHT		:variable of display height, passed from main function
+	self.MAG		:variable of display magnification, passed from main function
 	self.root		:
 	self.scene		:
 	self.var_start_menu	:
@@ -110,31 +110,31 @@ class GAME():
 	self.frame		:
 	self.pressed		:
 	canvas			:
-	self.field		:
-	self.player		:
-	self.turn		:
+	self.field		:instance of field inner status
+	self.player		:instance array of player inner status
+	self.turn		:flag that indicates active player
 ```
  - class "player"
 ```
 class PLAYER():
-	self.x			:
-	self.y			:
-	self.money		:
-	self.muscle		:
-	self.stress		:
-	self.dexterity		:
-	self.job		:
-	self.condition		:
+	self.x			:variable of player x coordinate
+	self.y			:variable of player y coordinate
+	self.money		:variable of player money status
+	self.muscle		:variable of player muscle status
+	self.stress		:variable of player stress status
+	self.dexterity		:variable of player dexterity staus
+	self.job		:variable of player job
+	self.condition		:variable of player win condition
 ```
  - class "field"
 ```
 class FIELD():
-	self.x			:
-	self.y			:
-	self.WIDTH		:
-	self.HEIGHT		:
-	self.num_shop		:
-	self.num_jobchange	:
+	self.x			:variable of player x coordinate
+	self.y			:variable of player y coordinate
+	self.WIDTH		:variable of display width, passed from main function
+	self.HEIGHT		:variable of display height, passed from main function
+	self.num_shop		:variable of the number of shop
+	self.num_jobchange	:variable of the number of jobchange
 ```
 
 ### Basic function specification
