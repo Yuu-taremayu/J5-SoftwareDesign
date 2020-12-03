@@ -56,6 +56,15 @@ The name is "日曜から夜ふかし \~Sunday midnight\~"
  - dice
 
 ## Behiviour of materials
+ - player
+moving Up,Down,Left,Right on field
+shopping and changing job in field
+battle other player
+ - field
+placed on display, and provide field that player move
+player can battle, shop and change job here
+ - dice
+put out 1~6 and effect player action
 
 ## Data structure
  - class "game"
