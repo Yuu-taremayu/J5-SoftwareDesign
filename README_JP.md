@@ -151,31 +151,31 @@ class FIELD():
 ```
 class GAME():
 	def __init__():
-		argument:self, width, height, root
-		return value:none
+		引数:self, width, height, root
+		戻り値:none
 		# initialize some constant and variables in GAME class
 		# initialize keyboard config
 		# call start_menu() function
 	def key_pressed()
-		argument:event
-		return value:none
+		引数:event
+		戻り値:none
 		# when key pressed, call this function
 		# add pressed key from array
 	def key_released()
-		argument:event
-		return value:none
+		引数:event
+		戻り値:none
 		# when key released, call this function
 		# delete released key from array
 	def start_menu()
-		argument:none
-		return value:0
+		引数:none
+		戻り値:0
 		# display start menu
 		# create menu screen by canvas and label
 		# control Up, Down and Enter key
 		# you can be Game Start or Exit here
 	def select_menu()
-		argument:none
-		return value:0
+		引数:none
+		戻り値:0
 		# display select manu
 		# create menu screen by some label
 		# control Up, Down, Left, Right and Enter key
@@ -185,15 +185,15 @@ class GAME():
 ```
 class PLAYER():
 	def __init__():
-		argument:none
-		return value:none
+		引数:none
+		戻り値:none
 		# initialize player's status
 		# money, muscle, stress, job, DEX
 		# give player win condition
 		# call decide_job and give player job
 	def decide_job():
-		argument:none
-		return value:none
+		引数:none
+		戻り値:none
 		# decide job by random
 		# there are 4 jobs 'Teacher', 'Engineer', 'SportsMan' and 'Nojob'
 ```
@@ -201,20 +201,20 @@ class PLAYER():
 ```
 class FIELD():
 	def __init__():
-		argument:none
-		return value:none
+		引数:none
+		戻り値:none
 		# initialize field properties
 		# x, y, number of shop, number of job change point and field array
 	def set_field():
-		argument:none
-		return value:x, y
+		引数:none
+		戻り値:x, y
 		# setting　field size x, y
 	def set_events()
-		argument:none
+		引数:none
 		return:number of shop, number of job change point
 		# setting number of event point shop and job change
 	def init_field():
-		argument:x, y, number of shop, number of job change point
+		引数:x, y, number of shop, number of job change point
 		return:field array
 		# initialize internal information of field
 		# random create point of shop and jobchange
