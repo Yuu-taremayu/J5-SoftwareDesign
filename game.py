@@ -50,6 +50,8 @@ class GAME():
             self.select_menu()
         elif self.scene_cnt == 2:
             self.start()
+        elif self.scene_cnt == 3:
+            self.show_result()
 
     # Delete released key
     def key_released(self, event):
@@ -215,6 +217,8 @@ class GAME():
     def start(self):
         self.print_field()
         self.move_player()
+        self.check_win_condition()
+        self.check_exit_condition()
 
     def print_field(self):
         # Fill black
@@ -245,12 +249,18 @@ class GAME():
         return r
 
     # check each player's winning condition
-    def check_win_condition():
-        pass
+    def check_win_condition(self):
+        self.player[self.turn].condition = True
 
     # check game's exit condition
-    def check_exit_condition():
-        pass
+    def check_exit_condition(self):
+        flag = True
+        for i in range(4):
+            if self.player[i].condition == False:
+                flag = False
+        if flag == True:
+            print("ゲームを終了")
+        return flag
 
     # move player by dice number
     def move_player(self):
@@ -293,5 +303,6 @@ class GAME():
         l_player[3].place(x=self.player[3].x*self.MAG*5/2+self.MAG*105/32, y=self.player[3].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
 
     # show result
-    def show_result():
+    def show_result(self):
+
         pass
