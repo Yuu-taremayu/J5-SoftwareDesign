@@ -1,52 +1,61 @@
 # J5-SoftwareDesign
-2020 SoftwareDesgin 2
-group development
+2020 ソフトウェア設計II
+グループ開発
 
-## Team ｐｙてょｎ
-### Members
- - Renta Noguchi (Leader)
- - Satoshi Naito
- - Reiji Yamashita
- - Tatsuya Mikami
- - Yu Miura
+## チーム ｐｙてょｎ
+### メンバー
+ - 野口　蓮太 (班長)
+ - 内藤　悟嗣
+ - 山下　零司
+ - 三上　竜也
+ - 三浦　夢生
 
-## Descriptions
-development of Field Sugoroku with Python
-The name is "日曜から夜ふかし \~Sunday midnight\~"
+## 概要
+Pythonでのフィールドすごろくの開発
+名称　"Field Search Record ~凄録~"
 
-## Rule
- - 4\*5 Field
- - player (2-4)
-	 - initial position is corner of field.
- - win condition
-	 - you have to satisfy any condition if you want to clear the game.
-	 - when the game start, you get a condition.
- - event
-	 - when initialize field, events initialize at same time.
+## ルール
+ - 縦4マス,横5マスのフィールド.
+ - プレイ人数 (2人～4人).
+	 - 初期位置はフィールドの端.
+ - 勝利条件
+	 - プレイヤーがゲームをクリアするには,任意の条件を満たしている必要がある.
+	 - 条件はゲーム開始時にプレイヤーごとに割り振られる.
+ - イベント
+	 - フィールドが初期化されるとイベントも同時に初期化される.
 
-## Extraction of materials
- - player
+## 物の抽出
+ - プレイヤー
 	 - money
 	 - muscle
+	 - endurance
 	 - stress
+	 - speed
+	 - idea
+	 - intelligence
 	 - job
-	 - DEX
-	 - win condition
- - event
+	 - status
+	 - purpose
+ - イベント
 	 - shop
 	 - battle
-	 - job change
- - dice
- - job
+	 - work shop
+ - ダイス
+ - 職業
+	 - free
+	 - athlete
+	 - detective
+	 - doctor
+	 - engineer
+	 - hunter
+	 - paramedic
+	 - police
 	 - teacher
-	 - enginner
-	 - sports man
-	 - no job
 
-## Behiviour of materials
+## 物の振る舞い
 
-## Data structure
- - class "game"
+## データ構造
+ - class "ゲーム"
 ```
 class GAME():
 	self.WIDTH		:
@@ -63,7 +72,7 @@ class GAME():
 	self.player		:
 	self.turn		:
 ```
- - class "player"
+ - class "プレイヤー"
 ```
 class PLAYER():
 	self.x			:
@@ -75,7 +84,7 @@ class PLAYER():
 	self.job		:
 	self.condition		:
 ```
- - class "field"
+ - class "フィールド"
 ```
 class FIELD():
 	self.x			:
@@ -86,9 +95,9 @@ class FIELD():
 	self.num_jobchange	:
 ```
 
-## Function specification
-### Basic data structure
- - class "game"
+## 関数仕様
+### 基本データ構造
+ - class "ゲーム"
 ```
 class GAME():
 	self.WIDTH		:
@@ -105,7 +114,7 @@ class GAME():
 	self.player		:
 	self.turn		:
 ```
- - class "player"
+ - class "プレイヤー"
 ```
 class PLAYER():
 	self.x			:
@@ -117,7 +126,7 @@ class PLAYER():
 	self.job		:
 	self.condition		:
 ```
- - class "field"
+ - class "フィールド"
 ```
 class FIELD():
 	self.x			:
@@ -128,8 +137,8 @@ class FIELD():
 	self.num_jobchange	:
 ```
 
-### Basic function specification
- - class "game"
+### 基本関数仕様
+ - class "ゲーム"
 ```
 class GAME():
 	def __init__():
@@ -163,7 +172,7 @@ class GAME():
 		# control Up, Down, Left, Right and Enter key
 		# you can be select the number of player and start game
 ```
- - class "player"
+ - class "プレイヤー"
 ```
 class PLAYER():
 	def __init__():
@@ -179,7 +188,7 @@ class PLAYER():
 		# decide job by random
 		# there are 4 jobs 'Teacher', 'Engineer', 'SportsMan' and 'Nojob'
 ```
- - class "field"
+ - class "フィールド"
 ```
 class FIELD():
 	def __init__():
