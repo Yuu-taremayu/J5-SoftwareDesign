@@ -64,12 +64,12 @@ Pythonでのフィールドすごろくの開発
 ## 物の振る舞い
 
 ## データ構造
- - class "ゲーム"
+ - "ゲーム" クラス
 ```
 class GAME():
-	self.WIDTH		:
-	self.HEIGHT		:
-	self.MAG		:
+	self.WIDTH		:ゲーム画面の横幅を持つ変数,main関数から渡される
+	self.HEIGHT		:ゲーム画面の縦幅を持つ変数,main関数から渡される
+	self.MAG		:ゲーム画面の倍率を持つ変数,main関数から渡される
 	self.root		:
 	self.scene		:
 	self.var_start_menu	:
@@ -77,11 +77,11 @@ class GAME():
 	self.frame		:
 	self.pressed		:
 	canvas			:
-	self.field		:
-	self.player		:
-	self.turn		:
+	self.field		:フィールドの内部状態を保持するインスタンス
+	self.player		:プレイヤーの内部状態を保持するインスタンスの配列
+	self.turn		:現在行動するプレイヤーを指し示すフラグ
 ```
- - class "プレイヤー"
+ - "プレイヤー" クラス
 ```
 class PLAYER():
 	self.x			:
@@ -93,7 +93,7 @@ class PLAYER():
 	self.job		:
 	self.condition		:
 ```
- - class "フィールド"
+ - "フィールド" クラス
 ```
 class FIELD():
 	self.x			:
@@ -106,7 +106,7 @@ class FIELD():
 
 ## 関数仕様
 ### 基本データ構造
- - class "ゲーム"
+ - "ゲーム" クラス
 ```
 class GAME():
 	self.WIDTH		:
@@ -123,7 +123,7 @@ class GAME():
 	self.player		:
 	self.turn		:
 ```
- - class "プレイヤー"
+ - "プレイヤー" クラス
 ```
 class PLAYER():
 	self.x			:
@@ -135,7 +135,7 @@ class PLAYER():
 	self.job		:
 	self.condition		:
 ```
- - class "フィールド"
+ - "フィールド" クラス
 ```
 class FIELD():
 	self.x			:
@@ -147,7 +147,7 @@ class FIELD():
 ```
 
 ### 基本関数仕様
- - class "ゲーム"
+ - "ゲーム" クラス
 ```
 class GAME():
 	def __init__():
@@ -181,7 +181,7 @@ class GAME():
 		# control Up, Down, Left, Right and Enter key
 		# you can be select the number of player and start game
 ```
- - class "プレイヤー"
+ - "プレイヤー" クラス
 ```
 class PLAYER():
 	def __init__():
@@ -197,7 +197,7 @@ class PLAYER():
 		# decide job by random
 		# there are 4 jobs 'Teacher', 'Engineer', 'SportsMan' and 'Nojob'
 ```
- - class "フィールド"
+ - "フィールド" クラス
 ```
 class FIELD():
 	def __init__():

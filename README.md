@@ -58,9 +58,9 @@ The name is "日曜から夜ふかし \~Sunday midnight\~"
  - class "game"
 ```
 class GAME():
-	self.WIDTH		:
-	self.HEIGHT		:
-	self.MAG		:
+	self.WIDTH		:variable of display width, passed from main function
+	self.HEIGHT		:variable of display height, passed from main function
+	self.MAG		:variable of display magnification, passed from main function
 	self.root		:
 	self.scene		:
 	self.var_start_menu	:
@@ -68,9 +68,9 @@ class GAME():
 	self.frame		:
 	self.pressed		:
 	canvas			:
-	self.field		:
-	self.player		:
-	self.turn		:
+	self.field		:instance of field inner status
+	self.player		:instance array of player inner status
+	self.turn		:flag that indicates active player
 ```
  - class "player"
 ```
