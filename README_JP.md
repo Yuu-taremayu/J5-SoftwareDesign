@@ -84,14 +84,14 @@ class GAME():
  - "プレイヤー" クラス
 ```
 class PLAYER():
-	self.x			:
-	self.y			:
-	self.money		:
-	self.muscle		:
-	self.stress		:
-	self.dexterity		:
-	self.job		:
-	self.condition		:
+	self.x			:プレイヤーのx座標を持つ変数
+	self.y			:プレイヤーのy座標を持つ変数
+	self.money		:プレイヤーのステータスmoneyを持つ変数
+	self.muscle		:プレイヤーのステータスmuscleを持つ変数
+	self.stress		:プレイヤーのステータスstressを持つ変数
+	self.dexterity		:プレイヤーのステータスdexterityを持つ変数
+	self.job		:プレイヤーのステータスjobを持つ変数
+	self.condition		:プレイヤーの勝利条件を持つ変数
 ```
  - "フィールド" クラス
 ```

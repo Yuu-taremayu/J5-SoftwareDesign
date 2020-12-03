@@ -75,14 +75,14 @@ class GAME():
  - class "player"
 ```
 class PLAYER():
-	self.x			:
-	self.y			:
-	self.money		:
-	self.muscle		:
-	self.stress		:
-	self.dexterity		:
-	self.job		:
-	self.condition		:
+	self.x			:variable of player x coordinate
+	self.y			:variable of player y coordinate
+	self.money		:variable of player money status
+	self.muscle		:variable of player muscle status
+	self.stress		:variable of player stress status
+	self.dexterity		:variable of player dexterity staus
+	self.job		:variable of player job
+	self.condition		:variable of player win condition
 ```
  - class "field"
 ```
