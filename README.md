@@ -16,13 +16,22 @@ The name is "日曜から夜ふかし \~Sunday midnight\~"
 
 ## Rule
  - 4\*5 Field
+ - you can move Up,Down,Left,Right or stay only dice number
+ - you should use events and satisfy win condition, you can win through.
  - player (2-4)
 	 - initial position is corner of field.
  - win condition
 	 - you have to satisfy any condition if you want to clear the game.
 	 - when the game start, you get a condition.
  - event
-	 - when initialize field, events initialize at same time.
+	 - battle
+		 - occurs when player get close
+	 - shop
+		 - placed on field
+		 - you can get items by spend player status money
+	 - job change
+		 - placed on field
+		 - you can change given job
 
 ## Extraction of materials
  - player
@@ -49,9 +58,9 @@ The name is "日曜から夜ふかし \~Sunday midnight\~"
  - class "game"
 ```
 class GAME():
-	self.WIDTH		:
-	self.HEIGHT		:
-	self.MAG		:
+	self.WIDTH		:variable of display width, passed from main function
+	self.HEIGHT		:variable of display height, passed from main function
+	self.MAG		:variable of display magnification, passed from main function
 	self.root		:
 	self.scene		:
 	self.var_start_menu	:
@@ -59,31 +68,31 @@ class GAME():
 	self.frame		:
 	self.pressed		:
 	canvas			:
-	self.field		:
-	self.player		:
-	self.turn		:
+	self.field		:instance of field inner status
+	self.player		:instance array of player inner status
+	self.turn		:flag that indicates active player
 ```
  - class "player"
 ```
 class PLAYER():
-	self.x			:
-	self.y			:
-	self.money		:
-	self.muscle		:
-	self.stress		:
-	self.dexterity		:
-	self.job		:
-	self.condition		:
+	self.x			:variable of player x coordinate
+	self.y			:variable of player y coordinate
+	self.money		:variable of player money status
+	self.muscle		:variable of player muscle status
+	self.stress		:variable of player stress status
+	self.dexterity		:variable of player dexterity staus
+	self.job		:variable of player job
+	self.condition		:variable of player win condition
 ```
  - class "field"
 ```
 class FIELD():
-	self.x			:
-	self.y			:
-	self.WIDTH		:
-	self.HEIGHT		:
-	self.num_shop		:
-	self.num_jobchange	:
+	self.x			:variable of player x coordinate
+	self.y			:variable of player y coordinate
+	self.WIDTH		:variable of display width, passed from main function
+	self.HEIGHT		:variable of display height, passed from main function
+	self.num_shop		:variable of the number of shop
+	self.num_jobchange	:variable of the number of jobchange
 ```
 
 ## Function specification
@@ -91,9 +100,9 @@ class FIELD():
  - class "game"
 ```
 class GAME():
-	self.WIDTH		:
-	self.HEIGHT		:
-	self.MAG		:
+	self.WIDTH		:variable of display width, passed from main function
+	self.HEIGHT		:variable of display height, passed from main function
+	self.MAG		:variable of display magnification, passed from main function
 	self.root		:
 	self.scene		:
 	self.var_start_menu	:
@@ -101,31 +110,31 @@ class GAME():
 	self.frame		:
 	self.pressed		:
 	canvas			:
-	self.field		:
-	self.player		:
-	self.turn		:
+	self.field		:instance of field inner status
+	self.player		:instance array of player inner status
+	self.turn		:flag that indicates active player
 ```
  - class "player"
 ```
 class PLAYER():
-	self.x			:
-	self.y			:
-	self.money		:
-	self.muscle		:
-	self.stress		:
-	self.dexterity		:
-	self.job		:
-	self.condition		:
+	self.x			:variable of player x coordinate
+	self.y			:variable of player y coordinate
+	self.money		:variable of player money status
+	self.muscle		:variable of player muscle status
+	self.stress		:variable of player stress status
+	self.dexterity		:variable of player dexterity staus
+	self.job		:variable of player job
+	self.condition		:variable of player win condition
 ```
  - class "field"
 ```
 class FIELD():
-	self.x			:
-	self.y			:
-	self.WIDTH		:
-	self.HEIGHT		:
-	self.num_shop		:
-	self.num_jobchange	:
+	self.x			:variable of player x coordinate
+	self.y			:variable of player y coordinate
+	self.WIDTH		:variable of display width, passed from main function
+	self.HEIGHT		:variable of display height, passed from main function
+	self.num_shop		:variable of the number of shop
+	self.num_jobchange	:variable of the number of jobchange
 ```
 
 ### Basic function specification
@@ -193,11 +202,11 @@ class FIELD():
 		# setting　field size x, y
 	def set_events()
 		argument:none
-		return:number of shop, number of job change point
+		return value:number of shop, number of job change point
 		# setting number of event point shop and job change
 	def init_field():
 		argument:x, y, number of shop, number of job change point
-		return:field array
+		return value:field array
 		# initialize internal information of field
 		# random create point of shop and jobchange
 		# other points initialized by 'Normal'
