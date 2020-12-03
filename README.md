@@ -16,13 +16,22 @@ The name is "日曜から夜ふかし \~Sunday midnight\~"
 
 ## Rule
  - 4\*5 Field
+ - you can move Up,Down,Left,Right or stay only dice number
+ - you should use events and satisfy win condition, you can win through.
  - player (2-4)
 	 - initial position is corner of field.
  - win condition
 	 - you have to satisfy any condition if you want to clear the game.
 	 - when the game start, you get a condition.
  - event
-	 - when initialize field, events initialize at same time.
+	 - battle
+		 - occurs when player get close
+	 - shop
+		 - placed on field
+		 - you can get items by spend player status money
+	 - job change
+		 - placed on field
+		 - you can change given job
 
 ## Extraction of materials
  - player
