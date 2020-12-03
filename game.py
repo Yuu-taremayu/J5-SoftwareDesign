@@ -13,6 +13,7 @@ class GAME():
         self.MAG = mag
         self.root = root
         self.scene_cnt = 0
+        self.goal_order = []
 
         # Variables of function
         self.var_start_menu = (1, None)
@@ -50,6 +51,8 @@ class GAME():
             self.select_menu()
         elif self.scene_cnt == 2:
             self.start()
+        elif self.scene_cnt == 3:
+            self.show_result()
 
     # Delete released key
     def key_released(self, event):
@@ -215,6 +218,8 @@ class GAME():
     def start(self):
         self.print_field()
         self.move_player()
+        self.check_win_condition()
+        self.check_exit_condition()
 
     def print_field(self):
         # Fill black
@@ -245,12 +250,22 @@ class GAME():
         return r
 
     # check each player's winning condition
-    def check_win_condition():
-        pass
+    def check_win_condition(self):
+        if self.player[self.turn].condition == False:
+            self.player[self.turn].condition = True
+            self.goal_order.append(self.player[self.turn].name)
 
     # check game's exit condition
-    def check_exit_condition():
-        pass
+    def check_exit_condition(self):
+        flag = True
+        for i in range(4):
+            if self.player[i].condition == False:
+                flag = False
+
+        if flag == True:
+            print("ゲーム終了条件が整いました")
+            self.scene_cnt += 1
+            self.show_result()
 
     # move player by dice number
     def move_player(self):
@@ -293,5 +308,22 @@ class GAME():
         l_player[3].place(x=self.player[3].x*self.MAG*5/2+self.MAG*105/32, y=self.player[3].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
 
     # show result
-    def show_result():
-        pass
+    def show_result(self):
+        # Fill black
+        canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
+        canvas.place(x=0, y=0)
+        print(self.goal_order)
+
+        player_num = 4
+        title = tk.Label(text="結果発表", font=("Menlo", int(self.MAG/6)))
+        for i in range(player_num):
+            name = tk.Label(text=self.goal_order[i], font=("Menlo", int(self.MAG/6)))
+            order = tk.Label(text=str(i+1)+"位", font=("Menlo", int(self.MAG/6)))
+            if self.MAG <= 60:
+                name.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*4+(i*30), width=100, height=25, anchor=tk.CENTER)
+                order.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*4+(i*30), width=40, height=30, anchor=tk.CENTER)
+                title.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*2, width=100, height=25, anchor=tk.CENTER)
+            else:
+                name.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG*2, height=self.MAG/3, anchor=tk.CENTER)
+                order.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG*3/2, height=self.MAG*2/5, anchor=tk.CENTER)
+                title.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*2, width=self.MAG*2, height=self.MAG/3, anchor=tk.CENTER)
