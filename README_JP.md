@@ -219,11 +219,11 @@ class FIELD():
 		# ランダムにイベントを配置
 		# イベントのないマスは「ノーマル」
 	def event_increasemoney():
-		argument:player
-		return:none
+		引数:player
+		戻り値:none
 		# プレイヤーの職業によってお金を増やすイベント
 	def event_jobchange():
-		argument:player
-		return:none
+		引数:player
+		戻り値:none
 		# 職業を変えるイベント
 ```
