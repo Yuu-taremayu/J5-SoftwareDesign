@@ -70,13 +70,13 @@ class GAME():
 	self.WIDTH		:ゲーム画面の横幅を持つ変数,main関数から渡される
 	self.HEIGHT		:ゲーム画面の縦幅を持つ変数,main関数から渡される
 	self.MAG		:ゲーム画面の倍率を持つ変数,main関数から渡される
-	self.root		:
-	self.scene		:
-	self.var_start_menu	:
-	self.var_select_menu	:
-	self.frame		:
-	self.pressed		:
-	canvas			:
+	self.root		:TKinterを扱うためのインスタンス
+	self.scene		:ゲームの画面遷移状態を表す数値
+	self.var_start_menu	:関数start_menuのデータを保持するリスト
+	self.var_select_menu	:関数select_menuのデータを保持するリスト
+	self.frame		:フレーム作成のインスタンス
+	self.pressed		:押されているキーが格納される配列
+	canvas			:画面描写を行うためのインスタンス
 	self.field		:フィールドの内部状態を保持するインスタンス
 	self.player		:プレイヤーの内部状態を保持するインスタンスの配列
 	self.turn		:現在行動するプレイヤーを指し示すフラグ
@@ -112,13 +112,13 @@ class GAME():
 	self.WIDTH		:ゲーム画面の横幅を持つ変数,main関数から渡される
 	self.HEIGHT		:ゲーム画面の縦幅を持つ変数,main関数から渡される
 	self.MAG		:ゲーム画面の倍率を持つ変数,main関数から渡される
-	self.root		:
-	self.scene		:
-	self.var_start_menu	:
-	self.var_select_menu	:
-	self.frame		:
-	self.pressed		:
-	canvas			:
+	self.root		:TKinterを扱うためのインスタンス
+	self.scene		:ゲームの画面遷移状態を表す数値
+	self.var_start_menu	:関数start_menuのデータを保持するリスト
+	self.var_select_menu	:関数select_menuのデータを保持するリスト
+	self.frame		:フレーム作成のインスタンス
+	self.pressed		:押されているキーが格納される配列
+	canvas			:画面描写を行うためのインスタンス
 	self.field		:フィールドの内部状態を保持するインスタンス
 	self.player		:プレイヤーの内部状態を保持するインスタンスの配列
 	self.turn		:現在行動するプレイヤーを指し示すフラグ
@@ -180,6 +180,28 @@ class GAME():
 		# create menu screen by some label
 		# control Up, Down, Left, Right and Enter key
 		# you can be select the number of player and start game
+  def start()
+  　引数:none
+  　戻り値:none
+    # start game
+    # call print_field()
+    # call move_player()
+    # call check_win_condition()
+    # call check_exit_condition()
+  def check_win_condition()
+    引数:none
+  　戻り値:none
+    # check each player's winning condition
+  def check_exit_condition()
+    引数:none
+　  戻り値:none
+    # check game's exit condition
+    # call show_result() if all player's conditions are True
+  def show_result()
+    引数:none
+　  戻り値:none
+    #show goal order and any informations
+
 ```
  - "プレイヤー" クラス
 ```
