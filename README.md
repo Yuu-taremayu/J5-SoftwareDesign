@@ -87,7 +87,7 @@ class FIELD():
 ```
 
 ## Function specification
- - Basic data structure
+### Basic data structure
  - class "game"
 ```
 class GAME():
@@ -128,7 +128,7 @@ class FIELD():
 	self.num_jobchange	:
 ```
 
- - Basic function specification
+### Basic function specification
  - class "game"
 ```
 class GAME():
