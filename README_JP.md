@@ -1,5 +1,6 @@
 # J5-SoftwareDesign
 2020 ソフトウェア設計II
+
 グループ開発
 
 ## チーム ｐｙてょｎ
@@ -12,6 +13,7 @@
 
 ## 概要
 Pythonでのフィールドすごろくの開発
+
 名称　"Field Search Record ~凄録~"
 
 ## ルール
@@ -35,31 +37,31 @@ Pythonでのフィールドすごろくの開発
 
 ## 物の抽出
  - プレイヤー
-	 - money
-	 - muscle
-	 - endurance
-	 - stress
-	 - speed
-	 - idea
-	 - intelligence
-	 - job
 	 - status
+		 - money
+		 - muscle
+		 - endurance
+		 - stress
+		 - speed
+		 - idea
+		 - intelligence
+	 - job
+		- free
+		- athlete
+		- detective
+		- doctor
+		- engineer
+		- hunter
+		- paramedic
+		- police
+		- teacher
 	 - purpose
- - イベント
-	 - shop
-	 - battle
-	 - work shop
+ - フィールド
+	 - イベント
+		 - shop
+		 - battle
+		 - work shop
  - ダイス
- - 職業
-	 - free
-	 - athlete
-	 - detective
-	 - doctor
-	 - engineer
-	 - hunter
-	 - paramedic
-	 - police
-	 - teacher
 
 ## 物の振る舞い
 
