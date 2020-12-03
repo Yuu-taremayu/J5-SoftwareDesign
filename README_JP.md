@@ -211,11 +211,11 @@ class FIELD():
 		# setting　field size x, y
 	def set_events()
 		引数:none
-		return:number of shop, number of job change point
+		戻り値:number of shop, number of job change point
 		# setting number of event point shop and job change
 	def init_field():
 		引数:x, y, number of shop, number of job change point
-		return:field array
+		戻り値:field array
 		# initialize internal information of field
 		# random create point of shop and jobchange
 		# other points initialized by 'Normal'
