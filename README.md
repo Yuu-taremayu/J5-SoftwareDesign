@@ -49,6 +49,89 @@ The name is "日曜から夜ふかし \~Sunday midnight\~"
  - class "game"
 ```
 class GAME():
+	self.WIDTH		:
+	self.HEIGHT		:
+	self.MAG		:
+	self.root		:
+	self.scene		:
+	self.var_start_menu	:
+	self.var_select_menu	:
+	self.frame		:
+	self.pressed		:
+	canvas			:
+	self.field		:
+	self.player		:
+	self.turn		:
+```
+ - class "player"
+```
+class PLAYER():
+	self.x			:
+	self.y			:
+	self.money		:
+	self.muscle		:
+	self.stress		:
+	self.dexterity		:
+	self.job		:
+	self.condition		:
+```
+ - class "field"
+```
+class FIELD():
+	self.x			:
+	self.y			:
+	self.WIDTH		:
+	self.HEIGHT		:
+	self.num_shop		:
+	self.num_jobchange	:
+```
+
+## Function specification
+ - Basic data structure
+	 - class "game"
+```
+class GAME():
+	self.WIDTH		:
+	self.HEIGHT		:
+	self.MAG		:
+	self.root		:
+	self.scene		:
+	self.var_start_menu	:
+	self.var_select_menu	:
+	self.frame		:
+	self.pressed		:
+	canvas			:
+	self.field		:
+	self.player		:
+	self.turn		:
+```
+	 - class "player"
+```
+class PLAYER():
+	self.x			:
+	self.y			:
+	self.money		:
+	self.muscle		:
+	self.stress		:
+	self.dexterity		:
+	self.job		:
+	self.condition		:
+```
+	 - class "field"
+```
+class FIELD():
+	self.x			:
+	self.y			:
+	self.WIDTH		:
+	self.HEIGHT		:
+	self.num_shop		:
+	self.num_jobchange	:
+```
+
+ - Basic function specification
+	 - class "game"
+```
+class GAME():
 	def __init__():
 		argument:self, width, height, root
 		return value:none
@@ -80,7 +163,7 @@ class GAME():
 		# control Up, Down, Left, Right and Enter key
 		# you can be select the number of player and start game
 ```
- - class "player"
+	 - class "player"
 ```
 class PLAYER():
 	def __init__():
@@ -96,7 +179,7 @@ class PLAYER():
 		# decide job by random
 		# there are 4 jobs 'Teacher', 'Engineer', 'SportsMan' and 'Nojob'
 ```
- - class "field"
+	 - class "field"
 ```
 class FIELD():
 	def __init__():
