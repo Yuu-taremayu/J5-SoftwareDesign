@@ -11,12 +11,8 @@ def main():
     #ウィンドウの設定
     root.title("prototype")
     window_ratio = (16, 9)#(w, h)
-<<<<<<< HEAD
-    window_magnification = 50#120代入で1920*1080になる
-=======
     #window_magnification = 120
     window_magnification = 70#120代入で1920*1080になる
->>>>>>> 9a315e2d7c589025e6c4e20674eaa560e63dbd8b
     h = window_ratio[1]*window_magnification#ウィンドウの高さ
     w = window_ratio[0]*window_magnification#ウィンドウの幅
     mag = window_magnification
