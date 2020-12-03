@@ -165,8 +165,8 @@ class GAME():
 		引数:self, width, height, root
 		戻り値:none
 		# initialize some constant and variables in GAME class
-    # Gameクラスの変数と定数を初期化
-    # キーボード設定の初期化
+		# Gameクラスの変数と定数を初期化
+		# キーボード設定の初期化
 		# start_menu()を呼び出す
 	def key_pressed()
 		引数:event
@@ -183,35 +183,35 @@ class GAME():
 		戻り値:0
 		# スタートメニューを表示する関数
 		# キー操作によってゲームスタートか終了を制御する
-    # ゲームスタートのボタンでselect_menu()を呼び出す
+		# ゲームスタートのボタンでselect_menu()を呼び出す
 	def select_menu()
 		引数:none
 		戻り値:0
 		# セレクトーを表示する関数
 		# キー操作で人数を、マウスとキー操作でプレイヤ名を決定する
 		# ゲームスタートのボタンを押すとstart()を呼び出す
-  def start()
-  　引数:none
-  　戻り値:none
-    # ゲームの各処理をする関数を呼び出す関数
-    # print_field()を呼び出す
-    # move_player()を呼び出す
-    # check_win_condition()を呼び出す
-    # check_exit_condition()を呼び出す
-  def check_win_condition()
-    引数:none
-  　戻り値:none
-    # プレイヤが勝利条件を満たしているかを確認する関数
-    # 満たしているならplayerクラスのconditionにTrueを格納
-  def check_exit_condition()
-    引数:none
-　  戻り値:none
-    # ゲームの終了条件を判定する関数
-    # もし全てのプレイヤの勝利条件が満たされていればshow_result()を呼び出す
-  def show_result()
-    引数:none
-　  戻り値:none
-    # プレイヤの勝利条件を満たした順に順位を表示する関数
+	def start()
+		引数:none
+		戻り値:none
+		# ゲームの各処理をする関数を呼び出す関数
+		# print_field()を呼び出す
+		# move_player()を呼び出す
+		# check_win_condition()を呼び出す
+		# check_exit_condition()を呼び出す
+	def check_win_condition()
+		引数:none
+		戻り値:none
+		# プレイヤが勝利条件を満たしているかを確認する関数
+		# 満たしているならplayerクラスのconditionにTrueを格納
+	def check_exit_condition()
+		引数:none
+		戻り値:none
+		# ゲームの終了条件を判定する関数
+		# もし全てのプレイヤの勝利条件が満たされていればshow_result()を呼び出す
+	def show_result()
+		引数:none
+		戻り値:none
+		# プレイヤの勝利条件を満たした順に順位を表示する関数
 
 ```
  - "プレイヤー" クラス
