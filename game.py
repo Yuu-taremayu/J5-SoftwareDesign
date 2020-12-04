@@ -274,7 +274,6 @@ class GAME():
     # move player by dice number
     def move_player(self):
         # define
-        enter = 0
         up = 1
         down = 2
         left = 3
