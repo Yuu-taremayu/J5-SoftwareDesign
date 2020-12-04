@@ -162,55 +162,55 @@ class FIELD():
 ```
 class GAME():
 	def __init__():
-		引数:self, width, height, root
-		戻り値:none
+		引数:ウィンドウの幅, 高さ, tkinterを使うための変数
+		戻り値:なし
 		# initialize some constant and variables in GAME class
 		# Gameクラスの変数と定数を初期化
 		# キーボード設定の初期化
 		# start_menu()を呼び出す
 	def key_pressed()
-		引数:event
-		戻り値:none
+		引数:イベント
+		戻り値:なし
 		# 何かキーが押されたときに呼び出される
 		# 現在押されているキーをpressedへ格納する
 	def key_released()
-		引数:event
-		戻り値:none
+		引数:イベント
+		戻り値:なし
 		# 押されていたキーが離されたときに呼び出される
 		# pressedから離されたキーを削除する
 	def start_menu()
-		引数:none
+		引数:なし
 		戻り値:0
 		# スタートメニューを表示する関数
 		# キー操作によってゲームスタートか終了を制御する
 		# ゲームスタートのボタンでselect_menu()を呼び出す
 	def select_menu()
-		引数:none
+		引数:なし
 		戻り値:0
 		# セレクトーを表示する関数
 		# キー操作で人数を、マウスとキー操作でプレイヤ名を決定する
 		# ゲームスタートのボタンを押すとstart()を呼び出す
 	def start()
-		引数:none
-		戻り値:none
+		引数:なし
+		戻り値:なし
 		# ゲームの各処理をする関数を呼び出す関数
 		# print_field()を呼び出す
 		# move_player()を呼び出す
 		# check_win_condition()を呼び出す
 		# check_exit_condition()を呼び出す
 	def check_win_condition()
-		引数:none
-		戻り値:none
+		引数:なし
+		戻り値:なし
 		# プレイヤが勝利条件を満たしているかを確認する関数
 		# 満たしているならplayerクラスのconditionにTrueを格納
 	def check_exit_condition()
-		引数:none
-		戻り値:none
+		引数:なし
+		戻り値:なし
 		# ゲームの終了条件を判定する関数
 		# もし全てのプレイヤの勝利条件が満たされていればshow_result()を呼び出す
 	def show_result()
-		引数:none
-		戻り値:none
+		引数:なし
+		戻り値:なし
 		# プレイヤの勝利条件を満たした順に順位を表示する関数
 
 ```
@@ -218,15 +218,15 @@ class GAME():
 ```
 class PLAYER():
 	def __init__():
-		引数:none
-		戻り値:none
+		引数:なし
+		戻り値:なし
 		# プレイヤの各ステータスを初期化する
 		# ステータスはmoney, muscle, stress, job, DEX
 		# 各プレイヤに勝利条件を付与する
 		# decide_jobを呼び出して職業を付与する
 	def decide_job():
-		引数:none
-		戻り値:none
+		引数:なし
+		戻り値:なし
 		# ランダムで職業を決める
 		# 職業は'Teacher', 'Engineer', 'SportsMan' and 'Nojob'の４つ
 ```
@@ -234,29 +234,29 @@ class PLAYER():
 ```
 class FIELD():
 	def __init__():
-		引数:none
-		戻り値:none
+		引数:なし
+		戻り値:なし
 		# フィールドの初期化
 		# x, y, number of shop, number of job change point and field array
 	def set_field():
-		引数:none
-		戻り値:x, y
+		引数:なし
+		戻り値:フィールドの横マス数, 縦マス数
 		# フィールドの大きさを定める
 	def set_events()
-		引数:none
-		戻り値:number of shop, number of job change point
+		引数:なし
+		戻り値:ショップのマス数, ジョブチェンジのマス数
 		# 各イベントの数を定める
 	def init_field():
-		引数:x, y, number of shop, number of job change point
-		戻り値:field array
+		引数:フィールドの横マス数, 縦マス数, ショップの数, ジョブチェンジの数
+		戻り値:フィールドの配列
 		# ランダムにイベントを配置
 		# イベントのないマスは「ノーマル」
 	def event_increasemoney():
-		引数:player
-		戻り値:none
+		引数:プレイヤー
+		戻り値:なし
 		# プレイヤーの職業によってお金を増やすイベント
 	def event_jobchange():
-		引数:player
-		戻り値:none
+		引数:プレイヤー
+		戻り値:なし
 		# 職業を変えるイベント
 ```
