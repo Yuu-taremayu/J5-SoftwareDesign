@@ -29,38 +29,38 @@ Pythonでのフィールドすごろくの開発
 	 - バトル
 		 - プレイヤーが接近すると発生する.
 	 - ショップ
-		 - フィールド状に配置される.
+		 - フィールド上に配置される.
 		 - プレイヤーのステータスmoneyを消費してアイテムを手に入れることができる.
 	 - ジョブチェンジ
-		 - フィールド状に配置される.
+		 - フィールド上に配置される.
 		 - 与えられたジョブを変更することができる.
 
 ## 物の抽出
  - プレイヤー
-	 - status
-		 - money
-		 - muscle
-		 - endurance
-		 - stress
-		 - speed
-		 - idea
-		 - intelligence
+	 - ステータス
+		 - 財産
+		 - 筋力
+		 - 耐久
+		 - ストレス
+		 - 速さ
+		 - 理解力
+		 - 知性
 	 - job
-		- free
-		- athlete
-		- detective
-		- doctor
-		- engineer
-		- hunter
-		- paramedic
-		- police
-		- teacher
-	 - purpose
+		- 無職
+		- アスリート
+		- 探偵
+		- 医者
+		- エンジニア
+		- 狩猟者
+		- 緊急医療者
+		- 警察
+		- 先生
+	 - 目的
  - フィールド
 	 - イベント
-		 - shop
-		 - battle
-		 - work shop
+		 - 店
+		 - バトル
+		 - 職業店
  - ダイス
 
 ## 物の振る舞い
