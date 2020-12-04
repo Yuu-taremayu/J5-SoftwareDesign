@@ -198,6 +198,15 @@ class GAME():
 		# move_player()を呼び出す
 		# check_win_condition()を呼び出す
 		# check_exit_condition()を呼び出す
+	def print_field()
+		引数:なし
+		戻り値:なし
+		# フィールドのインスタンスを用いてフィールドを表示する
+		# プレイヤーのインスタンスを用いてプレイヤーのステータスを表示する
+	def roll_dice()
+		引数:なし
+		戻り値:なし
+		# サイコロの目を乱数を用いて決定する関数
 	def check_win_condition()
 		引数:なし
 		戻り値:なし
@@ -208,6 +217,11 @@ class GAME():
 		戻り値:なし
 		# ゲームの終了条件を判定する関数
 		# もし全てのプレイヤの勝利条件が満たされていればshow_result()を呼び出す
+	def move_player()
+		引数:なし
+		戻り値:なし
+		# フィールド上に配置されたプレイヤーを動かす関数
+		# フィールドに存在する範囲のみ動ける
 	def show_result()
 		引数:なし
 		戻り値:なし

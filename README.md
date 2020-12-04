@@ -183,6 +183,42 @@ class GAME():
 		# create menu screen by some label
 		# control Up, Down, Left, Right and Enter key
 		# you can be select the number of player and start game
+	def start()
+		argument:none
+		return value:none
+		# function calling function that processing
+		# call print_field()
+		# call move_player()
+		# call check_win_condition()
+		# call check_exit_condition()
+	def print_field()
+		argument:none
+		return value:none
+		# print field using field instance
+		# print player status using player instance
+	def roll_dice()
+		argument:none
+		return value:none
+		# function that decide dice number using random number
+	def check_win_condition()
+		argument:none
+		return value:none
+		# function that checking satisfy condition
+		# if player satisfy conidition, put true to condition of class player
+	def check_exit_condition()
+		argument:none
+		return value:none
+		# checking function exit condition of game
+		# call show_result() if all player win condition satisfy
+	def move_player()
+		argument:none
+		return value:none
+		# function that move placed player on field
+		# player can move range of field
+	def show_result()
+		argument:none
+		return value:none
+		# show grade of player
 ```
  - class "player"
 ```
