@@ -2,7 +2,6 @@ import random
 import tkinter as tk
 from field import FIELD
 from player import PLAYER
-import time
 
 class GAME():
     # Game config
