@@ -2,6 +2,7 @@ import random
 import tkinter as tk
 from field import FIELD
 from player import PLAYER
+import time
 
 class GAME():
     # Game config
@@ -149,8 +150,9 @@ class GAME():
             old_key = right
         elif "Return" in self.pressed:
             if select == 2:
-                # Execute next function 3ms later
-                self.root.after(3, self.start)
+                # Execute next function 300ms later
+                self.root.after(100, self.start)
+                self.pressed.clear()
                 self.scene_cnt = 2
                 # Fill black
                 canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
@@ -252,6 +254,7 @@ class GAME():
     # check each player's winning condition
     def check_win_condition(self):
         if self.player[self.turn].condition == False:
+            print(self.player[self.turn].name, "が勝利条件を満たしました")
             self.player[self.turn].condition = True
             self.goal_order.append(self.player[self.turn].name)
 
@@ -265,11 +268,14 @@ class GAME():
         if flag == True:
             print("ゲーム終了条件が整いました")
             self.scene_cnt += 1
-            self.show_result()
+            self.root.after(200, self.show_result)
+            self.pressed.clear()
+
 
     # move player by dice number
     def move_player(self):
         # define
+        enter = 0
         up = 1
         down = 2
         left = 3
@@ -294,7 +300,7 @@ class GAME():
                 self.player[self.turn].x += 1
             old_key = right
         elif "Return" in self.pressed:
-            self.turn = (self.turn + 1) % 4
+            self.turn = (self.turn+1) % 4
         elif self.pressed == {}:
             old_key = None
 
