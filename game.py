@@ -32,7 +32,7 @@ class GAME():
         canvas.place(x=0, y=0)
 
         # Array of field
-        self.field = FIELD(w,h)
+        self.field = FIELD(w,h,mag)
 
         # Create instance
         self.player = [PLAYER(i) for i in range(4)]

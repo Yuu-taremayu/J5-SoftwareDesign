@@ -1,12 +1,13 @@
 import random
-import tkinter
+import tkinter as tk
 
 class FIELD():
     # init field and properties
-    def __init__(self,w,h):
+    def __init__(self,w,h,mag):
         self.x, self.y = self.set_field()
         self.WIDTH = w
         self.HEIGHT = h
+        self.MAG = mag
         self.num_shop, self.num_jobchange = self.set_events()
 
         self.field_array = self.init_field(self.x, self.y, self.num_shop, self.num_jobchange)
@@ -58,8 +59,12 @@ class FIELD():
             player.money = before_money + 0
         
         msg = str(before_money) + "->" + str(player.money)
-        label = tkinter.Label(text=msg,background="yellow")
-        label.place(x=120,y=self.HEIGHT/2-100,anchor=tkinter.N)
+        label = tk.Label(text=msg, font=("Menlo", int(self.MAG/6)), background="yellow")
+        label.place(x=self.HEIGHT/6,y=self.HEIGHT/2,anchor=tk.W)
+        #l_player[0] = tk.Label(text="1", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+        #l_player[0].place(x=self.player[0].x*self.MAG*5/2+self.MAG*76/32, y=self.player[0].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
+        #label = tk.Label(text=msg,background="yellow")
+        #abel.place(x=120,y=self.HEIGHT/2-100,anchor=tk.N)
 
     def event_jobchange(self,player):
         before_job = player.job
@@ -74,8 +79,8 @@ class FIELD():
             player.job = 'NoJob'
 
         msg = before_job + "->" + player.job
-        label = tkinter.Label(text=msg,background="green")
-        label.place(x=120,y=self.HEIGHT/2-50,anchor=tkinter.N)
+        label = tk.Label(text=msg,background="green")
+        label.place(x=120,y=self.HEIGHT/2-50,anchor=tk.N)
 
     def event_battle(self):
         pass
