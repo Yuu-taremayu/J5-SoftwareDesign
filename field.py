@@ -1,15 +1,16 @@
 import random
-import tkinter
+import tkinter as tk
 
 class FIELD():
     # init field and properties
-    def __init__(self,w,h):
+    def __init__(self,w,h,mag):
         self.x, self.y = self.set_field()
         self.WIDTH = w
         self.HEIGHT = h
-        self.num_shop, self.num_jobchange = self.set_events()
+        self.MAG = mag
+        self.num_shop, self.num_jobchange,self.num_money = self.set_events()
 
-        self.field_array = self.init_field(self.x, self.y, self.num_shop, self.num_jobchange)
+        self.field_array = self.init_field(self.x, self.y, self.num_shop, self.num_jobchange, self.num_money)
     # set field size
     def set_field(self):
         x = 5
@@ -20,12 +21,13 @@ class FIELD():
     def set_events(self):
         num_shop = 4
         num_jobchange = 2
-        return num_shop, num_jobchange
+        num_money = 2
+        return num_shop, num_jobchange, num_money
 
     # init field array internally
     # initialize all by Normal
     # add shop and job change piont
-    def init_field(self, x, y, num_shop, num_jobchange):
+    def init_field(self, x, y, num_shop, num_jobchange, num_money):
         field_array = [["Normal" for j in range(y)] for i in range(x)]
         cnt = 0
         while cnt < num_shop:
@@ -40,6 +42,13 @@ class FIELD():
             randY = random.randrange(0, y-1)
             if field_array[randX][randY] == "Normal":
                 field_array[randX][randY] = "Job\nChange"
+                cnt += 1
+        cnt = 0
+        while cnt < num_money:
+            randX = random.randrange(0, x-1)
+            randY = random.randrange(0, y-1)
+            if field_array[randX][randY] == "Normal":
+                field_array[randX][randY] = "Money"
                 cnt += 1
         return field_array
 
@@ -58,8 +67,8 @@ class FIELD():
             player.money = before_money + 0
         
         msg = str(before_money) + "->" + str(player.money)
-        label = tkinter.Label(text=msg,background="yellow")
-        label.place(x=120,y=self.HEIGHT/2-100,anchor=tkinter.N)
+        label = tk.Label(text=msg, font=("Menlo", int(self.MAG/6)), background="yellow")
+        label.place(x=self.HEIGHT/8,y=self.HEIGHT/2,anchor=tk.W)
 
     def event_jobchange(self,player):
         before_job = player.job
@@ -74,11 +83,18 @@ class FIELD():
             player.job = 'NoJob'
 
         msg = before_job + "->" + player.job
-        label = tkinter.Label(text=msg,background="green")
-        label.place(x=120,y=self.HEIGHT/2-50,anchor=tkinter.N)
+        label = tk.Label(text=msg, font=("Menlo", int(self.MAG/6)), background="green")
+        label.place(x=self.HEIGHT/8,y=self.HEIGHT/2,anchor=tk.W)
 
     def event_battle(self):
         pass
 
     def event_shop(self):
         pass
+
+    def event_run(self, player):
+        coodinate = self.field_array[player.x][player.y]
+        if coodinate == 'Money':
+            self.event_increasemoney(player)
+        if coodinate == 'Job\nChange':
+            self.event_jobchange(player)

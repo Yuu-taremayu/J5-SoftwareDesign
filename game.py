@@ -32,7 +32,7 @@ class GAME():
         canvas.place(x=0, y=0)
 
         # Array of field
-        self.field = FIELD(w,h)
+        self.field = FIELD(w,h,mag)
 
         # Create instance
         self.player = [PLAYER(i) for i in range(4)]
@@ -298,6 +298,7 @@ class GAME():
                 self.player[self.turn].x += 1
             old_key = right
         elif "Return" in self.pressed:
+            self.field.event_run(self.player[self.turn])
             self.turn = (self.turn+1) % 4
         elif self.pressed == {}:
             old_key = None
