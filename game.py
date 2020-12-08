@@ -212,6 +212,28 @@ class GAME():
 
         self.var_select_menu = [select, player_num, old_key]
 
+        if player_num == 2:
+            self.player[0].x = 0
+            self.player[0].y = 0
+            self.player[1].x = 4
+            self.player[1].y = 3
+        elif player_num == 3:
+            self.player[0].x = 0
+            self.player[0].y = 0
+            self.player[1].x = 4
+            self.player[1].y = 0
+            self.player[2].x = 0
+            self.player[2].y = 3
+        elif player_num == 4:
+            self.player[0].x = 0
+            self.player[0].y = 0
+            self.player[1].x = 4
+            self.player[1].y = 0
+            self.player[2].x = 0
+            self.player[2].y = 3
+            self.player[3].x = 4
+            self.player[3].y = 3
+
         # Update window
         self.root.update()
 
@@ -311,14 +333,27 @@ class GAME():
         elif self.pressed == {}:
             old_key = None
 
-        l_player[0] = tk.Label(text="1", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
-        l_player[0].place(x=self.player[0].x*self.MAG*5/2+self.MAG*76/32, y=self.player[0].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
-        l_player[1] = tk.Label(text="2", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
-        l_player[1].place(x=self.player[1].x*self.MAG*5/2+self.MAG*105/32, y=self.player[1].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
-        l_player[2] = tk.Label(text="3", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
-        l_player[2].place(x=self.player[2].x*self.MAG*5/2+self.MAG*76/32, y=self.player[2].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
-        l_player[3] = tk.Label(text="4", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
-        l_player[3].place(x=self.player[3].x*self.MAG*5/2+self.MAG*105/32, y=self.player[3].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
+        if self.var_select_menu[1] == 2:
+            l_player[0] = tk.Label(text="1", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+            l_player[0].place(x=self.player[0].x*self.MAG*5/2+self.MAG*76/32, y=self.player[0].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
+            l_player[1] = tk.Label(text="2", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+            l_player[1].place(x=self.player[1].x*self.MAG*5/2+self.MAG*105/32, y=self.player[1].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
+        elif self.var_select_menu[1] == 3:
+            l_player[0] = tk.Label(text="1", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+            l_player[0].place(x=self.player[0].x*self.MAG*5/2+self.MAG*76/32, y=self.player[0].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
+            l_player[1] = tk.Label(text="2", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+            l_player[1].place(x=self.player[1].x*self.MAG*5/2+self.MAG*105/32, y=self.player[1].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
+            l_player[2] = tk.Label(text="3", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+            l_player[2].place(x=self.player[2].x*self.MAG*5/2+self.MAG*76/32, y=self.player[2].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
+        elif self.var_select_menu[1] == 4:
+            l_player[0] = tk.Label(text="1", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+            l_player[0].place(x=self.player[0].x*self.MAG*5/2+self.MAG*76/32, y=self.player[0].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
+            l_player[1] = tk.Label(text="2", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+            l_player[1].place(x=self.player[1].x*self.MAG*5/2+self.MAG*105/32, y=self.player[1].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
+            l_player[2] = tk.Label(text="3", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+            l_player[2].place(x=self.player[2].x*self.MAG*5/2+self.MAG*76/32, y=self.player[2].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
+            l_player[3] = tk.Label(text="4", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+            l_player[3].place(x=self.player[3].x*self.MAG*5/2+self.MAG*105/32, y=self.player[3].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
 
     # show result
     def show_result(self):
