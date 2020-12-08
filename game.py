@@ -231,8 +231,8 @@ class GAME():
             for j in range(self.field.y):
                 l_field[i][j] = tk.Label(text=self.field.field_array[i][j], font=("Menlo", int(self.MAG/6)), background="red", relief="groove", borderwidth=self.MAG/10)
                 l_field[i][j].place(x=self.WIDTH/2+(i-2)*self.MAG*5/2, y=self.HEIGHT/self.field.y*j+self.MAG*15/16, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.CENTER)
-        l_stat = [None for i in range(4)]
-        for i in range(4):
+        l_stat = [None for i in range(self.var_select_menu[1])]
+        for i in range(self.var_select_menu[1]):
             NAM = str(self.player[i].name) + "\n"
             JOB = "job:" + str(self.player[i].job) + "\n"
             MON = "money:" + str(self.player[i].money) + "\n"
@@ -240,10 +240,18 @@ class GAME():
             STR = "stress:" + str(self.player[i].stress) + "\n"
             DEX = "dexterity:" + str(self.player[i].dexterity)
             l_stat[i] = tk.Label(text=NAM+JOB+MON+MUS+STR+DEX, font=("Menlo", int(self.MAG/6)),  background="white", relief="ridge", borderwidth=self.MAG/20)
-        l_stat[0].place(x=0, y=0, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.NW)
-        l_stat[1].place(x=self.WIDTH, y=0, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.NE)
-        l_stat[2].place(x=0, y=self.HEIGHT, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.SW)
-        l_stat[3].place(x=self.WIDTH, y=self.HEIGHT, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.SE)
+        if self.var_select_menu[1] == 2:
+            l_stat[0].place(x=0, y=0, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.NW)
+            l_stat[1].place(x=self.WIDTH, y=self.HEIGHT, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.SE)
+        elif self.var_select_menu[1] == 3:
+            l_stat[0].place(x=0, y=0, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.NW)
+            l_stat[1].place(x=self.WIDTH, y=0, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.NE)
+            l_stat[2].place(x=0, y=self.HEIGHT, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.SW)
+        elif self.var_select_menu[1] == 4:
+            l_stat[0].place(x=0, y=0, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.NW)
+            l_stat[1].place(x=self.WIDTH, y=0, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.NE)
+            l_stat[2].place(x=0, y=self.HEIGHT, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.SW)
+            l_stat[3].place(x=self.WIDTH, y=self.HEIGHT, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.SE)
 
     # roll dice randomly
     def roll_dice():
