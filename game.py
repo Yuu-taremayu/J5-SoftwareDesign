@@ -37,6 +37,7 @@ class GAME():
         # Create instance
         self.player = [PLAYER(i) for i in range(4)]
         self.turn = 0
+        self.old_turn = None
 
         self.start_menu()
 
@@ -240,6 +241,10 @@ class GAME():
     # start game
     def start(self):
         self.print_field()
+        if self.old_turn != self.turn:
+            self.player[self.turn].dice = self.roll_dice()
+            self.old_turn = self.turn
+        print(f'player {self.turn} = {self.player[self.turn].dice}')
         self.move_player()
         self.check_win_condition()
         self.check_exit_condition()
@@ -276,7 +281,7 @@ class GAME():
             l_stat[3].place(x=self.WIDTH, y=self.HEIGHT, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.SE)
 
     # roll dice randomly
-    def roll_dice():
+    def roll_dice(self):
         r = random.randint(1, 6)
         return r
 
@@ -311,27 +316,35 @@ class GAME():
 
         old_key = None
         l_player = [None for i in range(4)]
-        if "Up" in self.pressed and old_key != up:
-            if self.player[self.turn].y > 0:
-                self.player[self.turn].y -= 1
-            old_key = up
-        elif "Down" in self.pressed and old_key != down:
-            if self.player[self.turn].y < 3:
-                self.player[self.turn].y += 1
-            old_key = down
-        elif "Left" in self.pressed and old_key != left:
-            if self.player[self.turn].x > 0:
-                self.player[self.turn].x -= 1
-            old_key = left
-        elif "Right" in self.pressed and old_key != right:
-            if self.player[self.turn].x < 4:
-                self.player[self.turn].x += 1
-            old_key = right
-        elif "Return" in self.pressed:
+        if self.player[self.turn].dice > 0:
+            if "Up" in self.pressed and old_key != up:
+                if self.player[self.turn].y > 0:
+                    self.player[self.turn].y -= 1
+                    self.player[self.turn].dice -= 1
+                old_key = up
+            elif "Down" in self.pressed and old_key != down:
+                if self.player[self.turn].y < 3:
+                    self.player[self.turn].y += 1
+                    self.player[self.turn].dice -= 1
+                old_key = down
+            elif "Left" in self.pressed and old_key != left:
+                if self.player[self.turn].x > 0:
+                    self.player[self.turn].x -= 1
+                    self.player[self.turn].dice -= 1
+                old_key = left
+            elif "Right" in self.pressed and old_key != right:
+                if self.player[self.turn].x < 4:
+                    self.player[self.turn].x += 1
+                    self.player[self.turn].dice -= 1
+                old_key = right
+            elif "Return" in self.pressed:
+                self.field.event_run(self.player[self.turn])
+                self.turn = (self.turn+1) % 4
+            elif self.pressed == {}:
+                old_key = None
+        else:
             self.field.event_run(self.player[self.turn])
             self.turn = (self.turn+1) % 4
-        elif self.pressed == {}:
-            old_key = None
 
         if self.var_select_menu[1] == 2:
             l_player[0] = tk.Label(text="1", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
