@@ -183,6 +183,7 @@ class GAME():
 		# create menu screen by some label
 		# control Up, Down, Left, Right and Enter key
 		# you can be select the number of player and start game
+		# decide each player's initial position by the number of player
 	def start()
 		argument:none
 		return value:none
@@ -196,6 +197,7 @@ class GAME():
 		return value:none
 		# print field using field instance
 		# print player status using player instance
+		# change the number of status display and position by the number of player
 	def roll_dice()
 		argument:none
 		return value:none

@@ -8,6 +8,9 @@ class PLAYER():
         self.x = 0
         self.y = 0
 
+        # player's dice
+        self.dice = None
+
         # some status
         self.money = 0
         self.muscle = 0
