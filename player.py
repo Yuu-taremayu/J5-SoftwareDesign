@@ -9,7 +9,7 @@ class PLAYER():
         self.y = 0
 
         # player's dice
-        self.dice = 0
+        self.dice = None
 
         # some status
         self.money = 0
