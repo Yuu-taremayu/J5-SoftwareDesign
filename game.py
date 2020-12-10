@@ -217,11 +217,14 @@ class GAME():
 
     # start game
     def start(self):
-        self.print_field()
-        self.move_player()
-        self.check_win_condition()
-        self.check_exit_condition()
-
+        if self.player[self.turn].goal_flag == False:
+            self.print_field()
+            self.move_player()
+            self.check_win_condition()
+            self.check_exit_condition()
+        else:
+            self.turn = (self.turn + 1) % 4
+            
     def print_field(self):
         # Fill black
         canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
@@ -265,12 +268,15 @@ class GAME():
                 print(self.player[self.turn].name, "が勝利条件を満たしました")
                 self.player[self.turn].goal_flag = True
                 self.goal_order.append(self.player[self.turn].name)
+                self.turn = (self.turn + 1) % 4
 
         elif self.player[self.turn].condition == 2:# condition 1 : get 1,000 muscle
             if self.player[self.turn].muscle >= 1000:
                 print(self.player[self.turn].name, "が勝利条件を満たしました")
                 self.player[self.turn].goal_flag = True
                 self.goal_order.append(self.player[self.turn].name)
+                self.turn = (self.turn + 1) % 4
+
 
 
     # check game's exit condition
