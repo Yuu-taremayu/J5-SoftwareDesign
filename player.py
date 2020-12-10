@@ -18,6 +18,7 @@ class PLAYER():
         self.dexterity = 0
         self.job = None
         self.condition = False
+        self.goal_flag = False
 
         self.decide_job()
 
