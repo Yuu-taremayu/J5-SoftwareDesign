@@ -244,8 +244,9 @@ class GAME():
         if self.old_turn != self.turn:
             self.player[self.turn].dice = self.roll_dice()
             self.old_turn = self.turn
-        print(f'player {self.turn} = {self.player[self.turn].dice}')
-        self.move_player()
+
+        if self.player[self.turn].dice != None:
+            self.move_player()
         self.check_win_condition()
         self.check_exit_condition()
 
@@ -346,6 +347,8 @@ class GAME():
             self.field.event_run(self.player[self.turn])
             self.turn = (self.turn+1) % 4
 
+        l_remain = tk.Label(text="Dice\n"+str(self.player[self.turn].dice), font=("Menlo", int(self.MAG/3)), background="blue")
+        l_remain.place(x=self.WIDTH*9/10, y=self.HEIGHT/3, width=100, height=90)
         if self.var_select_menu[1] == 2:
             l_player[0] = tk.Label(text="1", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
             l_player[0].place(x=self.player[0].x*self.MAG*5/2+self.MAG*76/32, y=self.player[0].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
