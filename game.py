@@ -18,6 +18,7 @@ class GAME():
         # Variables of function
         self.var_start_menu = (1, None)
         self.var_select_menu = (3, 2, None)
+        self.var_shop_menu = (1, None)
 
         # Keyboard config
         self.frame = tk.Frame(self.root, width=w, height=h)
@@ -51,7 +52,10 @@ class GAME():
         elif self.scene_cnt == 1:
             self.select_menu()
         elif self.scene_cnt == 2:
-            self.start()
+            if self.field.shop_flag == 1:
+                self.shop(self.player[self.turn])
+            else:
+                self.start()
         elif self.scene_cnt == 3:
             self.show_result()
 
@@ -362,12 +366,14 @@ class GAME():
                 old_key = right
             elif "Return" in self.pressed:
                 self.field.event_run(self.player[self.turn])
-                self.turn = (self.turn+1) % 4
+                if self.field.shop_flag == 0:
+                    self.turn = (self.turn+1) % 4
             elif self.pressed == {}:
                 old_key = None
         else:
             self.field.event_run(self.player[self.turn])
-            self.turn = (self.turn+1) % 4
+            if self.field.shop_flag == 0:
+                self.turn = (self.turn+1) % 4
 
         l_remain = tk.Label(text="Dice\n"+str(self.player[self.turn].dice), font=("Menlo", int(self.MAG/3)), background="blue")
         l_remain.place(x=self.WIDTH*9/10, y=self.HEIGHT/3, width=100, height=90)
@@ -413,3 +419,8 @@ class GAME():
                 name.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG*2, height=self.MAG/3, anchor=tk.CENTER)
                 order.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG*3/2, height=self.MAG*2/5, anchor=tk.CENTER)
                 title.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*2, width=self.MAG*2, height=self.MAG/3, anchor=tk.CENTER)
+    
+    def shop(self,player):
+        self.field.print_shop(player,self.pressed)
+        if self.field.shop_flag == 0:
+            self.turn = (self.turn+1) % 4
