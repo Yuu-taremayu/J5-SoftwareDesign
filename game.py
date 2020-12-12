@@ -301,7 +301,7 @@ class GAME():
 
         # temporary lines
         self.player[self.turn].condition = 1
-        self.player[self.turn].money += 100
+        #self.player[self.turn].money += 100
 
         if self.player[self.turn].condition == 1:# condition 1 : get 1,000 golds
             if self.player[self.turn].money >= 1000:
@@ -374,7 +374,6 @@ class GAME():
             self.field.event_run(self.player[self.turn])
             if self.field.shop_flag == 0:
                 self.turn = (self.turn+1) % 4
-
         l_remain = tk.Label(text="Dice\n"+str(self.player[self.turn].dice), font=("Menlo", int(self.MAG/3)), background="blue")
         l_remain.place(x=self.WIDTH*9/10, y=self.HEIGHT/3, width=100, height=90)
         if self.var_select_menu[1] == 2:
@@ -423,4 +422,4 @@ class GAME():
     def shop(self,player):
         self.field.print_shop(player,self.pressed)
         if self.field.shop_flag == 0:
-            self.turn = (self.turn+1) % 4
+            self.turn = (self.turn + 1) % 4

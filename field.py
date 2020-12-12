@@ -95,18 +95,21 @@ class FIELD():
     def print_shop(self,player,pressed):
         canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
         canvas.place(x=0, y=0)
+
+        #item information
         l_shop = [None for i in range(player.item_num)]
         for i in range(player.item_num):
             POS = "possession:" + str(player.item[i][0]) + "\n"
             ITM = "item:" + player.item[i][1] + "\n"
             PRC = "price:" + str(player.item[i][2])
-            l_shop[i] = tk.Label(text=POS+ITM+PRC, font=("Menlo", int(self.MAG/6)), background="spring green", relief="groove", borderwidth=self.MAG/10)
-            l_shop[i].place(x=self.WIDTH/2+(i-2)*self.MAG*5/2,y=self.HEIGHT*3/2, width=self.MAG*3/2, height=self.MAG*3/2, anckor=tk.CENTER)
+            l_shop[i] = tk.Label(text=POS+ITM+PRC, font=("Menlo", int(self.MAG/6)), background="spring green")
+            l_shop[i].place(x=self.WIDTH/2+(i-2)*self.MAG*5/2, y=self.HEIGHT/10*2, width=self.MAG*2, height=self.MAG, anchor=tk.CENTER)
 
-        if "Up" in pressed:
+        #item select
+        if "Down" in pressed:
             self.select_item += 1
             self.select_item = self.select_item % (player.item_num+1)
-        elif "Down" in pressed:
+        elif "Up" in pressed:
             self.select_item -= 1
             if self.select_item == -1:
                 self.select_item = player.item_num
@@ -114,7 +117,9 @@ class FIELD():
             if self.select_item != player.item_num:
                 player.item[self.select_item][0] += 1
             else:
+                self.select_item = 0
                 self.shop_flag = 0
+                return 0
         
         l_select = [None for i in range(player.item_num+1)]
         for i in range(player.item_num):
@@ -126,10 +131,9 @@ class FIELD():
             l_select[player.item_num] = tk.Label(text="exit", font=("Menlo", int(self.MAG/6)), background="yellow")
         else:
             l_select[player.item_num] = tk.Label(text="exit", font=("Menlo", int(self.MAG/6)), background="blue")
-        
 
-    def selct_shop(self,player):
-        pass
+        for i in range(player.item_num+1):
+            l_select[i].place(x=self.WIDTH/10*5, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG*2, height=self.MAG/3, anchor=tk.CENTER)
 
     def event_run(self, player):
         coodinate = self.field_array[player.x][player.y]
