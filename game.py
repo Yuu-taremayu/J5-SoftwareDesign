@@ -368,12 +368,15 @@ class GAME():
                 self.field.event_run(self.player[self.turn])
                 if self.field.shop_flag == 0:
                     self.turn = (self.turn+1) % self.var_select_menu[1]
+                else:
+                    self.field.print_shop(self.player[self.turn])
             elif self.pressed == {}:
                 old_key = None
         else:
             self.field.event_run(self.player[self.turn])
             if self.field.shop_flag == 0:
                 self.turn = (self.turn+1) % self.var_select_menu[1]
+
         l_remain = tk.Label(text="Dice\n"+str(self.player[self.turn].dice), font=("Menlo", int(self.MAG/3)), background="blue")
         l_remain.place(x=self.WIDTH*9/10, y=self.HEIGHT/3, width=100, height=90)
         if self.var_select_menu[1] == 2:
@@ -420,6 +423,9 @@ class GAME():
                 title.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*2, width=self.MAG*2, height=self.MAG/3, anchor=tk.CENTER)
     
     def shop(self,player):
-        self.field.print_shop(player,self.pressed)
+        self.field.print_shop(player)
+        self.field.select_shop(player, self.pressed)
         if self.field.shop_flag == 0:
             self.turn = (self.turn + 1) % self.var_select_menu[1]
+        else:
+            self.field.print_shop(player)

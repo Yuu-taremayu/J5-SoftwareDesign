@@ -92,7 +92,7 @@ class FIELD():
     def event_battle(self):
         pass
 
-    def print_shop(self,player,pressed):
+    def print_shop(self,player):
         canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
         canvas.place(x=0, y=0)
 
@@ -105,6 +105,7 @@ class FIELD():
             l_shop[i] = tk.Label(text=POS+ITM+PRC, font=("Menlo", int(self.MAG/6)), background="spring green")
             l_shop[i].place(x=self.WIDTH/2+(i-2)*self.MAG*5/2, y=self.HEIGHT/10*2, width=self.MAG*2, height=self.MAG, anchor=tk.CENTER)
 
+        '''
         #item select
         if "Down" in pressed:
             self.select_item += 1
@@ -120,6 +121,7 @@ class FIELD():
                 self.select_item = 0
                 self.shop_flag = 0
                 return 0
+        '''
         
         l_select = [None for i in range(player.item_num+1)]
         for i in range(player.item_num):
@@ -134,6 +136,22 @@ class FIELD():
 
         for i in range(player.item_num+1):
             l_select[i].place(x=self.WIDTH/10*5, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG*2, height=self.MAG/3, anchor=tk.CENTER)
+
+    def select_shop(self,player,pressed):
+        if "Down" in pressed:
+            self.select_item += 1
+            self.select_item = self.select_item % (player.item_num+1)
+        elif "Up" in pressed:
+            self.select_item -= 1
+            if self.select_item == -1:
+                self.select_item = player.item_num
+        elif "Return" in pressed:
+            if self.select_item != player.item_num:
+                player.item[self.select_item][0] += 1
+            else:
+                self.select_item = 0
+                self.shop_flag = 0
+                return 0
 
     def event_run(self, player):
         coodinate = self.field_array[player.x][player.y]
