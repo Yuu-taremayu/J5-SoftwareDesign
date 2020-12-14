@@ -18,6 +18,7 @@ class GAME():
         # Variables of function
         self.var_start_menu = (1, None)
         self.var_select_menu = (3, 2, None)
+        self.var_shop_menu = (1, None)
 
         # Keyboard config
         self.frame = tk.Frame(self.root, width=w, height=h)
@@ -51,7 +52,10 @@ class GAME():
         elif self.scene_cnt == 1:
             self.select_menu()
         elif self.scene_cnt == 2:
-            self.start()
+            if self.field.shop_flag == 1:
+                self.shop(self.player[self.turn])
+            else:
+                self.start()
         elif self.scene_cnt == 3:
             self.show_result()
 
@@ -244,14 +248,18 @@ class GAME():
             self.print_field()
             if self.old_turn != self.turn:
                 self.player[self.turn].dice = self.roll_dice()
+                self.print_player()
                 self.old_turn = self.turn
 
             if self.player[self.turn].dice != None:
+                self.print_field()
                 self.move_player()
+                if self.field.shop_flag == 0:
+                    self.print_player()
             self.check_win_condition()
             self.check_exit_condition()
         else:
-            self.turn = (self.turn + 1) % 4
+            self.turn = (self.turn + 1) % self.var_select_menu[1]
             
     def print_field(self):
         # Fill black
@@ -284,6 +292,32 @@ class GAME():
             l_stat[2].place(x=0, y=self.HEIGHT, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.SW)
             l_stat[3].place(x=self.WIDTH, y=self.HEIGHT, width=self.MAG*3/2, height=self.MAG*3/2, anchor=tk.SE)
 
+    def print_player(self):
+        l_player = [None for i in range(4)]
+        l_remain = tk.Label(text="Dice\n"+str(self.player[self.turn].dice), font=("Menlo", int(self.MAG/3)), background="blue")
+        l_remain.place(x=self.WIDTH*9/10, y=self.HEIGHT/3, width=100, height=90)
+        if self.var_select_menu[1] == 2:
+            l_player[0] = tk.Label(text="1", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+            l_player[0].place(x=self.player[0].x*self.MAG*5/2+self.MAG*76/32, y=self.player[0].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
+            l_player[1] = tk.Label(text="2", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+            l_player[1].place(x=self.player[1].x*self.MAG*5/2+self.MAG*105/32, y=self.player[1].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
+        elif self.var_select_menu[1] == 3:
+            l_player[0] = tk.Label(text="1", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+            l_player[0].place(x=self.player[0].x*self.MAG*5/2+self.MAG*76/32, y=self.player[0].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
+            l_player[1] = tk.Label(text="2", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+            l_player[1].place(x=self.player[1].x*self.MAG*5/2+self.MAG*105/32, y=self.player[1].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
+            l_player[2] = tk.Label(text="3", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+            l_player[2].place(x=self.player[2].x*self.MAG*5/2+self.MAG*76/32, y=self.player[2].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
+        elif self.var_select_menu[1] == 4:
+            l_player[0] = tk.Label(text="1", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+            l_player[0].place(x=self.player[0].x*self.MAG*5/2+self.MAG*76/32, y=self.player[0].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
+            l_player[1] = tk.Label(text="2", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+            l_player[1].place(x=self.player[1].x*self.MAG*5/2+self.MAG*105/32, y=self.player[1].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
+            l_player[2] = tk.Label(text="3", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+            l_player[2].place(x=self.player[2].x*self.MAG*5/2+self.MAG*76/32, y=self.player[2].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
+            l_player[3] = tk.Label(text="4", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
+            l_player[3].place(x=self.player[3].x*self.MAG*5/2+self.MAG*105/32, y=self.player[3].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
+    
     # roll dice randomly
     def roll_dice(self):
         r = random.randint(1, 6)
@@ -297,7 +331,7 @@ class GAME():
 
         # temporary lines
         self.player[self.turn].condition = 1
-        self.player[self.turn].money += 100
+        #self.player[self.turn].money += 100
 
         if self.player[self.turn].condition == 1:# condition 1 : get 1,000 golds
             if self.player[self.turn].money >= 1000:
@@ -338,7 +372,7 @@ class GAME():
         right = 4
 
         old_key = None
-        l_player = [None for i in range(4)]
+        #l_player = [None for i in range(4)]
         if self.player[self.turn].dice > 0:
             if "Up" in self.pressed and old_key != up:
                 if self.player[self.turn].y > 0:
@@ -362,36 +396,18 @@ class GAME():
                 old_key = right
             elif "Return" in self.pressed:
                 self.field.event_run(self.player[self.turn])
-                self.turn = (self.turn+1) % 4
+                if self.field.shop_flag == 0:
+                    self.turn = (self.turn+1) % self.var_select_menu[1]
+                else:
+                    self.field.print_shop(self.player[self.turn])
             elif self.pressed == {}:
                 old_key = None
         else:
             self.field.event_run(self.player[self.turn])
-            self.turn = (self.turn+1) % 4
-
-        l_remain = tk.Label(text="Dice\n"+str(self.player[self.turn].dice), font=("Menlo", int(self.MAG/3)), background="blue")
-        l_remain.place(x=self.WIDTH*9/10, y=self.HEIGHT/3, width=100, height=90)
-        if self.var_select_menu[1] == 2:
-            l_player[0] = tk.Label(text="1", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
-            l_player[0].place(x=self.player[0].x*self.MAG*5/2+self.MAG*76/32, y=self.player[0].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
-            l_player[1] = tk.Label(text="2", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
-            l_player[1].place(x=self.player[1].x*self.MAG*5/2+self.MAG*105/32, y=self.player[1].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
-        elif self.var_select_menu[1] == 3:
-            l_player[0] = tk.Label(text="1", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
-            l_player[0].place(x=self.player[0].x*self.MAG*5/2+self.MAG*76/32, y=self.player[0].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
-            l_player[1] = tk.Label(text="2", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
-            l_player[1].place(x=self.player[1].x*self.MAG*5/2+self.MAG*105/32, y=self.player[1].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
-            l_player[2] = tk.Label(text="3", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
-            l_player[2].place(x=self.player[2].x*self.MAG*5/2+self.MAG*76/32, y=self.player[2].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
-        elif self.var_select_menu[1] == 4:
-            l_player[0] = tk.Label(text="1", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
-            l_player[0].place(x=self.player[0].x*self.MAG*5/2+self.MAG*76/32, y=self.player[0].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
-            l_player[1] = tk.Label(text="2", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
-            l_player[1].place(x=self.player[1].x*self.MAG*5/2+self.MAG*105/32, y=self.player[1].y*self.MAG*9/4+self.MAG/3, width=self.MAG/3, height=self.MAG/3)
-            l_player[2] = tk.Label(text="3", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
-            l_player[2].place(x=self.player[2].x*self.MAG*5/2+self.MAG*76/32, y=self.player[2].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
-            l_player[3] = tk.Label(text="4", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
-            l_player[3].place(x=self.player[3].x*self.MAG*5/2+self.MAG*105/32, y=self.player[3].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
+            if self.field.shop_flag == 0:
+                self.turn = (self.turn+1) % self.var_select_menu[1]
+            else:
+                self.field.print_shop(self.player[self.turn])
 
     # show result
     def show_result(self):
@@ -413,3 +429,14 @@ class GAME():
                 name.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG*2, height=self.MAG/3, anchor=tk.CENTER)
                 order.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG*3/2, height=self.MAG*2/5, anchor=tk.CENTER)
                 title.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*2, width=self.MAG*2, height=self.MAG/3, anchor=tk.CENTER)
+    
+    #run shop event
+    def shop(self,player):
+        self.field.print_shop(player)
+        self.field.select_shop(player, self.pressed)
+        if self.field.shop_flag == 0:
+            self.turn = (self.turn + 1) % self.var_select_menu[1]
+            self.print_field()
+            self.print_player()
+        else:
+            self.field.print_shop(player)

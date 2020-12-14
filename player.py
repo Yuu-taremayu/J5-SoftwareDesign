@@ -20,6 +20,10 @@ class PLAYER():
         self.condition = False
         self.goal_flag = False
 
+        #item:num, name, price
+        self.item_num = 2
+        self.item = [[0,'Protein',100],[0,'Energy Drink',100]]
+
         self.decide_job()
 
     # decide player's job
