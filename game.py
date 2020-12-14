@@ -255,7 +255,7 @@ class GAME():
             self.check_win_condition()
             self.check_exit_condition()
         else:
-            self.turn = (self.turn + 1) % 4
+            self.turn = (self.turn + 1) % self.var_select_menu[1]
             
     def print_field(self):
         # Fill black
@@ -367,13 +367,13 @@ class GAME():
             elif "Return" in self.pressed:
                 self.field.event_run(self.player[self.turn])
                 if self.field.shop_flag == 0:
-                    self.turn = (self.turn+1) % 4
+                    self.turn = (self.turn+1) % self.var_select_menu[1]
             elif self.pressed == {}:
                 old_key = None
         else:
             self.field.event_run(self.player[self.turn])
             if self.field.shop_flag == 0:
-                self.turn = (self.turn+1) % 4
+                self.turn = (self.turn+1) % self.var_select_menu[1]
         l_remain = tk.Label(text="Dice\n"+str(self.player[self.turn].dice), font=("Menlo", int(self.MAG/3)), background="blue")
         l_remain.place(x=self.WIDTH*9/10, y=self.HEIGHT/3, width=100, height=90)
         if self.var_select_menu[1] == 2:
@@ -422,4 +422,4 @@ class GAME():
     def shop(self,player):
         self.field.print_shop(player,self.pressed)
         if self.field.shop_flag == 0:
-            self.turn = (self.turn + 1) % 4
+            self.turn = (self.turn + 1) % self.var_select_menu[1]
