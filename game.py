@@ -260,7 +260,7 @@ class GAME():
             self.check_exit_condition()
         else:
             self.turn = (self.turn + 1) % self.var_select_menu[1]
-            
+
     def print_field(self):
         # Fill black
         canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
@@ -317,7 +317,7 @@ class GAME():
             l_player[2].place(x=self.player[2].x*self.MAG*5/2+self.MAG*76/32, y=self.player[2].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
             l_player[3] = tk.Label(text="4", font=("Menlo", int(self.MAG/6)), background="yellow", relief="ridge", borderwidth=self.MAG/60)
             l_player[3].place(x=self.player[3].x*self.MAG*5/2+self.MAG*105/32, y=self.player[3].y*self.MAG*9/4+self.MAG*5/4, width=self.MAG/3, height=self.MAG/3)
-    
+
     # roll dice randomly
     def roll_dice(self):
         r = random.randint(1, 6)
@@ -352,15 +352,24 @@ class GAME():
     # check game's exit condition
     def check_exit_condition(self):
         flag = True
-        for i in range(4):
-            if self.player[i].goal_flag == False:
-                flag = False
+        player_num = self.var_select_menu[1]
+        print(player_num)
 
-        if flag == True:
+        cnt = 0
+        for i in range(player_num):
+            if self.player[i].goal_flag == False:
+                cnt += 1
+
+        if cnt == player_num-1:
             print("ゲーム終了条件が整いました")
+            for i in range(player_num):
+                if self.player[i].goal_flag == False:
+                    self.goal_order += self.player[i].name
+
             self.scene_cnt += 1
             self.root.after(200, self.show_result)
             self.pressed.clear()
+
 
 
     # move player by dice number
@@ -416,7 +425,7 @@ class GAME():
         canvas.place(x=0, y=0)
         print(self.goal_order)
 
-        player_num = 4
+        player_num = self.var_select_menu[1]
         title = tk.Label(text="結果発表", font=("Menlo", int(self.MAG/6)))
         for i in range(player_num):
             name = tk.Label(text=self.goal_order[i], font=("Menlo", int(self.MAG/6)))
@@ -429,7 +438,7 @@ class GAME():
                 name.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG*2, height=self.MAG/3, anchor=tk.CENTER)
                 order.place(x=self.WIDTH/10*3, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG*3/2, height=self.MAG*2/5, anchor=tk.CENTER)
                 title.place(x=self.WIDTH/10*5, y=self.HEIGHT/10*2, width=self.MAG*2, height=self.MAG/3, anchor=tk.CENTER)
-    
+
     #run shop event
     def shop(self,player):
         self.field.print_shop(player)
