@@ -260,7 +260,7 @@ class GAME():
                 self.print_player()
         self.check_win_condition()
         self.check_exit_condition()
-        
+
     def print_field(self):
         # Fill black
         canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
@@ -325,27 +325,40 @@ class GAME():
 
     # check each player's winning condition
     def check_win_condition(self):
-        if self.player[self.turn].goal_flag == True:
-            print(self.player[self.turn].name, "は既に勝利条件を満たしています")
-            return None
+        player_num = self.var_select_menu[1]
 
         # temporary lines
         self.player[self.turn].condition = 1
-        #self.player[self.turn].money += 100
+        self.player[1].condition = 4
 
         if self.player[self.turn].condition == 1:# condition 1 : get 1,000 golds
             if self.player[self.turn].money >= 1000:
                 print(self.player[self.turn].name, "が勝利条件を満たしました")
                 self.player[self.turn].goal_flag = True
                 self.goal_order.append(self.player[self.turn].name)
-                self.turn = (self.turn + 1) % 4
+                self.turn = (self.turn + 1) % player_num
 
-        elif self.player[self.turn].condition == 2:# condition 1 : get 1,000 muscle
+        elif self.player[self.turn].condition == 2:# condition 2 : get 1,000 muscle
             if self.player[self.turn].muscle >= 1000:
                 print(self.player[self.turn].name, "が勝利条件を満たしました")
                 self.player[self.turn].goal_flag = True
                 self.goal_order.append(self.player[self.turn].name)
-                self.turn = (self.turn + 1) % 4
+                self.turn = (self.turn + 1) % player_num
+
+        elif self.player[self.turn].condition == 3:# condition 3 : get 1,000 stress
+            if self.player[self.turn].stress >= 1000:
+                print(self.player[self.turn].name, "が勝利条件を満たしました")
+                self.player[self.turn].goal_flag = True
+                self.goal_order.append(self.player[self.turn].name)
+                self.turn = (self.turn + 1) % player_num
+
+        elif self.player[self.turn].condition == 4:# condition 4 : get 1st if 4th and no money
+            if self.player[self.turn].goal_flag == True and self.player[self.turn].money == 0:
+                print(self.player[self.turn].name, "が勝利条件を満たしました")
+                #self.goal_order.append(self.player[self.turn].name)
+                self.player[self.turn].goal_flag = True
+                self.goal_order = [self.player[self.turn].name] + self.goal_order[:-1]
+                self.turn = (self.turn + 1) % player_num
 
 
 
@@ -365,6 +378,9 @@ class GAME():
             for i in range(player_num):
                 if self.player[i].goal_flag == False:
                     self.goal_order += self.player[i].name
+                    self.player[i].goal_flag = True
+                    self.turn = i
+            self.check_win_condition()
 
             self.scene_cnt += 1
             self.root.after(200, self.show_result)
