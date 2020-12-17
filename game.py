@@ -244,23 +244,23 @@ class GAME():
 
     # start game
     def start(self):
-        if self.player[self.turn].goal_flag == False:
-            self.print_field()
-            if self.old_turn != self.turn:
-                self.player[self.turn].dice = self.roll_dice()
-                self.print_player()
-                self.old_turn = self.turn
-
-            if self.player[self.turn].dice != None:
-                self.print_field()
-                self.move_player()
-                if self.field.shop_flag == 0:
-                    self.print_player()
-            self.check_win_condition()
-            self.check_exit_condition()
-        else:
+        while self.player[self.turn].goal_flag == True:
             self.turn = (self.turn + 1) % self.var_select_menu[1]
 
+        self.print_field()
+        if self.old_turn != self.turn:
+            self.player[self.turn].dice = self.roll_dice()
+            self.print_player()
+            self.old_turn = self.turn
+
+        if self.player[self.turn].dice != None:
+            self.print_field()
+            self.move_player()
+            if self.field.shop_flag == 0:
+                self.print_player()
+        self.check_win_condition()
+        self.check_exit_condition()
+        
     def print_field(self):
         # Fill black
         canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
