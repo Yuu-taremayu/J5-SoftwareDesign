@@ -18,7 +18,6 @@ class GAME():
         # Variables of function
         self.var_start_menu = (1, None)
         self.var_select_menu = (3, 2, None)
-        self.var_shop_menu = (1, None)
 
         # Keyboard config
         self.frame = tk.Frame(self.root, width=w, height=h)

@@ -103,6 +103,9 @@ class PLAYER():
 	self.dexterity		:プレイヤーのステータスdexterityを持つ変数
 	self.job		:プレイヤーのステータスjobを持つ変数
 	self.condition		:プレイヤーの勝利条件を持つ変数
+	self.goal_flag	:
+	self.item_num	:アイテムの個数
+	self.item		:アイテムの情報（所持数，名前，値段）
 ```
  - "フィールド" クラス
 ```
@@ -113,6 +116,9 @@ class FIELD():
 	self.HEIGHT		:ゲーム画面の縦幅を持つ変数,GAMEクラスから渡される
 	self.num_shop		:ショップマスの数を持つ変数
 	self.num_jobchange	:ジョブチェンジマスの数を持つ変数
+	self.shop_flag	:ショップイベントマスにとまると1，抜け出すと0になる
+    self.select_item	:ショップで選ばれてるアイテムを持つ変数
+    self.cantbuy_flag	:所持金が選んだアイテムより低いと1になる
 ```
 
 ## 関数仕様
@@ -145,6 +151,9 @@ class PLAYER():
 	self.dexterity		:プレイヤーのステータスdexterityを持つ変数
 	self.job		:プレイヤーのステータスjobを持つ変数
 	self.condition		:プレイヤーの勝利条件を持つ変数
+	self.goal_flag	:
+	self.item_num	:アイテムの個数
+	self.item		:アイテムの情報（所持数，名前，値段）
 ```
  - "フィールド" クラス
 ```
@@ -155,6 +164,9 @@ class FIELD():
 	self.HEIGHT		:ゲーム画面の縦幅を持つ変数,GAMEクラスから渡される
 	self.num_shop		:ショップマスの数を持つ変数
 	self.num_jobchange	:ジョブチェンジマスの数を持つ変数
+	self.shop_flag	:ショップイベントマスにとまると1，抜け出すと0になる
+    self.select_item	:ショップで選ばれてるアイテムを持つ変数
+    self.cantbuy_flag	:所持金が選んだアイテムより低いと1になる
 ```
 
 ### 基本関数仕様
@@ -196,6 +208,7 @@ class GAME():
 		戻り値:なし
 		# ゲームの各処理をする関数を呼び出す関数
 		# print_field()を呼び出す
+		# print_player()を呼び出す
 		# move_player()を呼び出す
 		# check_win_condition()を呼び出す
 		# check_exit_condition()を呼び出す
@@ -205,6 +218,10 @@ class GAME():
 		# フィールドのインスタンスを用いてフィールドを表示する
 		# プレイヤーのインスタンスを用いてプレイヤーのステータスを表示する
 		# プレイヤー数に応じてステータスの数、位置を変える
+	def print_player()
+		引数:なし
+		戻り値:なし
+		# プレイヤーを表示する
 	def roll_dice()
 		引数:なし
 		戻り値:なし
@@ -224,10 +241,15 @@ class GAME():
 		戻り値:なし
 		# フィールド上に配置されたプレイヤーを動かす関数
 		# フィールドに存在する範囲のみ動ける
+		# 止まったマスのイベントの実行
 	def show_result()
 		引数:なし
 		戻り値:なし
 		# プレイヤの勝利条件を満たした順に順位を表示する関数
+	def shop()
+		引数:プレイヤー
+		戻り値:なし
+		# ショップイベントの実行
 
 ```
  - "プレイヤー" クラス
@@ -267,12 +289,29 @@ class FIELD():
 		戻り値:フィールドの配列
 		# ランダムにイベントを配置
 		# イベントのないマスは「ノーマル」
-	def event_increasemoney():
+	def event_money():
 		引数:プレイヤー
 		戻り値:なし
-		# プレイヤーの職業によってお金を増やすイベント
+		# お金が増える，もしくは減るイベント
+		# プレイヤーの職業によってお金を増やす
+		# ランダムに（50, 100, 150）お金が減る
 	def event_jobchange():
 		引数:プレイヤー
 		戻り値:なし
 		# 職業を変えるイベント
+	def print_shop():
+		引数:プレイヤー
+		戻り値:なし
+		# 所持金を表示する
+		# アイテムの情報（所持数，名前，値段）を表示する
+		# 選択されているアイテムを表示する
+	def select_shop():
+		引数:プレイヤー，押されたキー
+		戻り値:exitでショップを出るとき0
+		# Up, Downキーでアイテムを選択
+		# Returnキーでアイテムを購入，もしくはショップを出る
+	def event_run():
+		引数:プレイヤー
+		戻り値:なし
+		# イベントを実行する
 ```
