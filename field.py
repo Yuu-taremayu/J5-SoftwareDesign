@@ -78,6 +78,7 @@ class FIELD():
                 player.money -= down
             else:
                 player.money = 0
+            player.bad_event += 1
 
         msg = str(before_money) + "->" + str(player.money)
         label = tk.Label(text=msg, font=("Menlo", int(self.MAG/6)), background="yellow")

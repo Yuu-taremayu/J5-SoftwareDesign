@@ -359,6 +359,13 @@ class GAME():
                 self.player[self.turn].goal_flag = True
                 self.goal_order = [self.player[self.turn].name] + self.goal_order[:-1]
                 self.turn = (self.turn + 1) % player_num
+        elif self.player[self.turn].condition == 5:# condition 5 : get 5 bad events
+            if self.player[self.turn].badevent >= 5:
+                print(self.player[self.turn].name, "が勝利条件を満たしました")
+                self.player[self.turn].goal_flag = True
+                self.goal_order.append(self.player[self.turn].name)
+                self.turn = (self.turn + 1) % player_num
+
 
 
 
