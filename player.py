@@ -17,8 +17,10 @@ class PLAYER():
         self.stress = 0
         self.dexterity = 0
         self.job = None
+        # hidden status
         self.condition = False
         self.goal_flag = False
+        self.bad_event = 0
 
         #item:num, name, price
         self.item_num = 2
