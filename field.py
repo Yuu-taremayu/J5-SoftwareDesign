@@ -61,15 +61,24 @@ class FIELD():
     def event_increasemoney(self,player):
         before_money = player.money
 
-        if player.job == 'Teacher':
-            player.money = before_money + 500
-        elif player.job == 'Engineer':
-            player.money = before_money + 600
-        elif player.job == 'SportsMan':
-            player.money = before_money + 700
+        updown = random.randint(0,1)
+
+        if updown == 0:
+            if player.job == 'Teacher':
+                player.money = before_money + 500
+            elif player.job == 'Engineer':
+                player.money = before_money + 600
+            elif player.job == 'SportsMan':
+                player.money = before_money + 700
+            else:
+                player.money = before_money + 0
         else:
-            player.money = before_money + 0
-        
+            down = random.randint(1,3) * 50
+            if player.money >= down:
+                player.money -= down
+            else:
+                player.money = 0
+
         msg = str(before_money) + "->" + str(player.money)
         label = tk.Label(text=msg, font=("Menlo", int(self.MAG/6)), background="yellow")
         label.place(x=self.HEIGHT/8,y=self.HEIGHT/2,anchor=tk.W)
