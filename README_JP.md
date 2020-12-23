@@ -117,8 +117,8 @@ class FIELD():
 	self.num_shop		:ショップマスの数を持つ変数
 	self.num_jobchange	:ジョブチェンジマスの数を持つ変数
 	self.shop_flag	:ショップイベントマスにとまると1，抜け出すと0になる
-    self.select_item	:ショップで選ばれてるアイテムを持つ変数
-    self.cantbuy_flag	:所持金が選んだアイテムより低いと1になる
+	self.select_item	:ショップで選ばれてるアイテムを持つ変数
+	self.cantbuy_flag	:所持金が選んだアイテムより低いと1になる
 ```
 
 ## 関数仕様
@@ -151,8 +151,8 @@ class PLAYER():
 	self.dexterity		:プレイヤーのステータスdexterityを持つ変数
 	self.job		:プレイヤーのステータスjobを持つ変数
 	self.condition		:プレイヤーの勝利条件を持つ変数
-	self.goal_flag	:
-	self.item_num	:アイテムの個数
+	self.goal_flag		:
+	self.item_num		:アイテムの個数
 	self.item		:アイテムの情報（所持数，名前，値段）
 ```
  - "フィールド" クラス
@@ -164,9 +164,9 @@ class FIELD():
 	self.HEIGHT		:ゲーム画面の縦幅を持つ変数,GAMEクラスから渡される
 	self.num_shop		:ショップマスの数を持つ変数
 	self.num_jobchange	:ジョブチェンジマスの数を持つ変数
-	self.shop_flag	:ショップイベントマスにとまると1，抜け出すと0になる
-    self.select_item	:ショップで選ばれてるアイテムを持つ変数
-    self.cantbuy_flag	:所持金が選んだアイテムより低いと1になる
+	self.shop_flag		:ショップイベントマスにとまると1，抜け出すと0になる
+	self.select_item	:ショップで選ばれてるアイテムを持つ変数
+	self.cantbuy_flag	:所持金が選んだアイテムより低いと1になる
 ```
 
 ### 基本関数仕様
