@@ -58,7 +58,7 @@ class FIELD():
 
     # run some events on field
     # add any more events
-    def event_increasemoney(self,player):
+    def event_money(self,player):
         before_money = player.money
 
         updown = random.randint(0,1)
@@ -167,7 +167,7 @@ class FIELD():
     def event_run(self, player):
         coodinate = self.field_array[player.x][player.y]
         if coodinate == 'Money':
-            self.event_increasemoney(player)
+            self.event_money(player)
         if coodinate == 'Job\nChange':
             self.event_jobchange(player)
         if coodinate == 'Shop':
