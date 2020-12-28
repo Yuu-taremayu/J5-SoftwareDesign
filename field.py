@@ -3,7 +3,7 @@ import tkinter as tk
 
 class FIELD():
     # init field and properties
-    def __init__(self,w,h,mag):
+    def __init__(self, w, h, mag):
         self.x, self.y = self.set_field()
         self.WIDTH = w
         self.HEIGHT = h
