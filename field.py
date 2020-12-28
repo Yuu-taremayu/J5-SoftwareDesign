@@ -73,7 +73,7 @@ class FIELD():
 
     # run some events on field
     # add any more events
-    def event_money(self,player):
+    def event_money(self, player):
         before_money = player.money
 
         updown = random.randint(0,1)
@@ -107,7 +107,7 @@ class FIELD():
                 )
 
 
-    def event_jobchange(self,player):
+    def event_jobchange(self, player):
         before_job = player.job
 
         r = random.randrange(4)
@@ -137,7 +137,7 @@ class FIELD():
         pass
 
     # print shop event
-    def print_shop(self,player):
+    def print_shop(self, player):
         canvas = tk.Canvas(
                 bg="black",
                 width=self.WIDTH,
@@ -236,7 +236,7 @@ class FIELD():
 
 
     # buy item
-    def select_shop(self,player,pressed):
+    def select_shop(self, player, pressed):
         if "Down" in pressed:
             self.select_item += 1
             self.select_item = self.select_item % (player.item_num+1)
