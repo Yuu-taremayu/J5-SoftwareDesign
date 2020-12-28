@@ -14,12 +14,21 @@ class FIELD():
         self.select_item = 0
         self.cantbuy_flag = 0
 
-        self.field_array = self.init_field(self.x, self.y, self.num_shop, self.num_jobchange, self.num_money)
+        self.field_array = self.init_field(
+                self.x,
+                self.y,
+                self.num_shop,
+                self.num_jobchange,
+                self.num_money
+                )
+
+
     # set field size
     def set_field(self):
         x = 5
         y = 4
         return x, y
+
 
     # set any event num
     def set_events(self):
@@ -28,11 +37,13 @@ class FIELD():
         num_money = 2
         return num_shop, num_jobchange, num_money
 
+
     # init field array internally
     # initialize all by Normal
     # add shop and job change piont
     def init_field(self, x, y, num_shop, num_jobchange, num_money):
         field_array = [["Normal" for j in range(y)] for i in range(x)]
+
         cnt = 0
         while cnt < num_shop:
             randX = random.randrange(0, x-1)
@@ -40,6 +51,7 @@ class FIELD():
             if field_array[randX][randY] == "Normal":
                 field_array[randX][randY] = "Shop"
                 cnt += 1
+
         cnt = 0
         while cnt < num_jobchange:
             randX = random.randrange(0, x-1)
@@ -47,6 +59,7 @@ class FIELD():
             if field_array[randX][randY] == "Normal":
                 field_array[randX][randY] = "Job\nChange"
                 cnt += 1
+        
         cnt = 0
         while cnt < num_money:
             randX = random.randrange(0, x-1)
@@ -54,7 +67,9 @@ class FIELD():
             if field_array[randX][randY] == "Normal":
                 field_array[randX][randY] = "Money"
                 cnt += 1
+        
         return field_array
+
 
     # run some events on field
     # add any more events
@@ -62,7 +77,6 @@ class FIELD():
         before_money = player.money
 
         updown = random.randint(0,1)
-
         if updown == 0:
             if player.job == 'Teacher':
                 player.money = before_money + 500
@@ -79,13 +93,23 @@ class FIELD():
             else:
                 player.money = 0
             player.bad_event += 1
-
+        
         msg = str(before_money) + "->" + str(player.money)
-        label = tk.Label(text=msg, font=("Menlo", int(self.MAG/6)), background="yellow")
-        label.place(x=self.HEIGHT/8,y=self.HEIGHT/2,anchor=tk.W)
+        label = tk.Label(
+                text=msg,
+                font=("Menlo", int(self.MAG/6)),
+                background="yellow"
+                )
+        label.place(
+                x=self.HEIGHT/8,
+                y=self.HEIGHT/2,
+                anchor=tk.W
+                )
+
 
     def event_jobchange(self,player):
         before_job = player.job
+
         r = random.randrange(4)
         if r == 0:
             player.job = 'Teacher'
@@ -97,21 +121,46 @@ class FIELD():
             player.job = 'NoJob'
 
         msg = before_job + "->" + player.job
-        label = tk.Label(text=msg, font=("Menlo", int(self.MAG/6)), background="green")
-        label.place(x=self.HEIGHT/8,y=self.HEIGHT/2,anchor=tk.W)
+        label = tk.Label(
+                text=msg,
+                font=("Menlo", int(self.MAG/6)),
+                background="green"
+                )
+        label.place(
+                x=self.HEIGHT/8,
+                y=self.HEIGHT/2,
+                anchor=tk.W
+                )
+
 
     def event_battle(self):
         pass
 
     #print shop event
     def print_shop(self,player):
-        canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
-        canvas.place(x=0, y=0)
+        canvas = tk.Canvas(
+                bg="black",
+                width=self.WIDTH,
+                height=self.HEIGHT
+                )
+        canvas.place(
+                x=0,
+                y=0
+                )
 
         #money of player
         msg = "your money : " + str(player.money)
-        l_money = tk.Label(text=msg, font=("Menlo", int(self.MAG/6)), background="yellow")
-        l_money.place(x=self.WIDTH/10*8, y=self.HEIGHT/10, width=self.MAG*2, height=self.MAG/3)
+        l_money = tk.Label(
+                text=msg,
+                font=("Menlo", int(self.MAG/6)),
+                background="yellow"
+                )
+        l_money.place(
+                x=self.WIDTH/10*8,
+                y=self.HEIGHT/10,
+                width=self.MAG*2,
+                height=self.MAG/3
+                )
 
         #item information
         l_shop = [None for i in range(player.item_num)]
@@ -119,29 +168,72 @@ class FIELD():
             POS = "possession:" + str(player.item[i][0]) + "\n"
             ITM = "item:" + player.item[i][1] + "\n"
             PRC = "price:" + str(player.item[i][2])
-            l_shop[i] = tk.Label(text=POS+ITM+PRC, font=("Menlo", int(self.MAG/6)), background="spring green")
-            l_shop[i].place(x=self.WIDTH/2+(i-2)*self.MAG*5/2, y=self.HEIGHT/10*2, width=self.MAG*2, height=self.MAG, anchor=tk.CENTER)
+            l_shop[i] = tk.Label(
+                    text=POS+ITM+PRC,
+                    font=("Menlo", int(self.MAG/6)),
+                    background="spring green"
+                    )
+            l_shop[i].place(
+                    x=self.WIDTH/2+(i-2)*self.MAG*5/2,
+                    y=self.HEIGHT/10*2,
+                    width=self.MAG*2,
+                    height=self.MAG,
+                    anchor=tk.CENTER
+                    )
         
         #print select item
         l_select = [None for i in range(player.item_num+1)]
         for i in range(player.item_num):
             if self.select_item == i:
-                l_select[i] = tk.Label(text=player.item[i][1], font=("Menlo", int(self.MAG/6)), background="yellow")
+                l_select[i] = tk.Label(
+                        text=player.item[i][1],
+                        font=("Menlo", int(self.MAG/6)),
+                        background="yellow"
+                        )
             else:
-                l_select[i] = tk.Label(text=player.item[i][1], font=("Menlo", int(self.MAG/6)), background="blue")
+                l_select[i] = tk.Label(
+                        text=player.item[i][1],
+                        font=("Menlo", int(self.MAG/6)),
+                        background="blue"
+                        )
         if self.select_item == player.item_num:
-            l_select[player.item_num] = tk.Label(text="exit", font=("Menlo", int(self.MAG/6)), background="yellow")
+            l_select[player.item_num] = tk.Label(
+                    text="exit",
+                    font=("Menlo", int(self.MAG/6)),
+                    background="yellow"
+                    )
         else:
-            l_select[player.item_num] = tk.Label(text="exit", font=("Menlo", int(self.MAG/6)), background="blue")
+            l_select[player.item_num] = tk.Label(
+                    text="exit",
+                    font=("Menlo", int(self.MAG/6)),
+                    background="blue"
+                    )
 
         #print "Can't buy"
         if self.cantbuy_flag == 1:
-            l_cannot = tk.Label(text="Can't buy it", font=("Menlo", int(self.MAG/5)), background="red")
-            l_cannot.place(x=self.WIDTH/10*7, y=self.HEIGHT/2, width=self.MAG*2, height=self.MAG/2, anchor=tk.CENTER)
+            l_cannot = tk.Label(
+                    text="Can't buy it",
+                    font=("Menlo", int(self.MAG/5)),
+                    background="red"
+                    )
+            l_cannot.place(
+                    x=self.WIDTH/10*7,
+                    y=self.HEIGHT/2,
+                    width=self.MAG*2,
+                    height=self.MAG/2,
+                    anchor=tk.CENTER
+                    )
             self.cantbuy_flag = 0
 
         for i in range(player.item_num+1):
-            l_select[i].place(x=self.WIDTH/10*5, y=self.HEIGHT/10*4+(i*self.MAG/2), width=self.MAG*2, height=self.MAG/3, anchor=tk.CENTER)
+            l_select[i].place(
+                    x=self.WIDTH/10*5,
+                    y=self.HEIGHT/10*4+(i*self.MAG/2),
+                    width=self.MAG*2,
+                    height=self.MAG/3,
+                    anchor=tk.CENTER
+                    )
+
 
     #buy item
     def select_shop(self,player,pressed):
@@ -163,6 +255,7 @@ class FIELD():
                 self.select_item = 0
                 self.shop_flag = 0
                 return 0
+
 
     def event_run(self, player):
         coodinate = self.field_array[player.x][player.y]
