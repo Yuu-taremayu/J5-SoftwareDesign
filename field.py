@@ -136,7 +136,7 @@ class FIELD():
     def event_battle(self):
         pass
 
-    #print shop event
+    # print shop event
     def print_shop(self,player):
         canvas = tk.Canvas(
                 bg="black",
@@ -148,7 +148,7 @@ class FIELD():
                 y=0
                 )
 
-        #money of player
+        # money of player
         msg = "your money : " + str(player.money)
         l_money = tk.Label(
                 text=msg,
@@ -162,7 +162,7 @@ class FIELD():
                 height=self.MAG/3
                 )
 
-        #item information
+        # item information
         l_shop = [None for i in range(player.item_num)]
         for i in range(player.item_num):
             POS = "possession:" + str(player.item[i][0]) + "\n"
@@ -181,7 +181,7 @@ class FIELD():
                     anchor=tk.CENTER
                     )
         
-        #print select item
+        # print select item
         l_select = [None for i in range(player.item_num+1)]
         for i in range(player.item_num):
             if self.select_item == i:
@@ -209,7 +209,7 @@ class FIELD():
                     background="blue"
                     )
 
-        #print "Can't buy"
+        # print "Can't buy"
         if self.cantbuy_flag == 1:
             l_cannot = tk.Label(
                     text="Can't buy it",
@@ -235,7 +235,7 @@ class FIELD():
                     )
 
 
-    #buy item
+    # buy item
     def select_shop(self,player,pressed):
         if "Down" in pressed:
             self.select_item += 1
