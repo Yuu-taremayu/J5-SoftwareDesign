@@ -502,7 +502,7 @@ class GAME:
             font=("Menlo", int(self.MAG / 3)),
             background="blue",
         )
-        l_remain.place(x=self.WIDTH * 9 / 10, y=self.HEIGHT / 3, width=100, height=90)
+        l_remain.place(x=self.WIDTH * 9 / 10, y=self.HEIGHT / 3, width=self.MAG * 3 / 2, height=self.MAG * 3 / 2)
         if self.var_select_menu[1] == 2:
             l_player[0] = tk.Label(
                 text="1",
