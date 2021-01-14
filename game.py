@@ -114,11 +114,21 @@ class GAME:
                 background="yellow",
             )
             l_exit = tk.Label(
-                text="Exit", font=("Menlo", int(self.MAG / 5)), background="blue"
+                text="Exit",
+                font=("Menlo"),
+                background="blue"
             )
         else:
-            l_start = tk.Label(text="Game start", background="blue")
-            l_exit = tk.Label(text="Exit", background="yellow")
+            l_start = tk.Label(
+                    text="Game start",
+                    font=("Menlo"),
+                    background="blue"
+                    )
+            l_exit = tk.Label(
+                    text="Exit",
+                    font=("Menlo", int(self.MAG / 5)),
+                    background="yellow"
+                    )
         l_title.place(
             x=self.WIDTH / 2,
             y=self.HEIGHT / 10 * 2,
