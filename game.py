@@ -221,14 +221,14 @@ class GAME:
                 text="Start", font=("Menlo", int(self.MAG / 5)), background="blue"
             )
             l_left = tk.Label(
-                text="<=", font=("Menlo", int(self.MAG / 6)), background="yellow"
+                text="<=", font=("Menlo", int(self.MAG / 4)), background="yellow"
             )
             l_right = tk.Label(
                 text="=>", font=("Menlo", int(self.MAG / 6)), background="blue"
             )
         elif select == 2:
             l_start = tk.Label(
-                text="Start", font=("Menlo", int(self.MAG / 5)), background="yellow"
+                text="Start", font=("Menlo", int(self.MAG / 4)), background="yellow"
             )
             l_left = tk.Label(
                 text="<=", font=("Menlo", int(self.MAG / 6)), background="blue"
@@ -241,7 +241,7 @@ class GAME:
                 text="Start", font=("Menlo", int(self.MAG / 5)), background="blue"
             )
             l_left = tk.Label(
-                text="<=", font=("Menlo", int(self.MAG / 6)), background="yellow"
+                text="<=", font=("Menlo", int(self.MAG / 4)), background="yellow"
             )
             l_right = tk.Label(
                 text="=>", font=("Menlo", int(self.MAG / 6)), background="blue"
@@ -254,7 +254,7 @@ class GAME:
                 text="<=", font=("Menlo", int(self.MAG / 6)), background="blue"
             )
             l_right = tk.Label(
-                text="=>", font=("Menlo", int(self.MAG / 6)), background="yellow"
+                text="=>", font=("Menlo", int(self.MAG / 4)), background="yellow"
             )
         l_title.place(
             x=self.WIDTH / 10 * 5,
@@ -274,7 +274,7 @@ class GAME:
             x=self.WIDTH / 10 * 5,
             y=self.HEIGHT / 10 * 8,
             width=self.MAG * 3 / 2,
-            height=self.MAG / 3,
+            height=self.MAG / 2,
             anchor=tk.CENTER,
         )
         l_num.place(
