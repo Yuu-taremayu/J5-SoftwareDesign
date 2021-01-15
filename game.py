@@ -782,52 +782,102 @@ class GAME:
         player_num = self.var_select_menu[1]
         title = tk.Label(text="結果発表", font=("Menlo", int(self.MAG / 6)))
         for i in range(player_num):
-            name = tk.Label(text=self.goal_order[i], font=("Menlo", int(self.MAG / 6)))
-            order = tk.Label(text=str(i + 1) + "位", font=("Menlo", int(self.MAG / 6)))
-            if self.MAG <= 60:
-                name.place(
-                    x=self.WIDTH / 10 * 5,
-                    y=self.HEIGHT / 10 * 4 + (i * 30),
-                    width=100,
-                    height=25,
-                    anchor=tk.CENTER,
-                )
-                order.place(
-                    x=self.WIDTH / 10 * 3,
-                    y=self.HEIGHT / 10 * 4 + (i * 30),
-                    width=40,
-                    height=30,
-                    anchor=tk.CENTER,
-                )
-                title.place(
-                    x=self.WIDTH / 10 * 5,
-                    y=self.HEIGHT / 10 * 2,
-                    width=100,
-                    height=25,
-                    anchor=tk.CENTER,
-                )
+            if i == 0:
+                name = tk.Label(text=self.goal_order[i], font=("Menlo", int(self.MAG / 6)), background="yellow")
+                order = tk.Label(text=str(i + 1) + "位", font=("Menlo", int(self.MAG / 6)), background="yellow")
             else:
-                name.place(
-                    x=self.WIDTH / 10 * 5,
-                    y=self.HEIGHT / 10 * 4 + (i * self.MAG / 2),
-                    width=self.MAG * 2,
-                    height=self.MAG / 3,
-                    anchor=tk.CENTER,
-                )
-                order.place(
-                    x=self.WIDTH / 10 * 3,
-                    y=self.HEIGHT / 10 * 4 + (i * self.MAG / 2),
-                    width=self.MAG * 3 / 2,
-                    height=self.MAG * 2 / 5,
-                    anchor=tk.CENTER,
-                )
-                title.place(
-                    x=self.WIDTH / 10 * 5,
-                    y=self.HEIGHT / 10 * 2,
-                    width=self.MAG * 2,
-                    height=self.MAG / 3,
-                    anchor=tk.CENTER,
-                )
+                name = tk.Label(text=self.goal_order[i], font=("Menlo", int(self.MAG / 6)))
+                order = tk.Label(text=str(i + 1) + "位", font=("Menlo", int(self.MAG / 6)))
+            if self.MAG <= 60:
+                if i == 0:
+                    name.place(
+                        x=self.WIDTH / 10 * 5,
+                        y=self.HEIGHT / 10 * 4 + (i * 30),
+                        width=120,
+                        height=30,
+                        anchor=tk.CENTER,
+                    )
+                    order.place(
+                        x=self.WIDTH / 10 * 3,
+                        y=self.HEIGHT / 10 * 4 + (i * 30),
+                        width=50,
+                        height=30,
+                        anchor=tk.CENTER,
+                    )
+                    title.place(
+                        x=self.WIDTH / 10 * 5,
+                        y=self.HEIGHT / 10 * 2,
+                        width=100,
+                        height=25,
+                        anchor=tk.CENTER,
+                    )
+                else:
+                    name.place(
+                        x=self.WIDTH / 10 * 5,
+                        y=self.HEIGHT / 10 * 4 + (i * 30),
+                        width=100,
+                        height=25,
+                        anchor=tk.CENTER,
+                    )
+                    order.place(
+                        x=self.WIDTH / 10 * 3,
+                        y=self.HEIGHT / 10 * 4 + (i * 30),
+                        width=40,
+                        height=25,
+                        anchor=tk.CENTER,
+                    )
+                    title.place(
+                        x=self.WIDTH / 10 * 5,
+                        y=self.HEIGHT / 10 * 2,
+                        width=100,
+                        height=25,
+                        anchor=tk.CENTER,
+                    )
+            else:
+                if i == 0:
+                    name.place(
+                        x=self.WIDTH / 10 * 5,
+                        y=self.HEIGHT / 10 * 4 + (i * self.MAG / 2),
+                        width=self.MAG * 5 / 2,
+                        height=self.MAG * 2 / 5,
+                        anchor=tk.CENTER,
+                    )
+                    order.place(
+                        x=self.WIDTH / 10 * 3,
+                        y=self.HEIGHT / 10 * 4 + (i * self.MAG / 2),
+                        width=self.MAG *  2,
+                        height=self.MAG * 2 / 5,
+                        anchor=tk.CENTER,
+                    )
+                    title.place(
+                        x=self.WIDTH / 10 * 5,
+                        y=self.HEIGHT / 10 * 2,
+                        width=self.MAG * 2,
+                        height=self.MAG / 3,
+                        anchor=tk.CENTER,
+                    )
+                else:
+                    name.place(
+                        x=self.WIDTH / 10 * 5,
+                        y=self.HEIGHT / 10 * 4 + (i * self.MAG / 2),
+                        width=self.MAG * 2,
+                        height=self.MAG / 3,
+                        anchor=tk.CENTER,
+                    )
+                    order.place(
+                        x=self.WIDTH / 10 * 3,
+                        y=self.HEIGHT / 10 * 4 + (i * self.MAG / 2),
+                        width=self.MAG * 3 / 2,
+                        height=self.MAG * 2 / 5,
+                        anchor=tk.CENTER,
+                    )
+                    title.place(
+                        x=self.WIDTH / 10 * 5,
+                        y=self.HEIGHT / 10 * 2,
+                        width=self.MAG * 2,
+                        height=self.MAG / 3,
+                        anchor=tk.CENTER,
+                    )
 
     # run shop event
     def shop(self, player):
