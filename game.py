@@ -113,22 +113,12 @@ class GAME:
                 font=("Menlo", int(self.MAG / 5)),
                 background="yellow",
             )
-            l_exit = tk.Label(
-                text="Exit",
-                font=("Menlo"),
-                background="blue"
-            )
+            l_exit = tk.Label(text="Exit", font=("Menlo"), background="blue")
         else:
-            l_start = tk.Label(
-                    text="Game start",
-                    font=("Menlo"),
-                    background="blue"
-                    )
+            l_start = tk.Label(text="Game start", font=("Menlo"), background="blue")
             l_exit = tk.Label(
-                    text="Exit",
-                    font=("Menlo", int(self.MAG / 5)),
-                    background="yellow"
-                    )
+                text="Exit", font=("Menlo", int(self.MAG / 5)), background="yellow"
+            )
         l_title.place(
             x=self.WIDTH / 2,
             y=self.HEIGHT / 10 * 2,
@@ -528,12 +518,24 @@ class GAME:
             background="blue",
         )
         l_turn = tk.Label(
-                text="Turn\n"+str(self.turn),
-                font=("Menlo", int(self.MAG / 3)),
-                background="blue"
-                )
-        l_remain.place(x=self.WIDTH * 14 / 15, y=self.HEIGHT * 6 / 17, width=self.MAG * 3 / 2, height=self.MAG * 3 / 2, anchor=tk.CENTER)
-        l_turn.place(x=self.WIDTH * 14 / 15, y=self.HEIGHT * 10 / 17, width=self.MAG * 3 / 2, height=self.MAG * 3 / 2, anchor=tk.CENTER)
+            text="Turn\n" + str(self.turn),
+            font=("Menlo", int(self.MAG / 3)),
+            background="blue",
+        )
+        l_remain.place(
+            x=self.WIDTH * 14 / 15,
+            y=self.HEIGHT * 6 / 17,
+            width=self.MAG * 3 / 2,
+            height=self.MAG * 3 / 2,
+            anchor=tk.CENTER,
+        )
+        l_turn.place(
+            x=self.WIDTH * 14 / 15,
+            y=self.HEIGHT * 10 / 17,
+            width=self.MAG * 3 / 2,
+            height=self.MAG * 3 / 2,
+            anchor=tk.CENTER,
+        )
         if self.var_select_menu[1] == 2:
             l_player[0] = tk.Label(
                 text="1",
@@ -789,11 +791,23 @@ class GAME:
         title = tk.Label(text="結果発表", font=("Menlo", int(self.MAG / 6)))
         for i in range(player_num):
             if i == 0:
-                name = tk.Label(text=self.goal_order[i], font=("Menlo", int(self.MAG / 6)), background="yellow")
-                order = tk.Label(text=str(i + 1) + "位", font=("Menlo", int(self.MAG / 6)), background="yellow")
+                name = tk.Label(
+                    text=self.goal_order[i],
+                    font=("Menlo", int(self.MAG / 6)),
+                    background="yellow",
+                )
+                order = tk.Label(
+                    text=str(i + 1) + "位",
+                    font=("Menlo", int(self.MAG / 6)),
+                    background="yellow",
+                )
             else:
-                name = tk.Label(text=self.goal_order[i], font=("Menlo", int(self.MAG / 6)))
-                order = tk.Label(text=str(i + 1) + "位", font=("Menlo", int(self.MAG / 6)))
+                name = tk.Label(
+                    text=self.goal_order[i], font=("Menlo", int(self.MAG / 6))
+                )
+                order = tk.Label(
+                    text=str(i + 1) + "位", font=("Menlo", int(self.MAG / 6))
+                )
             if self.MAG <= 60:
                 if i == 0:
                     name.place(
@@ -851,7 +865,7 @@ class GAME:
                     order.place(
                         x=self.WIDTH / 10 * 3,
                         y=self.HEIGHT / 10 * 4 + (i * self.MAG / 2),
-                        width=self.MAG *  2,
+                        width=self.MAG * 2,
                         height=self.MAG * 2 / 5,
                         anchor=tk.CENTER,
                     )
