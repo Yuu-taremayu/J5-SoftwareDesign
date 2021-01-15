@@ -411,13 +411,38 @@ class GAME:
         l_field = [[None for j in range(self.field.y)] for i in range(self.field.x)]
         for i in range(self.field.x):
             for j in range(self.field.y):
-                l_field[i][j] = tk.Label(
-                    text=self.field.field_array[i][j],
-                    font=("Menlo", int(self.MAG / 6)),
-                    background="red",
-                    relief="groove",
-                    borderwidth=self.MAG / 10,
-                )
+                if self.field.field_array[i][j] == "Money":
+                    l_field[i][j] = tk.Label(
+                        text=self.field.field_array[i][j],
+                        font=("Menlo", int(self.MAG / 6)),
+                        background="yellow",
+                        relief="groove",
+                        borderwidth=self.MAG / 10,
+                    )
+                elif self.field.field_array[i][j] == "Job\nChange":
+                    l_field[i][j] = tk.Label(
+                        text=self.field.field_array[i][j],
+                        font=("Menlo", int(self.MAG / 6)),
+                        background="blue",
+                        relief="groove",
+                        borderwidth=self.MAG / 10,
+                    )
+                elif self.field.field_array[i][j] == "Shop":
+                    l_field[i][j] = tk.Label(
+                        text=self.field.field_array[i][j],
+                        font=("Menlo", int(self.MAG / 6)),
+                        background="green",
+                        relief="groove",
+                        borderwidth=self.MAG / 10,
+                    )
+                else:
+                    l_field[i][j] = tk.Label(
+                        text=self.field.field_array[i][j],
+                        font=("Menlo", int(self.MAG / 6)),
+                        background="red",
+                        relief="groove",
+                        borderwidth=self.MAG / 10,
+                    )
                 l_field[i][j].place(
                     x=self.WIDTH / 2 + (i - 2) * self.MAG * 5 / 2,
                     y=self.HEIGHT / self.field.y * j + self.MAG * 15 / 16,
