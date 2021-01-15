@@ -27,6 +27,7 @@ class PLAYER():
         self.item = [[0,'Protein',100],[0,'Energy Drink',100]]
 
         self.decide_job()
+        self.decide_win_condition()
 
     # decide player's job
     def decide_job(self):
@@ -39,3 +40,8 @@ class PLAYER():
             self.job = 'SportsMan'
         else:
             self.job = 'NoJob'
+
+    # decide player's win condition
+    def decide_win_condition(self):
+        r = random.randrange(4) + 1
+        self.condition = r
