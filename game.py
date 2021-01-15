@@ -527,7 +527,13 @@ class GAME:
             font=("Menlo", int(self.MAG / 3)),
             background="blue",
         )
-        l_remain.place(x=self.WIDTH * 9 / 10, y=self.HEIGHT / 3, width=self.MAG * 3 / 2, height=self.MAG * 3 / 2)
+        l_turn = tk.Label(
+                text="Turn\n"+str(self.turn),
+                font=("Menlo", int(self.MAG / 3)),
+                background="blue"
+                )
+        l_remain.place(x=self.WIDTH * 14 / 15, y=self.HEIGHT * 6 / 17, width=self.MAG * 3 / 2, height=self.MAG * 3 / 2, anchor=tk.CENTER)
+        l_turn.place(x=self.WIDTH * 14 / 15, y=self.HEIGHT * 10 / 17, width=self.MAG * 3 / 2, height=self.MAG * 3 / 2, anchor=tk.CENTER)
         if self.var_select_menu[1] == 2:
             l_player[0] = tk.Label(
                 text="1",
