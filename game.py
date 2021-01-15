@@ -330,8 +330,8 @@ class GAME:
                 lbl.place(
                     x=self.WIDTH / 10 * 3,
                     y=self.HEIGHT / 10 * 4 + (i * 30),
-                    width=40,
-                    height=30,
+                    width=60,
+                    height=25,
                     anchor=tk.CENTER,
                 )
             else:
