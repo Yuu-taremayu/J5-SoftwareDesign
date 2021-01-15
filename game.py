@@ -441,6 +441,7 @@ class GAME:
                     anchor=tk.CENTER,
                 )
         l_stat = [None for i in range(self.var_select_menu[1])]
+        l_con = [None for i in range(self.var_select_menu[1])]
         for i in range(self.var_select_menu[1]):
             NAM = str(self.player[i].name) + "\n"
             JOB = "job:" + str(self.player[i].job) + "\n"
@@ -448,6 +449,16 @@ class GAME:
             MUS = "muscle:" + str(self.player[i].muscle) + "\n"
             STR = "stress:" + str(self.player[i].stress) + "\n"
             DEX = "dexterity:" + str(self.player[i].dexterity)
+            if self.player[i].condition == 1:
+                CON = "GET 1000 MONEY"
+            elif self.player[i].condition == 2:
+                CON = "GET 1000 MASCLE"
+            elif self.player[i].condition == 3:
+                CON = "GET 1000 STRESS"
+            elif self.player[i].condition == 4:
+                CON = "GET 4TH WHEN NO MONEY"
+            else:
+                CON = "GET 5 BAD EVENTS"
             l_stat[i] = tk.Label(
                 text=NAM + JOB + MON + MUS + STR + DEX,
                 font=("Menlo", int(self.MAG / 6)),
@@ -455,6 +466,13 @@ class GAME:
                 relief="ridge",
                 borderwidth=self.MAG / 20,
             )
+            l_con[i] = tk.Label(
+                    text="Target\n" + CON,
+                    font=("Menlo", int(self.MAG / 9)),
+                    background="gray",
+                    relief="ridge",
+                    borderwidth=self.MAG / 20
+                    )
         if self.var_select_menu[1] == 2:
             l_stat[0].place(
                 x=0, y=0, width=self.MAG * 3 / 2, height=self.MAG * 3 / 2, anchor=tk.NW
@@ -466,6 +484,12 @@ class GAME:
                 height=self.MAG * 3 / 2,
                 anchor=tk.SE,
             )
+            l_con[0].place(
+                    x=0, y=self.MAG * 3 / 2, anchor=tk.NW
+                    )
+            l_con[1].place(
+                    x=self.WIDTH, y=self.HEIGHT - self.MAG * 3 / 2, anchor=tk.SE
+                    )
         elif self.var_select_menu[1] == 3:
             l_stat[0].place(
                 x=0, y=0, width=self.MAG * 3 / 2, height=self.MAG * 3 / 2, anchor=tk.NW
@@ -484,6 +508,15 @@ class GAME:
                 height=self.MAG * 3 / 2,
                 anchor=tk.SW,
             )
+            l_con[0].place(
+                    x=0, y=self.MAG * 3 / 2, anchor=tk.NW
+                    )
+            l_con[1].place(
+                    x=self.WIDTH, y=self.MAG * 3 / 2, anchor=tk.NE
+                    )
+            l_con[2].place(
+                    x=0, y=self.HEIGHT - self.MAG * 3 / 2, anchor=tk.SW
+                    )
         elif self.var_select_menu[1] == 4:
             l_stat[0].place(
                 x=0, y=0, width=self.MAG * 3 / 2, height=self.MAG * 3 / 2, anchor=tk.NW
@@ -509,6 +542,18 @@ class GAME:
                 height=self.MAG * 3 / 2,
                 anchor=tk.SE,
             )
+            l_con[0].place(
+                    x=0, y=self.MAG * 3 / 2, anchor=tk.NW
+                    )
+            l_con[1].place(
+                    x=self.WIDTH, y=self.MAG * 3 / 2, anchor=tk.NE
+                    )
+            l_con[2].place(
+                    x=0, y=self.HEIGHT - self.MAG * 3 / 2, anchor=tk.SW
+                    )
+            l_con[3].place(
+                    x=self.WIDTH, y=self.HEIGHT - self.MAG * 3 / 2, anchor=tk.SE
+                    )
 
     def print_player(self):
         l_player = [None for i in range(4)]
@@ -667,8 +712,8 @@ class GAME:
         player_num = self.var_select_menu[1]
 
         # temporary lines
-        self.player[self.turn].condition = 1
-        self.player[1].condition = 4
+        # self.player[self.turn].condition = 1
+        # self.player[1].condition = 4
 
         if self.player[self.turn].condition == 1:  # condition 1 : get 1,000 golds
             if self.player[self.turn].money >= 1000:
