@@ -467,12 +467,12 @@ class GAME:
                 borderwidth=self.MAG / 20,
             )
             l_con[i] = tk.Label(
-                    text="Target\n" + CON,
-                    font=("Menlo", int(self.MAG / 9)),
-                    background="gray",
-                    relief="ridge",
-                    borderwidth=self.MAG / 20
-                    )
+                text="Target\n" + CON,
+                font=("Menlo", int(self.MAG / 9)),
+                background="gray",
+                relief="ridge",
+                borderwidth=self.MAG / 20,
+            )
         if self.var_select_menu[1] == 2:
             l_stat[0].place(
                 x=0, y=0, width=self.MAG * 3 / 2, height=self.MAG * 3 / 2, anchor=tk.NW
@@ -484,12 +484,8 @@ class GAME:
                 height=self.MAG * 3 / 2,
                 anchor=tk.SE,
             )
-            l_con[0].place(
-                    x=0, y=self.MAG * 3 / 2, anchor=tk.NW
-                    )
-            l_con[1].place(
-                    x=self.WIDTH, y=self.HEIGHT - self.MAG * 3 / 2, anchor=tk.SE
-                    )
+            l_con[0].place(x=0, y=self.MAG * 3 / 2, anchor=tk.NW)
+            l_con[1].place(x=self.WIDTH, y=self.HEIGHT - self.MAG * 3 / 2, anchor=tk.SE)
         elif self.var_select_menu[1] == 3:
             l_stat[0].place(
                 x=0, y=0, width=self.MAG * 3 / 2, height=self.MAG * 3 / 2, anchor=tk.NW
@@ -508,15 +504,9 @@ class GAME:
                 height=self.MAG * 3 / 2,
                 anchor=tk.SW,
             )
-            l_con[0].place(
-                    x=0, y=self.MAG * 3 / 2, anchor=tk.NW
-                    )
-            l_con[1].place(
-                    x=self.WIDTH, y=self.MAG * 3 / 2, anchor=tk.NE
-                    )
-            l_con[2].place(
-                    x=0, y=self.HEIGHT - self.MAG * 3 / 2, anchor=tk.SW
-                    )
+            l_con[0].place(x=0, y=self.MAG * 3 / 2, anchor=tk.NW)
+            l_con[1].place(x=self.WIDTH, y=self.MAG * 3 / 2, anchor=tk.NE)
+            l_con[2].place(x=0, y=self.HEIGHT - self.MAG * 3 / 2, anchor=tk.SW)
         elif self.var_select_menu[1] == 4:
             l_stat[0].place(
                 x=0, y=0, width=self.MAG * 3 / 2, height=self.MAG * 3 / 2, anchor=tk.NW
@@ -542,18 +532,10 @@ class GAME:
                 height=self.MAG * 3 / 2,
                 anchor=tk.SE,
             )
-            l_con[0].place(
-                    x=0, y=self.MAG * 3 / 2, anchor=tk.NW
-                    )
-            l_con[1].place(
-                    x=self.WIDTH, y=self.MAG * 3 / 2, anchor=tk.NE
-                    )
-            l_con[2].place(
-                    x=0, y=self.HEIGHT - self.MAG * 3 / 2, anchor=tk.SW
-                    )
-            l_con[3].place(
-                    x=self.WIDTH, y=self.HEIGHT - self.MAG * 3 / 2, anchor=tk.SE
-                    )
+            l_con[0].place(x=0, y=self.MAG * 3 / 2, anchor=tk.NW)
+            l_con[1].place(x=self.WIDTH, y=self.MAG * 3 / 2, anchor=tk.NE)
+            l_con[2].place(x=0, y=self.HEIGHT - self.MAG * 3 / 2, anchor=tk.SW)
+            l_con[3].place(x=self.WIDTH, y=self.HEIGHT - self.MAG * 3 / 2, anchor=tk.SE)
 
     def print_player(self):
         l_player = [None for i in range(4)]
