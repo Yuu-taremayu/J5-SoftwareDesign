@@ -169,6 +169,12 @@ class GAME:
         canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
         canvas.place(x=0, y=0)
 
+        # disp background
+        img = Image.open("img/select_screen.jpg")
+        img = img.resize((self.WIDTH, self.HEIGHT))
+        img = ImageTk.PhotoImage(img)
+        canvas.create_image(0, 0, image=img, anchor=tk.NW)
+
         # 1:player 2:start 3:left 4:right
         select, player_num, old_key = self.var_select_menu
 
@@ -384,9 +390,19 @@ class GAME:
 
         # Update window
         self.root.update()
+        self.root.mainloop()
 
     # start game
     def start(self):
+        # Fill black
+        canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
+        canvas.place(x=0, y=0)
+        # disp background
+        img = Image.open("img/board_screen.jpg")
+        img = img.resize((self.WIDTH, self.HEIGHT))
+        img = ImageTk.PhotoImage(img)
+        canvas.create_image(0, 0, image=img, anchor=tk.NW)
+
         while self.player[self.turn].goal_flag == True:
             self.turn = (self.turn + 1) % self.var_select_menu[1]
 
@@ -404,10 +420,10 @@ class GAME:
         self.check_win_condition()
         self.check_exit_condition()
 
+        self.root.mainloop()
+
     def print_field(self):
-        # Fill black
-        canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
-        canvas.place(x=0, y=0)
+
         l_field = [[None for j in range(self.field.y)] for i in range(self.field.x)]
         for i in range(self.field.x):
             for j in range(self.field.y):
@@ -822,6 +838,12 @@ class GAME:
         # Fill black
         canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
         canvas.place(x=0, y=0)
+        # disp background
+        img = Image.open("img/result_screen.jpg")
+        img = img.resize((self.WIDTH, self.HEIGHT))
+        img = ImageTk.PhotoImage(img)
+        canvas.create_image(0, 0, image=img, anchor=tk.NW)
+
         print(self.goal_order)
 
         player_num = self.var_select_menu[1]
@@ -935,6 +957,7 @@ class GAME:
                         height=self.MAG / 3,
                         anchor=tk.CENTER,
                     )
+        self.root.mainloop()
 
     # run shop event
     def shop(self, player):
