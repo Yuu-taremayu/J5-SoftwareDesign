@@ -1,5 +1,6 @@
 import random
 import tkinter as tk
+from PIL import Image, ImageTk
 from field import FIELD
 from player import PLAYER
 
@@ -74,6 +75,14 @@ class GAME:
     # Disp start menu
     # TODO: Modify the design
     def start_menu(self):
+        # disp background
+        canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
+        canvas.place(x=0, y=0)
+        img = Image.open("img/title_screen.jpg")
+        img = img.resize((self.WIDTH, self.HEIGHT))
+        img = ImageTk.PhotoImage(img)
+        canvas.create_image(0, 0, image=img, anchor=tk.NW)
+
         # define
         up = 1
         down = 2
@@ -145,6 +154,7 @@ class GAME:
 
         # Update window
         self.root.update()
+        self.root.mainloop()
 
     # show select menu
     # TODO: fix UI
