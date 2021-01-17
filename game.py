@@ -55,6 +55,8 @@ class GAME:
         elif self.scene_cnt == 2:
             if self.field.shop_flag == 1:
                 self.shop(self.player[self.turn])
+            elif self.field.useitem_flag == 1:
+                self.item(self.player[self.turn])
             else:
                 self.start()
         elif self.scene_cnt == 3:
@@ -409,8 +411,11 @@ class GAME:
         self.print_field()
         if self.old_turn != self.turn:
             self.player[self.turn].dice = self.roll_dice()
-            self.print_player()
+            #self.print_player()
             self.old_turn = self.turn
+            self.field.print_use_item(self.player[self.turn])
+            self.field.useitem_flag = 1
+            return 0
 
         if self.player[self.turn].dice != None:
             self.print_field()
@@ -969,3 +974,12 @@ class GAME:
             self.print_player()
         else:
             self.field.print_shop(player)
+
+    def item(self, player):
+        self.field.print_use_item(player)
+        self.field.use_item(player, self.pressed)
+        if self.field.useitem_flag == 0:
+            self.print_field()
+            self.print_player()
+        else:
+            self.field.print_use_item(player)
