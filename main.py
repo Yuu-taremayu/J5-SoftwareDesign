@@ -10,8 +10,8 @@ def main():
     # ウィンドウの設定
     root.title("prototype")
     window_ratio = (16, 9)  # (w, h)
-    window_magnification = 120
-    # window_magnification = 70#120代入で1920*1080になる
+    # window_magnification = 120
+    window_magnification = 70  # 120代入で1920*1080になる
     h = window_ratio[1] * window_magnification  # ウィンドウの高さ
     w = window_ratio[0] * window_magnification  # ウィンドウの幅
     mag = window_magnification
@@ -22,7 +22,7 @@ def main():
     g = GAME(w, h, mag, root)
 
     # 割り込みが起きる以外はループ
-    root.mainloop()
+    # root.mainloop()
 
 
 if __name__ == "__main__":
