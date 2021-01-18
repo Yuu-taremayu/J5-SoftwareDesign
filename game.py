@@ -411,7 +411,7 @@ class GAME:
         self.print_field()
         if self.old_turn != self.turn:
             self.player[self.turn].dice = self.roll_dice()
-            #self.print_player()
+            # self.print_player()
             self.old_turn = self.turn
             self.field.print_use_item(self.player[self.turn])
             self.field.useitem_flag = 1
@@ -428,7 +428,6 @@ class GAME:
         self.root.mainloop()
 
     def print_field(self):
-
         l_field = [[None for j in range(self.field.y)] for i in range(self.field.x)]
         for i in range(self.field.x):
             for j in range(self.field.y):
@@ -970,6 +969,14 @@ class GAME:
         self.field.select_shop(player, self.pressed)
         if self.field.shop_flag == 0:
             self.turn = (self.turn + 1) % self.var_select_menu[1]
+            # Fill black
+            canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
+            canvas.place(x=0, y=0)
+            # disp background
+            img = Image.open("img/board_screen.jpg")
+            img = img.resize((self.WIDTH, self.HEIGHT))
+            img = ImageTk.PhotoImage(img)
+            canvas.create_image(0, 0, image=img, anchor=tk.NW)
             self.print_field()
             self.print_player()
         else:
@@ -979,6 +986,14 @@ class GAME:
         self.field.print_use_item(player)
         self.field.use_item(player, self.pressed)
         if self.field.useitem_flag == 0:
+            # Fill black
+            canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
+            canvas.place(x=0, y=0)
+            # disp background
+            img = Image.open("img/board_screen.jpg")
+            img = img.resize((self.WIDTH, self.HEIGHT))
+            img = ImageTk.PhotoImage(img)
+            canvas.create_image(0, 0, image=img, anchor=tk.NW)
             self.print_field()
             self.print_player()
         else:

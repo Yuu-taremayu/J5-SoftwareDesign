@@ -23,9 +23,12 @@ class PLAYER:
         self.goal_flag = False
         self.bad_event = 0
 
-        # item:num, name, price
+        # item:num, name, price, description
         self.item_num = 2
-        self.item = [[0, "Protein", 100], [0, "Energy Drink", 100]]
+        self.item = [
+            [0, "Protein", 100, "increase muscle"],
+            [0, "Energy Drink", 100, "reduce stress"],
+        ]
 
         self.decide_job()
         self.decide_win_condition()

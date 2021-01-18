@@ -15,6 +15,7 @@ class FIELD:
         self.useitem_flag = 0
         self.select_item = 0
         self.cantbuy_flag = 0
+        self.donthave_flag = 0
 
         self.field_array = self.init_field(
             self.x, self.y, self.num_shop, self.num_jobchange, self.num_money
@@ -121,8 +122,10 @@ class FIELD:
         canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
         canvas.place(x=0, y=0)
 
-        l_title = tk.Label(text="SHOP", font=("Menlo", int(self.MAG / 4)), background="green")
-        l_title.place(x=self.WIDTH / 2, y=0,  width=self.MAG * 2, height=self.MAG / 3)
+        l_title = tk.Label(
+            text="SHOP", font=("Menlo", int(self.MAG / 4)), background="green"
+        )
+        l_title.place(x=self.WIDTH / 2, y=0, width=self.MAG * 2, height=self.MAG / 3)
 
         # money of player
         msg = "your money : " + str(player.money)
@@ -222,12 +225,15 @@ class FIELD:
                 self.select_item = 0
                 self.shop_flag = 0
                 return 0
+
     def print_use_item(self, player):
         canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
         canvas.place(x=0, y=0)
 
-        l_title = tk.Label(text="ITEM", font=("Menlo", int(self.MAG / 4)), background="steel blue")
-        l_title.place(x=self.WIDTH / 2, y=0,  width=self.MAG * 2, height=self.MAG / 3)
+        l_title = tk.Label(
+            text="ITEM", font=("Menlo", int(self.MAG / 4)), background="steel blue"
+        )
+        l_title.place(x=self.WIDTH / 2, y=0, width=self.MAG * 2, height=self.MAG / 3)
 
         # status of player
         NAM = str(player.name) + "\n"
@@ -235,7 +241,9 @@ class FIELD:
         STR = "stress:" + str(player.stress) + "\n"
         DEX = "dexterity:" + str(player.dexterity)
         l_stat = tk.Label(
-            text=NAM + MUS + STR + DEX, font=("Menlo", int(self.MAG / 6)), background="white"
+            text=NAM + MUS + STR + DEX,
+            font=("Menlo", int(self.MAG / 6)),
+            background="white",
         )
         l_stat.place(
             x=0, y=0, width=self.MAG * 3 / 2, height=self.MAG * 3 / 2, anchor=tk.NW
@@ -243,12 +251,11 @@ class FIELD:
         # item information
         l_item = [None for i in range(player.item_num)]
         for i in range(player.item_num):
-            POS = "possession:" + str(player.item[i][0]) + "\n"
             ITM = "item:" + player.item[i][1] + "\n"
             POS = "possession:" + str(player.item[i][0]) + "\n"
             DSC = "descripton:" + player.item[i][3]
             l_item[i] = tk.Label(
-                text=POS + ITM + DSC,
+                text=ITM + POS + DSC,
                 font=("Menlo", int(self.MAG / 6)),
                 background="spring green",
             )
@@ -285,7 +292,9 @@ class FIELD:
         # print "Can't buy"
         if self.donthave_flag == 1:
             l_cannot = tk.Label(
-                text="Don't have it", font=("Menlo", int(self.MAG / 5)), background="red"
+                text="Don't have it",
+                font=("Menlo", int(self.MAG / 5)),
+                background="red",
             )
             l_cannot.place(
                 x=self.WIDTH / 10 * 7,
@@ -303,6 +312,7 @@ class FIELD:
                 height=self.MAG / 3,
                 anchor=tk.CENTER,
             )
+
     def use_item(self, player, pressed):
         if "Down" in pressed:
             self.select_item += 1
@@ -325,7 +335,6 @@ class FIELD:
                     self.donthave_flag = 1
             else:
                 self.select_item = 0
-                self.shop_flag = 0
                 self.useitem_flag = 0
                 return 0
 
