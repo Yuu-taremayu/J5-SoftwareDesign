@@ -722,9 +722,9 @@ class GAME:
         dice = 0
         up_prob += self.player[self.turn].dexterity / 50
         if r <= up_prob:
-            dice = random.randint(1, 3)
-        else:
             dice = random.randint(4, 6)
+        else:
+            dice = random.randint(1, 3)
         return dice
 
     # check each player's winning condition
