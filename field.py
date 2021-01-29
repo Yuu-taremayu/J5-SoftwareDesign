@@ -9,7 +9,7 @@ class FIELD:
         self.WIDTH = w
         self.HEIGHT = h
         self.MAG = mag
-        self.num_shop, self.num_jobchange, self.num_money = self.set_events()
+        self.num_shop, self.num_jobchange, self.num_work = self.set_events()
 
         self.shop_flag = 0
         self.useitem_flag = 0
@@ -18,7 +18,7 @@ class FIELD:
         self.donthave_flag = 0
 
         self.field_array = self.init_field(
-            self.x, self.y, self.num_shop, self.num_jobchange, self.num_money
+            self.x, self.y, self.num_shop, self.num_jobchange, self.num_work
         )
 
     # set field size
@@ -31,13 +31,13 @@ class FIELD:
     def set_events(self):
         num_shop = 3
         num_jobchange = 2
-        num_money = 4
-        return num_shop, num_jobchange, num_money
+        num_work = 4
+        return num_shop, num_jobchange, num_work
 
     # init field array internally
     # initialize all by Normal
     # add shop and job change piont
-    def init_field(self, x, y, num_shop, num_jobchange, num_money):
+    def init_field(self, x, y, num_shop, num_jobchange, num_work):
         field_array = [["Normal" for j in range(y)] for i in range(x)]
 
         cnt = 0
@@ -57,41 +57,47 @@ class FIELD:
                 cnt += 1
 
         cnt = 0
-        while cnt < num_money:
+        while cnt < num_work:
             randX = random.randrange(0, x - 1)
             randY = random.randrange(0, y - 1)
             if field_array[randX][randY] == "Normal":
-                field_array[randX][randY] = "Money"
+                field_array[randX][randY] = "Work"
                 cnt += 1
 
         return field_array
 
     # run some events on field
     # add any more events
-    def event_money(self, player):
+    def event_work(self, player):
         before_money = player.money
+        before_stress = player.stress
 
         updown = random.randint(0, 1)
         if updown == 0:
             if player.job == "Teacher":
                 player.money = before_money + 500
+                player.stress = before_stress + 50
             elif player.job == "Engineer":
                 player.money = before_money + 600
+                player.stress = before_stress + 100
             elif player.job == "SportsMan":
                 player.money = before_money + 700
+                player.stress = before_stress + 150
             else:
                 player.money = before_money + 0
         else:
             down = random.randint(1, 3) * 50
             if player.money >= down:
                 player.money -= down
+                player.stress = before_stress + 200
             else:
                 player.money = 0
             player.bad_event += 1
 
-        msg = str(before_money) + "->" + str(player.money)
+        m_msg = str(before_money) + "->" + str(player.money)
+        s_msg = str(before_stress) + "->" + str(player.stress)
         label = tk.Label(
-            text=msg, font=("Menlo", int(self.MAG / 6)), background="yellow"
+            text=m_msg + "\n" + s_msg, font=("Menlo", int(self.MAG / 6)), background="yellow"
         )
         label.place(x=self.HEIGHT / 8, y=self.HEIGHT / 2, anchor=tk.W)
 
@@ -337,8 +343,8 @@ class FIELD:
 
     def event_run(self, player):
         coodinate = self.field_array[player.x][player.y]
-        if coodinate == "Money":
-            self.event_money(player)
+        if coodinate == "Work":
+            self.event_work(player)
         if coodinate == "Job\nChange":
             self.event_jobchange(player)
         if coodinate == "Shop":
