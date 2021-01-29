@@ -716,8 +716,16 @@ class GAME:
 
     # roll dice randomly
     def roll_dice(self):
-        r = random.randint(1, 6)
-        return r
+        up_prob = 40
+        r = random.randint(1, 100)
+
+        dice = 0
+        up_prob += self.player[self.turn].dexterity / 50
+        if r <= up_prob:
+            dice = random.randint(1, 3)
+        else:
+            dice = random.randint(4, 6)
+        return dice
 
     # check each player's winning condition
     def check_win_condition(self):
