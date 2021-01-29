@@ -59,7 +59,6 @@ Pythonでのフィールドすごろくの開発
  - フィールド
 	 - イベント
 		 - 店
-		 - バトル
 		 - 職業店
  - ダイス
 
@@ -70,7 +69,7 @@ Pythonでのフィールドすごろくの開発
 	 - 他のプレイヤーと戦う
  - フィールド
 	 - 画面上に配置され,プレイヤーが動く場所を提供する
-	 - バトル,買い物,転職が行われる
+	 - 買い物,転職が行われる
  - ダイス
 	 - 1~6の目を出し,プレイヤーの動きに影響を及ぼす
 
@@ -88,7 +87,7 @@ class GAME():
 	self.frame		:フレーム作成のインスタンス
 	self.pressed		:押されているキーが格納される配列
 	canvas			:画面描写を行うためのインスタンス
-	self.field		:フィールドの内部状態を保持するインスタンス
+	self.field		 :フィールドの内部状態を保持するインスタンス
 	self.player		:プレイヤーの内部状態を保持するインスタンスの配列
 	self.turn		:現在行動するプレイヤーを指し示すフラグ
 ```
@@ -103,9 +102,9 @@ class PLAYER():
 	self.dexterity		:プレイヤーのステータスdexterityを持つ変数
 	self.job		:プレイヤーのステータスjobを持つ変数
 	self.condition		:プレイヤーの勝利条件を持つ変数
-	self.goal_flag	:
-	self.item_num	:アイテムの個数
-	self.item		:アイテムの情報（所持数，名前，値段）
+	self.goal_flag		 :
+	self.item_num	 	:アイテムの個数
+	self.item		:アイテムの情報（所持数，名前，値段，説明）
 ```
  - "フィールド" クラス
 ```
@@ -114,11 +113,15 @@ class FIELD():
 	self.y			:プレイヤーのy座標を持つ変数
 	self.WIDTH		:ゲーム画面の横幅を持つ変数,GAMEクラスから渡される
 	self.HEIGHT		:ゲーム画面の縦幅を持つ変数,GAMEクラスから渡される
+	self.MAG		:ゲーム画面の倍率を持つ変数,GAMEクラスから渡される
 	self.num_shop		:ショップマスの数を持つ変数
 	self.num_jobchange	:ジョブチェンジマスの数を持つ変数
-	self.shop_flag	:ショップイベントマスにとまると1，抜け出すと0になる
+	self.num_money		:マネーマスの数を持つ変数
+	self.shop_flag		 :ショップイベントマスにとまると1，抜け出すと0になる
+	self.useitem_flag	 :サイコロを振った後1，アイテム使用画面から抜け出すと0になる
 	self.select_item	:ショップで選ばれてるアイテムを持つ変数
-	self.cantbuy_flag	:所持金が選んだアイテムより低いと1になる
+	self.cantbuy_flag	 :所持金が選んだアイテムより低いと1になる
+	self.donthave_flag	 :使用するアイテムを持っていないとき1になる
 ```
 
 ## 関数仕様
@@ -136,7 +139,7 @@ class GAME():
 	self.frame		:フレーム作成のインスタンス
 	self.pressed		:押されているキーが格納される配列
 	canvas			:画面描写を行うためのインスタンス
-	self.field		:フィールドの内部状態を保持するインスタンス
+	self.field		 :フィールドの内部状態を保持するインスタンス
 	self.player		:プレイヤーの内部状態を保持するインスタンスの配列
 	self.turn		:現在行動するプレイヤーを指し示すフラグ
 ```
@@ -151,9 +154,9 @@ class PLAYER():
 	self.dexterity		:プレイヤーのステータスdexterityを持つ変数
 	self.job		:プレイヤーのステータスjobを持つ変数
 	self.condition		:プレイヤーの勝利条件を持つ変数
-	self.goal_flag		:
+	self.goal_flag		 :
 	self.item_num		:アイテムの個数
-	self.item		:アイテムの情報（所持数，名前，値段）
+	self.item		:アイテムの情報（所持数，名前，値段，説明）
 ```
  - "フィールド" クラス
 ```
@@ -162,11 +165,15 @@ class FIELD():
 	self.y			:プレイヤーのy座標を持つ変数
 	self.WIDTH		:ゲーム画面の横幅を持つ変数,GAMEクラスから渡される
 	self.HEIGHT		:ゲーム画面の縦幅を持つ変数,GAMEクラスから渡される
+	self.MAG		:ゲーム画面の倍率を持つ変数,GAMEクラスから渡される
 	self.num_shop		:ショップマスの数を持つ変数
 	self.num_jobchange	:ジョブチェンジマスの数を持つ変数
-	self.shop_flag		:ショップイベントマスにとまると1，抜け出すと0になる
+	self.num_money		:マネーマスの数を持つ変数
+	self.shop_flag		 :ショップイベントマスにとまると1，抜け出すと0になる
+	self.useitem_flag	 :サイコロを振った後1，アイテム使用画面から抜け出すと0になる
 	self.select_item	:ショップで選ばれてるアイテムを持つ変数
-	self.cantbuy_flag	:所持金が選んだアイテムより低いと1になる
+	self.cantbuy_flag	 :所持金が選んだアイテムより低いと1になる
+	self.donthave_flag	 :使用するアイテムを持っていないとき1になる
 ```
 
 ### 基本関数仕様
@@ -250,6 +257,10 @@ class GAME():
 		引数:プレイヤー
 		戻り値:なし
 		# ショップイベントの実行
+	def item()
+		引数:プレイヤー
+		戻り値:なし
+		# アイテム使用の実行
 
 ```
  - "プレイヤー" クラス
@@ -282,7 +293,7 @@ class FIELD():
 		# フィールドの大きさを定める
 	def set_events()
 		引数:なし
-		戻り値:ショップのマス数, ジョブチェンジのマス数
+		戻り値:ショップのマス数, ジョブチェンジのマス数，マネーマスのマス数
 		# 各イベントの数を定める
 	def init_field():
 		引数:フィールドの横マス数, 縦マス数, ショップの数, ジョブチェンジの数
@@ -310,8 +321,20 @@ class FIELD():
 		戻り値:exitでショップを出るとき0
 		# Up, Downキーでアイテムを選択
 		# Returnキーでアイテムを購入，もしくはショップを出る
+	def print_use_item():
+		引数:プレイヤー
+		戻り値:なし
+		# プレイヤーのステータスを表示する
+		# アイテムの情報（名前，所持数，説明）を表示する
+		# 選択されているアイテムを表示する
+	def use_item():
+		引数:プレイヤー，押されたキー
+		戻り値:exitでアイテム使用画面から抜け出す
+		# Up, Downキーでアイテムを選択
+		# Returnキーでアイテムを使用，もしくは抜け出す
 	def event_run():
 		引数:プレイヤー
 		戻り値:なし
 		# イベントを実行する
+	
 ```
