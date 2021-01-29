@@ -436,7 +436,7 @@ class GAME:
         l_field = [[None for j in range(self.field.y)] for i in range(self.field.x)]
         for i in range(self.field.x):
             for j in range(self.field.y):
-                if self.field.field_array[i][j] == "Money":
+                if self.field.field_array[i][j] == "Work":
                     l_field[i][j] = tk.Label(
                         text=self.field.field_array[i][j],
                         font=("Menlo", int(self.MAG / 6)),
@@ -721,8 +721,16 @@ class GAME:
 
     # roll dice randomly
     def roll_dice(self):
-        r = random.randint(1, 6)
-        return r
+        up_prob = 40
+        r = random.randint(1, 100)
+
+        dice = 0
+        up_prob += self.player[self.turn].dexterity / 50
+        if r <= up_prob:
+            dice = random.randint(4, 6)
+        else:
+            dice = random.randint(1, 3)
+        return dice
 
     # check each player's winning condition
     def check_win_condition(self):
