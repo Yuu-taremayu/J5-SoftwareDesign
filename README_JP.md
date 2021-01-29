@@ -87,7 +87,7 @@ class GAME():
 	self.frame		:フレーム作成のインスタンス
 	self.pressed		:押されているキーが格納される配列
 	canvas			:画面描写を行うためのインスタンス
-	self.field		:フィールドの内部状態を保持するインスタンス
+	self.field		 :フィールドの内部状態を保持するインスタンス
 	self.player		:プレイヤーの内部状態を保持するインスタンスの配列
 	self.turn		:現在行動するプレイヤーを指し示すフラグ
 ```
@@ -102,8 +102,8 @@ class PLAYER():
 	self.dexterity		:プレイヤーのステータスdexterityを持つ変数
 	self.job		:プレイヤーのステータスjobを持つ変数
 	self.condition		:プレイヤーの勝利条件を持つ変数
-	self.goal_flag	:
-	self.item_num	:アイテムの個数
+	self.goal_flag		 :
+	self.item_num	 	:アイテムの個数
 	self.item		:アイテムの情報（所持数，名前，値段，説明）
 ```
  - "フィールド" クラス
@@ -116,12 +116,12 @@ class FIELD():
 	self.MAG		:ゲーム画面の倍率を持つ変数,GAMEクラスから渡される
 	self.num_shop		:ショップマスの数を持つ変数
 	self.num_jobchange	:ジョブチェンジマスの数を持つ変数
-	self.num_money	:マネーマスの数を持つ変数
-	self.shop_flag	:ショップイベントマスにとまると1，抜け出すと0になる
-	self.useitem_flag	:サイコロを振った後1，アイテム使用画面から抜け出すと0になる
+	self.num_money		:マネーマスの数を持つ変数
+	self.shop_flag		 :ショップイベントマスにとまると1，抜け出すと0になる
+	self.useitem_flag	 :サイコロを振った後1，アイテム使用画面から抜け出すと0になる
 	self.select_item	:ショップで選ばれてるアイテムを持つ変数
-	self.cantbuy_flag	:所持金が選んだアイテムより低いと1になる
-	self.donthave_flag	:使用するアイテムを持っていないとき1になる
+	self.cantbuy_flag	 :所持金が選んだアイテムより低いと1になる
+	self.donthave_flag	 :使用するアイテムを持っていないとき1になる
 ```
 
 ## 関数仕様
@@ -139,7 +139,7 @@ class GAME():
 	self.frame		:フレーム作成のインスタンス
 	self.pressed		:押されているキーが格納される配列
 	canvas			:画面描写を行うためのインスタンス
-	self.field		:フィールドの内部状態を保持するインスタンス
+	self.field		 :フィールドの内部状態を保持するインスタンス
 	self.player		:プレイヤーの内部状態を保持するインスタンスの配列
 	self.turn		:現在行動するプレイヤーを指し示すフラグ
 ```
@@ -154,7 +154,7 @@ class PLAYER():
 	self.dexterity		:プレイヤーのステータスdexterityを持つ変数
 	self.job		:プレイヤーのステータスjobを持つ変数
 	self.condition		:プレイヤーの勝利条件を持つ変数
-	self.goal_flag		:
+	self.goal_flag		 :
 	self.item_num		:アイテムの個数
 	self.item		:アイテムの情報（所持数，名前，値段，説明）
 ```
@@ -168,12 +168,12 @@ class FIELD():
 	self.MAG		:ゲーム画面の倍率を持つ変数,GAMEクラスから渡される
 	self.num_shop		:ショップマスの数を持つ変数
 	self.num_jobchange	:ジョブチェンジマスの数を持つ変数
-	self.num_money	:マネーマスの数を持つ変数
-	self.shop_flag	:ショップイベントマスにとまると1，抜け出すと0になる
-	self.useitem_flag	:サイコロを振った後1，アイテム使用画面から抜け出すと0になる
+	self.num_money		:マネーマスの数を持つ変数
+	self.shop_flag		 :ショップイベントマスにとまると1，抜け出すと0になる
+	self.useitem_flag	 :サイコロを振った後1，アイテム使用画面から抜け出すと0になる
 	self.select_item	:ショップで選ばれてるアイテムを持つ変数
-	self.cantbuy_flag	:所持金が選んだアイテムより低いと1になる
-	self.donthave_flag	:使用するアイテムを持っていないとき1になる
+	self.cantbuy_flag	 :所持金が選んだアイテムより低いと1になる
+	self.donthave_flag	 :使用するアイテムを持っていないとき1になる
 ```
 
 ### 基本関数仕様
