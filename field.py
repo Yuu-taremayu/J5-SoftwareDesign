@@ -331,6 +331,7 @@ class FIELD:
                     if player.item[self.select_item][1] == "Protein":
                         player.muscle += 100
                     elif player.item[self.select_item][1] == "Energy Drink":
+                        player.dexiterity += 50
                         player.stress -= 50
                         if player.stress < 0:
                             player.stress = 0
