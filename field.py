@@ -29,9 +29,9 @@ class FIELD:
 
     # set any event num
     def set_events(self):
-        num_shop = 4
+        num_shop = 3
         num_jobchange = 2
-        num_money = 2
+        num_money = 4
         return num_shop, num_jobchange, num_money
 
     # init field array internally
