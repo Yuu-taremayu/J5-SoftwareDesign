@@ -979,6 +979,7 @@ class GAME:
             canvas.create_image(0, 0, image=img, anchor=tk.NW)
             self.print_field()
             self.print_player()
+            self.root.mainloop()
         else:
             self.field.print_shop(player)
 
@@ -994,7 +995,9 @@ class GAME:
             img = img.resize((self.WIDTH, self.HEIGHT))
             img = ImageTk.PhotoImage(img)
             canvas.create_image(0, 0, image=img, anchor=tk.NW)
+            print("unko")
             self.print_field()
             self.print_player()
+            self.root.mainloop()
         else:
             self.field.print_use_item(player)

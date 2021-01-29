@@ -114,9 +114,6 @@ class FIELD:
         )
         label.place(x=self.HEIGHT / 8, y=self.HEIGHT / 2, anchor=tk.W)
 
-    def event_battle(self):
-        pass
-
     # print shop event
     def print_shop(self, player):
         canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
