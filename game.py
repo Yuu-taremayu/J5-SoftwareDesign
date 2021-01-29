@@ -431,7 +431,7 @@ class GAME:
         l_field = [[None for j in range(self.field.y)] for i in range(self.field.x)]
         for i in range(self.field.x):
             for j in range(self.field.y):
-                if self.field.field_array[i][j] == "Money":
+                if self.field.field_array[i][j] == "Work":
                     l_field[i][j] = tk.Label(
                         text=self.field.field_array[i][j],
                         font=("Menlo", int(self.MAG / 6)),
