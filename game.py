@@ -38,6 +38,11 @@ class GAME:
 
         # Create instance
         self.player = [PLAYER(i) for i in range(4)]
+        # Decide player's job
+        for i in range(4):
+            self.player[i].decide_win_condition()
+        self.player[random.randrange(4)].condition = 4
+
         self.turn = 0
         self.old_turn = None
 

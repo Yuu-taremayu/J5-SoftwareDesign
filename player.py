@@ -31,7 +31,7 @@ class PLAYER:
         ]
 
         self.decide_job()
-        self.decide_win_condition()
+        # self.decide_win_condition()
 
     # decide player's job
     def decide_job(self):
@@ -47,5 +47,5 @@ class PLAYER:
 
     # decide player's win condition
     def decide_win_condition(self):
-        r = random.randrange(4) + 1
+        r = random.randrange(3) + 1
         self.condition = r
