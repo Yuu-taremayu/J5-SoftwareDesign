@@ -26,14 +26,15 @@ The name is "日曜から夜ふかし \~Sunday midnight\~"
 	 - you have to satisfy any condition if you want to clear the game.
 	 - when the game start, you get a condition.
  - event
-	 - battle
-		 - occurs when player get close
 	 - shop
 		 - placed on field
 		 - you can get items by spend player status money
 	 - job change
 		 - placed on field
 		 - you can change given job
+	 - work
+		 - increase or decrease money
+		 - increase stress
 
 ## Extraction of materials
  - player
@@ -50,10 +51,13 @@ The name is "日曜から夜ふかし \~Sunday midnight\~"
 	 - win condition
  - field
 	 - event
-		 - money
 		 - shop
 		 - job change
+		 - work
  - dice
+ - item
+	 - protain
+	 - energy drink
 
 ## Behiviour of materials
  - player
@@ -64,6 +68,8 @@ The name is "日曜から夜ふかし \~Sunday midnight\~"
 	 - player can earn money, shop items and change job here
  - dice
 	 - put out 1~6 and effect player action
+ - item
+	 - effects player's status
 
 ## Data structure
  - class "game"
