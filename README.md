@@ -72,16 +72,18 @@ class GAME():
 	self.WIDTH		:variable of display width, passed from main function
 	self.HEIGHT		:variable of display height, passed from main function
 	self.MAG		:variable of display magnification, passed from main function
-	self.root		:
-	self.scene		:
-	self.var_start_menu	:
-	self.var_select_menu	:
-	self.frame		:
-	self.pressed		:
-	canvas			:
+	self.root		:instance for treating Tkinter
+	self.scene_cnt		:value of game display status
+	self.goal_order		:array for storing goal order
+	self.var_start_menu	:list save data of start_menu function
+	self.var_select_menu	:list save data of select_menu function
+	self.frame		:instance for creating frame
+	self.pressed		:array storing pressed key
+	canvas			:instance for drawing display
 	self.field		:instance of field inner status
 	self.player		:instance array of player inner status
 	self.turn		:flag that indicates active player
+	self.old_turn		:old flag that indicates active player
 ```
  - class "player"
 ```
