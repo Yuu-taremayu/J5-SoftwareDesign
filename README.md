@@ -127,16 +127,18 @@ class GAME():
 	self.WIDTH		:variable of display width, passed from main function
 	self.HEIGHT		:variable of display height, passed from main function
 	self.MAG		:variable of display magnification, passed from main function
-	self.root		:
-	self.scene		:
-	self.var_start_menu	:
-	self.var_select_menu	:
-	self.frame		:
-	self.pressed		:
-	canvas			:
+	self.root		:instance for treating Tkinter
+	self.scene_cnt		:value of game display status
+	self.goal_order		:array for storing goal order
+	self.var_start_menu	:list save data of start_menu function
+	self.var_select_menu	:list save data of select_menu function
+	self.frame		:instance for creating frame
+	self.pressed		:array storing pressed key
+	canvas			:instance for drawing display
 	self.field		:instance of field inner status
 	self.player		:instance array of player inner status
 	self.turn		:flag that indicates active player
+	self.old_turn		:old flag that indicates active player
 ```
  - class "player"
 ```
@@ -149,6 +151,10 @@ class PLAYER():
 	self.dexterity		:variable of player dexterity staus
 	self.job		:variable of player job
 	self.condition		:variable of player win condition
+	self.goal_flag		:variable of player goal flag
+	self.bad_event		:variable of player bad event
+	self.item_num		:variable of player number of item it has
+	self.item		:array of item player has
 ```
  - class "field"
 ```
@@ -157,8 +163,15 @@ class FIELD():
 	self.y			:variable of player y coordinate
 	self.WIDTH		:variable of display width, passed from main function
 	self.HEIGHT		:variable of display height, passed from main function
+	self.MAG		:variable of display magnification, passed from main function
 	self.num_shop		:variable of the number of shop
 	self.num_jobchange	:variable of the number of jobchange
+	self.num_work		:variable of the number of work
+	self.shop_flag		:flag that player on the shop
+	self.useitem_flag	:flag that player useing item
+	self.select_flag	:flag that player selecting item
+	self.cantbuy_flag	:flag that when player buy item
+	self.donthave_flag	:flag that when player use item
 ```
 
 ### Basic function specification
