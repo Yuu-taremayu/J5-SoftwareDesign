@@ -274,17 +274,21 @@ class GAME():
 ```
 class PLAYER():
 	def __init__():
-		argument:none
+		argument:self, order
 		return value:none
 		# initialize player's status
-		# money, muscle, stress, job, DEX
-		# give player win condition
+		# money, muscle, stress, job, dexterity
 		# call decide_job and give player job
+		# call decide_win_condition and give player win condition
 	def decide_job():
-		argument:none
+		argument:self
 		return value:none
 		# decide job by random
 		# there are 4 jobs 'Teacher', 'Engineer', 'SportsMan' and 'Nojob'
+	def decide_win_condition()
+		argument:self
+		return value:none
+		# decide player's win condition by random
 ```
  - class "field"
 ```
