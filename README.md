@@ -14,7 +14,7 @@ group development
 ## Descriptions
 development of Field Sugoroku with Python
 
-The name is "日曜から夜ふかし \~Sunday midnight\~"
+The name is "Field Search Record \~凄録\~"
 
 ## Rule
  - 4\*5 Field
