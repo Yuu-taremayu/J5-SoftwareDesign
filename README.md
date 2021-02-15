@@ -238,6 +238,10 @@ class GAME():
 		# print field using field instance
 		# print player status using player instance
 		# change the number of status display and position by the number of player
+	def print_player():
+		argument:self
+		return value:none
+		# print player's location by each coodinate
 	def roll_dice():
 		argument:self
 		return value:dice
