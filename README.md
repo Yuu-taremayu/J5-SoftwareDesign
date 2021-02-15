@@ -108,8 +108,15 @@ class FIELD():
 	self.y			:variable of player y coordinate
 	self.WIDTH		:variable of display width, passed from main function
 	self.HEIGHT		:variable of display height, passed from main function
+	self.MAG		:variable of display magnification, passed from main function
 	self.num_shop		:variable of the number of shop
 	self.num_jobchange	:variable of the number of jobchange
+	self.num_work		:variable of the number of work
+	self.shop_flag		:flag that player on the shop
+	self.useitem_flag	:flag that player useing item
+	self.select_flag	:flag that player selecting item
+	self.cantbuy_flag	:flag that when player buy item
+	self.donthave_flag	:flag that when player use item
 ```
 
 ## Function specification
