@@ -99,7 +99,6 @@ class PLAYER():
 	self.money		:variable of player money status
 	self.muscle		:variable of player muscle status
 	self.stress		:variable of player stress status
-	self.dexterity		:variable of player dexterity staus
 	self.job		:variable of player job
 	self.condition		:variable of player win condition
 	self.goal_flag		:variable of player goal flag
