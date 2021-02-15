@@ -195,7 +195,7 @@ class GAME():
 		return value:none
 		# when key pressed, call this function
 		# add pressed key from array
-		# branch by scene count  and some flag
+		# branch by scene count and some flag
 	def key_released():
 		argument:self, event
 		return value:none
@@ -228,6 +228,7 @@ class GAME():
 		# function calling function that processing
 		# control the game of the flow
 		# call print_field()
+		# call print_player()
 		# call move_player()
 		# call check_win_condition()
 		# call check_exit_condition()
