@@ -186,31 +186,31 @@ class GAME():
 		# create player instance
 		# initialize keyboard config
 		# call start_menu() function
-	def key_pressed()
+	def key_pressed():
 		argument:self, event
 		return value:none
 		# when key pressed, call this function
 		# add pressed key from array
 		# branch by scene count  and some flag
-	def key_released()
+	def key_released():
 		argument:self, event
 		return value:none
 		# when key released, call this function
 		# delete released key from array
-	def click_button()
+	def click_button():
 		argument:self, l_name
 		return value:none
 		# when clicked by mouse, call this function
 		# set focus to frame
 		# set player's name
-	def start_menu()
+	def start_menu():
 		argument:self
 		return value:0
 		# display start menu
 		# create menu screen by canvas and label
 		# control Up, Down and Enter key
 		# you can be Game Start or Exit here
-	def select_menu()
+	def select_menu():
 		argument:self
 		return value:0
 		# display select manu
@@ -218,7 +218,7 @@ class GAME():
 		# control Up, Down, Left, Right and Enter key
 		# you can be select the number of player and start game
 		# decide each player's initial position by the number of player
-	def start()
+	def start():
 		argument:self
 		return value:none
 		# function calling function that processing
@@ -227,44 +227,44 @@ class GAME():
 		# call move_player()
 		# call check_win_condition()
 		# call check_exit_condition()
-	def print_field()
+	def print_field():
 		argument:self
 		return value:none
 		# print field using field instance
 		# print player status using player instance
 		# change the number of status display and position by the number of player
-	def roll_dice()
+	def roll_dice():
 		argument:self
 		return value:dice
 		# function that decide dice number using random number
 		# change probability of high number by player's status
-	def check_win_condition()
+	def check_win_condition():
 		argument:self
 		return value:none
 		# function that checking satisfy condition
 		# if player satisfy conidition, put true to condition of class player
-	def check_exit_condition()
+	def check_exit_condition():
 		argument:self
 		return value:none
 		# checking function exit condition of game
 		# call show_result() if all player win condition satisfy
-	def move_player()
+	def move_player():
 		argument:self
 		return value:none
 		# function that move placed player on field
 		# player can move range of field
 		# player can the number of moving by dice
-	def show_result()
+	def show_result():
 		argument:self
 		return value:none
 		# show grade of player
-	def shop()
+	def shop():
 		argument:self, player
 		return value:none
 		# if player is in the shop, call this funtion
 		# run shop event
 		# print shop display and player can buy some items
-	def item()
+	def item():
 		argument:self, player
 		return value:none
 		# when each player's turn start, call this function
@@ -294,22 +294,58 @@ class PLAYER():
 ```
 class FIELD():
 	def __init__():
-		argument:none
+		argument:self, w, h, mag
 		return value:none
 		# initialize field properties
 		# x, y, number of shop, number of job change point and field array
 	def set_field():
-		argument:none
+		argument:self
 		return value:x, y
-		# setting　field size x, y
+		# setting field size x, y
 	def set_events()
-		argument:none
-		return value:number of shop, number of job change point
-		# setting number of event point shop and job change
+		argument:self
+		return value:num_shop, num_jobchange, num_work
+		# setting number of event point shop, job change and work
 	def init_field():
-		argument:x, y, number of shop, number of job change point
-		return value:field array
+		argument:self, x, y, num_shop, num_jobchange, num_work
+		return value:field_array
 		# initialize internal information of field
-		# random create point of shop and jobchange
+		# random create point of shop, jobchange and work
 		# other points initialized by 'Normal'
+	def event_work():
+		argument:self, player
+		return value:none
+		# when player is in work, run this function
+		# change money and stress status by job and random
+		# print message
+	def event_job_change():
+		argument:self, player
+		return value: none
+		# when player is in job change, run this function
+		# change job by random
+		# print message
+	def print_shop():
+		argument:self, player
+		return value:none
+		# when run shop event, call this function
+		# print item, item infomation nad more
+	def select_shop():
+		argument:self, player, pressed
+		return value:0
+		# if player's in shop display, call this function
+		# selecting items
+	def print_use_item():
+		argument:self, player
+		return value:none
+		# when each player's turn start, call this function by item() in "game" class
+		# print item that player can use it
+	def use_item():
+		argument:self, player
+		return value:none
+		# when each player's turn start, call this function by item() in "game" class
+		# select and use item which player has
+	def event_run():
+		argument:self, player
+		return value:none
+		# judge whether or do not to call function by player's coodinate
 ```
