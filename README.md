@@ -179,30 +179,39 @@ class FIELD():
 ```
 class GAME():
 	def __init__():
-		argument:self, width, height, root
+		argument:self, w, h, mag, root
 		return value:none
 		# initialize some constant and variables in GAME class
+		# create canvas instance
+		# create player instance
 		# initialize keyboard config
 		# call start_menu() function
 	def key_pressed()
-		argument:event
+		argument:self, event
 		return value:none
 		# when key pressed, call this function
 		# add pressed key from array
+		# branch by scene count  and some flag
 	def key_released()
-		argument:event
+		argument:self, event
 		return value:none
 		# when key released, call this function
 		# delete released key from array
+	def click_button()
+		argument:self, l_name
+		return value:none
+		# when clicked by mouse, call this function
+		# set focus to frame
+		# set player's name
 	def start_menu()
-		argument:none
+		argument:self
 		return value:0
 		# display start menu
 		# create menu screen by canvas and label
 		# control Up, Down and Enter key
 		# you can be Game Start or Exit here
 	def select_menu()
-		argument:none
+		argument:self
 		return value:0
 		# display select manu
 		# create menu screen by some label
@@ -210,42 +219,56 @@ class GAME():
 		# you can be select the number of player and start game
 		# decide each player's initial position by the number of player
 	def start()
-		argument:none
+		argument:self
 		return value:none
 		# function calling function that processing
+		# control the game of the flow
 		# call print_field()
 		# call move_player()
 		# call check_win_condition()
 		# call check_exit_condition()
 	def print_field()
-		argument:none
+		argument:self
 		return value:none
 		# print field using field instance
 		# print player status using player instance
 		# change the number of status display and position by the number of player
 	def roll_dice()
-		argument:none
-		return value:none
+		argument:self
+		return value:dice
 		# function that decide dice number using random number
+		# change probability of high number by player's status
 	def check_win_condition()
-		argument:none
+		argument:self
 		return value:none
 		# function that checking satisfy condition
 		# if player satisfy conidition, put true to condition of class player
 	def check_exit_condition()
-		argument:none
+		argument:self
 		return value:none
 		# checking function exit condition of game
 		# call show_result() if all player win condition satisfy
 	def move_player()
-		argument:none
+		argument:self
 		return value:none
 		# function that move placed player on field
 		# player can move range of field
+		# player can the number of moving by dice
 	def show_result()
-		argument:none
+		argument:self
 		return value:none
 		# show grade of player
+	def shop()
+		argument:self, player
+		return value:none
+		# if player is in the shop, call this funtion
+		# run shop event
+		# print shop display and player can buy some items
+	def item()
+		argument:self, player
+		return value:none
+		# when each player's turn start, call this function
+		# player can use items if player has items
 ```
  - class "player"
 ```
