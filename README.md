@@ -99,6 +99,7 @@ class PLAYER():
 	self.money		:variable of player money status
 	self.muscle		:variable of player muscle status
 	self.stress		:variable of player stress status
+	self.dexterity		:variable of player dexterity staus
 	self.job		:variable of player job
 	self.condition		:variable of player win condition
 	self.goal_flag		:variable of player goal flag
@@ -153,6 +154,7 @@ class PLAYER():
 	self.money		:variable of player money status
 	self.muscle		:variable of player muscle status
 	self.stress		:variable of player stress status
+	self.dexterity		:variable of player dexterity staus
 	self.job		:variable of player job
 	self.condition		:variable of player win condition
 	self.goal_flag		:variable of player goal flag
@@ -294,7 +296,7 @@ class PLAYER():
 		return value:none
 		# decide job by random
 		# there are 4 jobs 'Teacher', 'Engineer', 'SportsMan' and 'Nojob'
-	def decide_win_condition()
+	def decide_win_condition():
 		argument:self
 		return value:none
 		# decide player's win condition by random
