@@ -50,8 +50,8 @@ The name is "日曜から夜ふかし \~Sunday midnight\~"
 	 - win condition
  - field
 	 - event
+		 - money
 		 - shop
-		 - battle
 		 - job change
  - dice
 
@@ -59,10 +59,9 @@ The name is "日曜から夜ふかし \~Sunday midnight\~"
  - player
 	 - moving Up,Down,Left,Right on field
 	 - shopping and changing job in field
-	 - battle other player
  - field
 	 - placed on display, and provide field that player move
-	 - player can battle, shop and change job here
+	 - player can earn money, shop items and change job here
  - dice
 	 - put out 1~6 and effect player action
 
@@ -95,6 +94,10 @@ class PLAYER():
 	self.dexterity		:variable of player dexterity staus
 	self.job		:variable of player job
 	self.condition		:variable of player win condition
+	self.goal_flag		:variable of player goal flag
+	self.bad_event		:variable of player bad event
+	self.item_num		:variable of player number of item it has
+	self.item		:array of item player has
 ```
  - class "field"
 ```
