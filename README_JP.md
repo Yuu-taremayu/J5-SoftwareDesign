@@ -14,7 +14,7 @@
 ## 概要
 Pythonでのフィールドすごろくの開発
 
-名称　"Field Search Record ~凄録~"
+名称　"Field Search Record \~凄録\~"
 
 ## ルール
  - 縦4マス,横5マスのフィールド.
@@ -26,52 +26,50 @@ Pythonでのフィールドすごろくの開発
 	 - プレイヤーがゲームをクリアするには,任意の条件を満たしている必要がある.
 	 - 条件はゲーム開始時にプレイヤーごとに割り振られる.
  - イベント
-	 - バトル
-		 - プレイヤーが接近すると発生する.
 	 - ショップ
 		 - フィールド上に配置される.
 		 - プレイヤーのステータスmoneyを消費してアイテムを手に入れることができる.
 	 - ジョブチェンジ
 		 - フィールド上に配置される.
 		 - 与えられたジョブを変更することができる.
+	 - 仕事
+		 - ゴールドが職業に応じて増える、またはランダムで減る。
+		 - ストレスが増える
 
 ## 物の抽出
  - プレイヤー
 	 - ステータス
 		 - 財産
 		 - 筋力
-		 - 耐久
 		 - ストレス
 		 - 速さ
-		 - 理解力
-		 - 知性
-	 - job
-		- 無職
-		- アスリート
-		- 探偵
-		- 医者
-		- エンジニア
-		- 狩猟者
-		- 緊急医療者
-		- 警察
+	 - 仕事
 		- 先生
-	 - 目的
+		- エンジニア
+		- アスリート
+		- 無職
+	 - 勝利条件
  - フィールド
 	 - イベント
 		 - 店
 		 - 職業店
+		 - 仕事場
  - ダイス
+ - アイテム
+	 - プロテイン
+	 - エナジードリンク
 
 ## 物の振る舞い
  - プレイヤー
 	 - フィールド内を上下左右に動く
 	 - フィールド上で買い物をしたり,転職したりする
-	 - 他のプレイヤーと戦う
  - フィールド
 	 - 画面上に配置され,プレイヤーが動く場所を提供する
-	 - 買い物,転職が行われる
+	 - 買い物,転職,仕事が行われる
  - ダイス
 	 - 1~6の目を出し,プレイヤーの動きに影響を及ぼす
+ - アイテム
+	 - プレイヤーのステータスに影響を及ぼす
 
 ## データ構造
  - "ゲーム" クラス
@@ -81,15 +79,17 @@ class GAME():
 	self.HEIGHT		:ゲーム画面の縦幅を持つ変数,main関数から渡される
 	self.MAG		:ゲーム画面の倍率を持つ変数,main関数から渡される
 	self.root		:TKinterを扱うためのインスタンス
-	self.scene		:ゲームの画面遷移状態を表す数値
+	self.scene_cnt		:ゲームの画面遷移状態を表す数値
+	self.goal_order		:ゴールした順番を持つ配列
 	self.var_start_menu	:関数start_menuのデータを保持するリスト
 	self.var_select_menu	:関数select_menuのデータを保持するリスト
 	self.frame		:フレーム作成のインスタンス
 	self.pressed		:押されているキーが格納される配列
 	canvas			:画面描写を行うためのインスタンス
-	self.field		 :フィールドの内部状態を保持するインスタンス
+	self.field		:フィールドの内部状態を保持するインスタンス
 	self.player		:プレイヤーの内部状態を保持するインスタンスの配列
 	self.turn		:現在行動するプレイヤーを指し示すフラグ
+	self.old_turn		:過去に行動したプレイヤーを指し示すフラグ
 ```
  - "プレイヤー" クラス
 ```
@@ -102,7 +102,8 @@ class PLAYER():
 	self.dexterity		:プレイヤーのステータスdexterityを持つ変数
 	self.job		:プレイヤーのステータスjobを持つ変数
 	self.condition		:プレイヤーの勝利条件を持つ変数
-	self.goal_flag		 :
+	self.goal_flag		:プレイヤーがゴールしたかどうかを持つ変数
+	self.bad_event		:プレイヤーが経験した悪いイベントの数を持つ変数
 	self.item_num	 	:アイテムの個数
 	self.item		:アイテムの情報（所持数，名前，値段，説明）
 ```
@@ -116,12 +117,12 @@ class FIELD():
 	self.MAG		:ゲーム画面の倍率を持つ変数,GAMEクラスから渡される
 	self.num_shop		:ショップマスの数を持つ変数
 	self.num_jobchange	:ジョブチェンジマスの数を持つ変数
-	self.num_money		:マネーマスの数を持つ変数
-	self.shop_flag		 :ショップイベントマスにとまると1，抜け出すと0になる
-	self.useitem_flag	 :サイコロを振った後1，アイテム使用画面から抜け出すと0になる
+	self.num_work		:仕事マスの数を持つ変数
+	self.shop_flag		:ショップイベントマスにとまると1，抜け出すと0になる
+	self.useitem_flag	:サイコロを振った後1，アイテム使用画面から抜け出すと0になる
 	self.select_item	:ショップで選ばれてるアイテムを持つ変数
-	self.cantbuy_flag	 :所持金が選んだアイテムより低いと1になる
-	self.donthave_flag	 :使用するアイテムを持っていないとき1になる
+	self.cantbuy_flag	:所持金が選んだアイテムより低いと1になる
+	self.donthave_flag	:使用するアイテムを持っていないとき1になる
 ```
 
 ## 関数仕様
@@ -133,15 +134,17 @@ class GAME():
 	self.HEIGHT		:ゲーム画面の縦幅を持つ変数,main関数から渡される
 	self.MAG		:ゲーム画面の倍率を持つ変数,main関数から渡される
 	self.root		:TKinterを扱うためのインスタンス
-	self.scene		:ゲームの画面遷移状態を表す数値
+	self.scene_cnt		:ゲームの画面遷移状態を表す数値
+	self.goal_order		:ゴールした順番を持つ配列
 	self.var_start_menu	:関数start_menuのデータを保持するリスト
 	self.var_select_menu	:関数select_menuのデータを保持するリスト
 	self.frame		:フレーム作成のインスタンス
 	self.pressed		:押されているキーが格納される配列
 	canvas			:画面描写を行うためのインスタンス
-	self.field		 :フィールドの内部状態を保持するインスタンス
+	self.field		:フィールドの内部状態を保持するインスタンス
 	self.player		:プレイヤーの内部状態を保持するインスタンスの配列
 	self.turn		:現在行動するプレイヤーを指し示すフラグ
+	self.old_turn		:過去に行動したプレイヤーを指し示すフラグ
 ```
  - "プレイヤー" クラス
 ```
@@ -154,8 +157,9 @@ class PLAYER():
 	self.dexterity		:プレイヤーのステータスdexterityを持つ変数
 	self.job		:プレイヤーのステータスjobを持つ変数
 	self.condition		:プレイヤーの勝利条件を持つ変数
-	self.goal_flag		 :
-	self.item_num		:アイテムの個数
+	self.goal_flag		:プレイヤーがゴールしたかどうかを持つ変数
+	self.bad_event		:プレイヤーが経験した悪いイベントの数を持つ変数
+	self.item_num	 	:アイテムの個数
 	self.item		:アイテムの情報（所持数，名前，値段，説明）
 ```
  - "フィールド" クラス
@@ -168,12 +172,12 @@ class FIELD():
 	self.MAG		:ゲーム画面の倍率を持つ変数,GAMEクラスから渡される
 	self.num_shop		:ショップマスの数を持つ変数
 	self.num_jobchange	:ジョブチェンジマスの数を持つ変数
-	self.num_money		:マネーマスの数を持つ変数
-	self.shop_flag		 :ショップイベントマスにとまると1，抜け出すと0になる
-	self.useitem_flag	 :サイコロを振った後1，アイテム使用画面から抜け出すと0になる
+	self.num_work		:仕事マスの数を持つ変数
+	self.shop_flag		:ショップイベントマスにとまると1，抜け出すと0になる
+	self.useitem_flag	:サイコロを振った後1，アイテム使用画面から抜け出すと0になる
 	self.select_item	:ショップで選ばれてるアイテムを持つ変数
-	self.cantbuy_flag	 :所持金が選んだアイテムより低いと1になる
-	self.donthave_flag	 :使用するアイテムを持っていないとき1になる
+	self.cantbuy_flag	:所持金が選んだアイテムより低いと1になる
+	self.donthave_flag	:使用するアイテムを持っていないとき1になる
 ```
 
 ### 基本関数仕様
@@ -181,36 +185,37 @@ class FIELD():
 ```
 class GAME():
 	def __init__():
-		引数:ウィンドウの幅, 高さ, tkinterを使うための変数
+		引数:ウィンドウの幅, 高さ, 画面の倍率, tkinterを使うための変数
 		戻り値:なし
-		# initialize some constant and variables in GAME class
 		# Gameクラスの変数と定数を初期化
+		# canvasとplayerのインスタンスを作成
 		# キーボード設定の初期化
 		# start_menu()を呼び出す
-	def key_pressed()
+	def key_pressed():
 		引数:イベント
 		戻り値:なし
 		# 何かキーが押されたときに呼び出される
 		# 現在押されているキーをpressedへ格納する
-	def key_released()
+		# scene_cnt変数といくつかのフラグによって条件分岐する
+	def key_released():
 		引数:イベント
 		戻り値:なし
 		# 押されていたキーが離されたときに呼び出される
 		# pressedから離されたキーを削除する
-	def start_menu()
+	def start_menu():
 		引数:なし
 		戻り値:0
 		# スタートメニューを表示する関数
 		# キー操作によってゲームスタートか終了を制御する
 		# ゲームスタートのボタンでselect_menu()を呼び出す
-	def select_menu()
+	def select_menu():
 		引数:なし
 		戻り値:0
 		# セレクトーを表示する関数
 		# キー操作で人数を、マウスとキー操作でプレイヤ名を決定する
 		# ゲームスタートのボタンを押すとstart()を呼び出す
 		# プレイヤー数に応じて各プレイヤーの初期位置を決める
-	def start()
+	def start():
 		引数:なし
 		戻り値:なし
 		# ゲームの各処理をする関数を呼び出す関数
@@ -219,45 +224,46 @@ class GAME():
 		# move_player()を呼び出す
 		# check_win_condition()を呼び出す
 		# check_exit_condition()を呼び出す
-	def print_field()
+	def print_field():
 		引数:なし
 		戻り値:なし
 		# フィールドのインスタンスを用いてフィールドを表示する
 		# プレイヤーのインスタンスを用いてプレイヤーのステータスを表示する
 		# プレイヤー数に応じてステータスの数、位置を変える
-	def print_player()
+	def print_player():
 		引数:なし
 		戻り値:なし
-		# プレイヤーを表示する
-	def roll_dice()
+		# プレイヤーの座標に応じて表示する
+	def roll_dice():
 		引数:なし
 		戻り値:なし
 		# サイコロの目を乱数を用いて決定する関数
-	def check_win_condition()
+		# プレイヤーのdexterityに応じて大きな目が出る確率があがる
+	def check_win_condition():
 		引数:なし
 		戻り値:なし
 		# プレイヤが勝利条件を満たしているかを確認する関数
 		# 満たしているならplayerクラスのconditionにTrueを格納
-	def check_exit_condition()
+	def check_exit_condition():
 		引数:なし
 		戻り値:なし
 		# ゲームの終了条件を判定する関数
 		# もし全てのプレイヤの勝利条件が満たされていればshow_result()を呼び出す
-	def move_player()
+	def move_player():
 		引数:なし
 		戻り値:なし
 		# フィールド上に配置されたプレイヤーを動かす関数
 		# フィールドに存在する範囲のみ動ける
 		# 止まったマスのイベントの実行
-	def show_result()
+	def show_result():
 		引数:なし
 		戻り値:なし
 		# プレイヤの勝利条件を満たした順に順位を表示する関数
-	def shop()
+	def shop():
 		引数:プレイヤー
 		戻り値:なし
 		# ショップイベントの実行
-	def item()
+	def item():
 		引数:プレイヤー
 		戻り値:なし
 		# アイテム使用の実行
@@ -267,7 +273,7 @@ class GAME():
 ```
 class PLAYER():
 	def __init__():
-		引数:なし
+		引数:order
 		戻り値:なし
 		# プレイヤの各ステータスを初期化する
 		# ステータスはmoney, muscle, stress, job, DEX
@@ -278,20 +284,24 @@ class PLAYER():
 		戻り値:なし
 		# ランダムで職業を決める
 		# 職業は'Teacher', 'Engineer', 'SportsMan' and 'Nojob'の４つ
+	def decide_win_condition():
+		引数:なし
+		戻り値:なし
+		# ランダムで勝利条件を決める
 ```
  - "フィールド" クラス
 ```
 class FIELD():
 	def __init__():
-		引数:なし
+		引数:w, h, mag
 		戻り値:なし
 		# フィールドの初期化
-		# x, y, number of shop, number of job change point and field array
+		# フィールドの大きさや各イベントマスの数を設定する
 	def set_field():
 		引数:なし
 		戻り値:フィールドの横マス数, 縦マス数
 		# フィールドの大きさを定める
-	def set_events()
+	def set_events():
 		引数:なし
 		戻り値:ショップのマス数, ジョブチェンジのマス数，マネーマスのマス数
 		# 各イベントの数を定める
@@ -300,12 +310,13 @@ class FIELD():
 		戻り値:フィールドの配列
 		# ランダムにイベントを配置
 		# イベントのないマスは「ノーマル」
-	def event_money():
+	def event_work():
 		引数:プレイヤー
 		戻り値:なし
 		# お金が増える，もしくは減るイベント
 		# プレイヤーの職業によってお金を増やす
 		# ランダムに（50, 100, 150）お金が減る
+		# ストレスも増える
 	def event_jobchange():
 		引数:プレイヤー
 		戻り値:なし
