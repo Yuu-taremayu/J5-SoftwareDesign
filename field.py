@@ -250,7 +250,7 @@ class FIELD:
         )
         l_stat.place(
             x=0, y=0, width=self.MAG * 3 / 2, height=self.MAG * 3 / 2, anchor=tk.NW
-        )
+        
         # item information
         l_item = [None for i in range(player.item_num)]
         for i in range(player.item_num):
