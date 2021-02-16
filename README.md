@@ -313,7 +313,7 @@ class FIELD():
 		argument:self
 		return value:x, y
 		# setting field size x, y
-	def set_events()
+	def set_events():
 		argument:self
 		return value:num_shop, num_jobchange, num_work
 		# setting number of event point shop, job change and work
@@ -331,7 +331,7 @@ class FIELD():
 		# print message
 	def event_job_change():
 		argument:self, player
-		return value: none
+		return value:none
 		# when player is in job change, run this function
 		# change job by random
 		# print message
