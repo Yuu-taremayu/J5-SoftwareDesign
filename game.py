@@ -164,7 +164,6 @@ class GAME:
         self.root.mainloop()
 
     # show select menu
-    # TODO: fix UI
     def select_menu(self):
         # define
         up = 1
@@ -373,6 +372,7 @@ class GAME:
 
         self.var_select_menu = [select, player_num, old_key]
 
+        # initialize player's position
         if player_num == 2:
             self.player[0].x = 0
             self.player[0].y = 0
@@ -432,6 +432,8 @@ class GAME:
 
         self.root.mainloop()
 
+    # print field
+    # create label array and initialize detail
     def print_field(self):
         l_field = [[None for j in range(self.field.y)] for i in range(self.field.x)]
         for i in range(self.field.x):
@@ -572,6 +574,8 @@ class GAME:
             l_con[2].place(x=0, y=self.HEIGHT - self.MAG * 3 / 2, anchor=tk.SW)
             l_con[3].place(x=self.WIDTH, y=self.HEIGHT - self.MAG * 3 / 2, anchor=tk.SE)
 
+    # print player, remaind dice num and turn
+    # create label and initialize detail
     def print_player(self):
         l_player = [None for i in range(4)]
         l_remain = tk.Label(
@@ -720,6 +724,7 @@ class GAME:
             )
 
     # Roll dice randomly
+    # increase poping out high number probabliy by dexterity
     def roll_dice(self):
         up_prob = 40
         r = random.randint(1, 100)
@@ -988,6 +993,7 @@ class GAME:
         else:
             self.field.print_shop(player)
 
+    # run using item event
     def item(self, player):
         self.field.print_use_item(player)
         self.field.use_item(player, self.pressed)
@@ -1000,7 +1006,6 @@ class GAME:
             img = img.resize((self.WIDTH, self.HEIGHT))
             img = ImageTk.PhotoImage(img)
             canvas.create_image(0, 0, image=img, anchor=tk.NW)
-            print("unko")
             self.print_field()
             self.print_player()
             self.root.mainloop()

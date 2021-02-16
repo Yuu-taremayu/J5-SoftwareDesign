@@ -36,7 +36,7 @@ class FIELD:
 
     # init field array internally
     # initialize all by Normal
-    # add shop and job change piont
+    # add shop, job change piont and work
     def init_field(self, x, y, num_shop, num_jobchange, num_work):
         field_array = [["Normal" for j in range(y)] for i in range(x)]
 
@@ -66,8 +66,9 @@ class FIELD:
 
         return field_array
 
-    # run some events on field
-    # add any more events
+    # run work event
+    # change status money and stress
+    # print label
     def event_work(self, player):
         before_money = player.money
         before_stress = player.stress
@@ -94,13 +95,19 @@ class FIELD:
                 player.money = 0
             player.bad_event += 1
 
+        # create label
         m_msg = str(before_money) + "->" + str(player.money)
         s_msg = str(before_stress) + "->" + str(player.stress)
         label = tk.Label(
-            text=m_msg + "\n" + s_msg, font=("Menlo", int(self.MAG / 6)), background="yellow"
+            text=m_msg + "\n" + s_msg,
+            font=("Menlo", int(self.MAG / 6)),
+            background="yellow",
         )
         label.place(x=self.HEIGHT / 8, y=self.HEIGHT / 2, anchor=tk.W)
 
+    # run jobchange event
+    # change status job
+    # print label
     def event_jobchange(self, player):
         before_job = player.job
 
@@ -114,6 +121,7 @@ class FIELD:
         else:
             player.job = "NoJob"
 
+        # create label
         msg = before_job + "->" + player.job
         label = tk.Label(
             text=msg, font=("Menlo", int(self.MAG / 6)), background="green"
@@ -229,6 +237,8 @@ class FIELD:
                 self.shop_flag = 0
                 return 0
 
+    # print use item
+    # when player's status has changed, call this function
     def print_use_item(self, player):
         canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
         canvas.place(x=0, y=0)
@@ -250,7 +260,7 @@ class FIELD:
         )
         l_stat.place(
             x=0, y=0, width=self.MAG * 3 / 2, height=self.MAG * 3 / 2, anchor=tk.NW
-        )
+        
         # item information
         l_item = [None for i in range(player.item_num)]
         for i in range(player.item_num):
@@ -316,6 +326,8 @@ class FIELD:
                 anchor=tk.CENTER,
             )
 
+    # use item
+    # change player statuses
     def use_item(self, player, pressed):
         if "Down" in pressed:
             self.select_item += 1
@@ -342,6 +354,8 @@ class FIELD:
                 self.useitem_flag = 0
                 return 0
 
+    # run some event
+    # when player is in event point, call this function
     def event_run(self, player):
         coodinate = self.field_array[player.x][player.y]
         if coodinate == "Work":
