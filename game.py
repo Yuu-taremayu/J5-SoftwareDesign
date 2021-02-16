@@ -33,19 +33,21 @@ class GAME:
         canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
         canvas.place(x=0, y=0)
 
-        # Array of field
+        # Array of field instance
         self.field = FIELD(w, h, mag)
 
-        # Create instance
+        # Create players instances
         self.player = [PLAYER(i) for i in range(4)]
         # Decide player's job
         for i in range(4):
             self.player[i].decide_win_condition()
         self.player[random.randrange(4)].condition = 4
 
+        # Initialize turn
         self.turn = 0
         self.old_turn = None
 
+        # Call start_menu
         self.start_menu()
 
     # Add pressed key
@@ -53,7 +55,8 @@ class GAME:
         self.pressed[event.keysym] = True
         self.pos = (0, 0)
 
-        if self.scene_cnt == 0:  # Call select_menu
+        # Call Scene functions
+        if self.scene_cnt == 0:
             self.start_menu()
         elif self.scene_cnt == 1:
             self.select_menu()
@@ -80,9 +83,8 @@ class GAME:
             self.player[i].name = l_name[i].get()
 
     # Disp start menu
-    # TODO: Modify the design
     def start_menu(self):
-        # disp background
+        # Disp background
         canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
         canvas.place(x=0, y=0)
         img = Image.open("img/title_screen.jpg")
@@ -90,17 +92,15 @@ class GAME:
         img = ImageTk.PhotoImage(img)
         canvas.create_image(0, 0, image=img, anchor=tk.NW)
 
-        # define
+        # Define keynum
         up = 1
         down = 2
 
         # Text config
         self.root.option_add("*font", ["MS Pゴシック", 15])
 
-        # Disp process
-        select, old_key = self.var_start_menu
-
         # Select process
+        select, old_key = self.var_start_menu
         if "Up" in self.pressed and old_key != up:
             select = 1
             old_key = up
@@ -399,17 +399,17 @@ class GAME:
         self.root.update()
         self.root.mainloop()
 
-    # start game
+    # Start game
     def start(self):
-        # Fill black
+        # Disp background
         canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
         canvas.place(x=0, y=0)
-        # disp background
         img = Image.open("img/board_screen.jpg")
         img = img.resize((self.WIDTH, self.HEIGHT))
         img = ImageTk.PhotoImage(img)
         canvas.create_image(0, 0, image=img, anchor=tk.NW)
 
+        # Change turn
         while self.player[self.turn].goal_flag == True:
             self.turn = (self.turn + 1) % self.var_select_menu[1]
 
@@ -719,7 +719,7 @@ class GAME:
                 height=self.MAG / 3,
             )
 
-    # roll dice randomly
+    # Roll dice randomly
     def roll_dice(self):
         up_prob = 40
         r = random.randint(1, 100)
@@ -732,13 +732,9 @@ class GAME:
             dice = random.randint(1, 3)
         return dice
 
-    # check each player's winning condition
+    # Check each player's winning condition
     def check_win_condition(self):
         player_num = self.var_select_menu[1]
-
-        # temporary lines
-        # self.player[self.turn].condition = 1
-        # self.player[1].condition = 4
 
         if self.player[self.turn].condition == 1:  # condition 1 : get 1,000 golds
             if self.player[self.turn].money >= 1000:
@@ -780,11 +776,10 @@ class GAME:
                 self.goal_order.append(self.player[self.turn].name)
                 self.turn = (self.turn + 1) % player_num
 
-    # check game's exit condition
+    # Check game's exit condition
     def check_exit_condition(self):
         flag = True
         player_num = self.var_select_menu[1]
-        print(player_num)
 
         cnt = 0
         for i in range(player_num):
@@ -792,7 +787,6 @@ class GAME:
                 cnt += 1
 
         if cnt == player_num - 1:
-            print("ゲーム終了条件が整いました")
             for i in range(player_num):
                 if self.player[i].goal_flag == False:
                     self.goal_order += self.player[i].name
@@ -850,19 +844,17 @@ class GAME:
             else:
                 self.field.print_shop(self.player[self.turn])
 
-    # show result
+    # Show result
     def show_result(self):
-        # Fill black
+        # Disp background
         canvas = tk.Canvas(bg="black", width=self.WIDTH, height=self.HEIGHT)
         canvas.place(x=0, y=0)
-        # disp background
         img = Image.open("img/result_screen.jpg")
         img = img.resize((self.WIDTH, self.HEIGHT))
         img = ImageTk.PhotoImage(img)
         canvas.create_image(0, 0, image=img, anchor=tk.NW)
 
-        print(self.goal_order)
-
+        # Disp results
         player_num = self.var_select_menu[1]
         title = tk.Label(text="結果発表", font=("Menlo", int(self.MAG / 6)))
         for i in range(player_num):
